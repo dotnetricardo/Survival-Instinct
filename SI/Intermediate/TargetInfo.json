@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "SI",
+			"Path": "C:\\My\\UnrealProjects\\SI\\Survival-Instinct\\SI\\Source\\SI.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "SIEditor",
+			"Path": "C:\\My\\UnrealProjects\\SI\\Survival-Instinct\\SI\\Source\\SIEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

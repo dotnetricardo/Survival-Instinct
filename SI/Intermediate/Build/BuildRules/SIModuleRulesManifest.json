@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"C:\\My\\UnrealProjects\\SI\\Survival-Instinct\\SI\\Source\\SI\\SI.Build.cs",
+		"C:\\My\\UnrealProjects\\SI\\Survival-Instinct\\SI\\Source\\SI.Target.cs",
+		"C:\\My\\UnrealProjects\\SI\\Survival-Instinct\\SI\\Source\\SIEditor.Target.cs"
+	],
+	"EngineVersion": "4.25.1"
+}

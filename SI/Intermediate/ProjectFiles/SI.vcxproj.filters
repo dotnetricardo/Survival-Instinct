@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\SI.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{4EA2D947-B061-4B7A-ABA1-C7E5E0187452}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\SI.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\SIEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{3319EDFF-CE3C-46BB-AA07-2D55BB548715}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\SI">
+      <UniqueIdentifier>{630FA929-F3B4-4700-BE0F-7A52880225AC}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\SI\SI.Build.cs">
+      <Filter>Source\SI</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\SI\SI.cpp">
+      <Filter>Source\SI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SI\SI.h">
+      <Filter>Source\SI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SI\SIGameModeBase.cpp">
+      <Filter>Source\SI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SI\SIGameModeBase.h">
+      <Filter>Source\SI</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
