@@ -1,2 +1,2 @@
 # Survival-Instinct
- Multiplayer Survival Game
+ Multiplayer Third Person Shooter Game
