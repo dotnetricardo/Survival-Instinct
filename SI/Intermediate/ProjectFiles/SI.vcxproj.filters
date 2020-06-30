@@ -42,4 +42,22 @@
       <Filter>Source\SI</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source\SI\Player">
+      <UniqueIdentifier>{2cdca8a1-954d-4747-9c30-2df3ca542a28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\SI\Player\Public">
+      <UniqueIdentifier>{ab8f9d17-b758-4079-8244-b701c938f3be}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\SI\Player\Public\SICharacter.h">
+      <Filter>Source\SI\Player\Public</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\SI\Player\Public\SICharacter.cpp">
+      <Filter>Source\SI\Player\Public</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
