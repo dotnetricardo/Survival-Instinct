@@ -1,12 +1,16 @@
 ﻿  Using 'git status' to determine working set for adaptive non-unity build (C:\My\UnrealProjects\SI\Survival-Instinct).
+  Parsing headers for SIEditor
+    Running UnrealHeaderTool "C:\My\UnrealProjects\SI\Survival-Instinct\SI\SI.uproject" "C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\SIEditor\Development\SIEditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -abslog="C:\Users\ricardo\AppData\Local\UnrealBuildTool\Log_UHT.txt" -installed
+  Reflection code generated for SIEditor in 4.7408374 seconds
   Building SIEditor...
   Using Visual Studio 2019 14.26.28806 toolchain (C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.26.28801) and Windows 10.0.18362.0 SDK (C:\Program Files (x86)\Windows Kits\10).
-  Building 4 actions with 16 processes...
-    [1/4] SICharacter.cpp
-    [2/4] UE4Editor-SI-0004.lib
-       Creating library C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\UE4Editor-SI-0004.lib and object C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\UE4Editor-SI-0004.exp
-    [3/4] UE4Editor-SI-0004.dll
-       Creating library C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\UE4Editor-SI-0004.suppressed.lib and object C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\UE4Editor-SI-0004.suppressed.exp
-    [4/4] SIEditor.target
-  Total time in Parallel executor: 1.40 seconds
-  Total execution time: 1.94 seconds
+  Building 5 actions with 16 processes...
+    [1/5] SICharacter.gen.cpp
+    [2/5] SICharacter.cpp
+    [3/5] UE4Editor-SI-0070.lib
+       Creating library C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\UE4Editor-SI-0070.lib and object C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\UE4Editor-SI-0070.exp
+    [4/5] UE4Editor-SI-0070.dll
+       Creating library C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\UE4Editor-SI-0070.suppressed.lib and object C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\UE4Editor-SI-0070.suppressed.exp
+    [5/5] SIEditor.target
+  Total time in Parallel executor: 1.29 seconds
+  Total execution time: 6.58 seconds

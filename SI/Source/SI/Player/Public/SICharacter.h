@@ -6,6 +6,9 @@
 #include "GameFramework/Character.h"
 #include "SICharacter.generated.h"
 
+class UCameraComponent;
+class USpringArmComponent;
+
 UCLASS()
 class SI_API ASICharacter : public ACharacter
 {
@@ -21,6 +24,16 @@ protected:
 	void MoveFoward(float Value);
 	
 	void MoveRight(float Value);
+
+	void BeginCrouch();
+
+	void EndCrouch();
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
+	UCameraComponent* CameraComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	USpringArmComponent* SpringArmComp;
 
 public:	
 	// Called every frame
