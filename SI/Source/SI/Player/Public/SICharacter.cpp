@@ -6,6 +6,8 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/PawnMovementComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Math/UnrealMathVectorCommon.h"
+
 
 // Sets default values
 ASICharacter::ASICharacter()
@@ -33,7 +35,7 @@ ASICharacter::ASICharacter()
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
 	CameraComp->bUsePawnControlRotation = false;
 	CameraComp->SetupAttachment(SpringArmComp);
-	
+
 
 }
 
@@ -69,6 +71,12 @@ void ASICharacter::MoveRight(float Value)
 	AddMovementInput(Direction, Value);
 }
 
+void ASICharacter::Turn(float Value)
+{
+	InputAxisYawValue = Value;
+	AddControllerYawInput(Value);
+}
+
 void ASICharacter::BeginCrouch()
 {
 	Crouch();
@@ -77,6 +85,27 @@ void ASICharacter::BeginCrouch()
 void ASICharacter::EndCrouch()
 {
 	UnCrouch();
+}
+
+void ASICharacter::CombatMode()
+{
+	bIsCombatMode = !bIsCombatMode;
+
+	if (bIsCombatMode)
+	{
+		Controller->SetControlRotation(SpringArmComp->GetComponentRotation());
+	}
+	
+	
+	GetCharacterMovement()->bOrientRotationToMovement = !bIsCombatMode;
+	
+	GetCharacterMovement()->bUseControllerDesiredRotation = bIsCombatMode;
+	
+	GetMesh()->SetRelativeRotation(bIsCombatMode ? CombatModeCharacterRotation : DefaultModeCharacterRotation);	
+	
+	SpringArmComp->SetRelativeLocation(bIsCombatMode ? CombatModeSpringArmVector : DefaultModeSpringArmVector);
+	
+	CameraComp->SetRelativeRotation(bIsCombatMode ? CombatModeCamRotation : DefaultModeCamRotation);
 }
 
 
@@ -96,11 +125,14 @@ void ASICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAxis("MoveRight", this, &ASICharacter::MoveRight);
 
 	PlayerInputComponent->BindAxis("LookUp", this, &ASICharacter::AddControllerPitchInput);
-	PlayerInputComponent->BindAxis("Turn", this, &ASICharacter::AddControllerYawInput);
+	PlayerInputComponent->BindAxis("Turn", this, &ASICharacter::Turn);
 
 	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &ASICharacter::BeginCrouch);
 	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &ASICharacter::EndCrouch);
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
+	
+	PlayerInputComponent->BindAction("CombatMode", IE_Pressed, this, &ASICharacter::CombatMode);
+
 }
 
