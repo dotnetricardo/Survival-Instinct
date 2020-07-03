@@ -9,6 +9,7 @@
 #include "Math/UnrealMathVectorCommon.h"
 
 
+
 // Sets default values
 ASICharacter::ASICharacter()
 {
@@ -22,20 +23,14 @@ ASICharacter::ASICharacter()
 	// Allow player to crouch
 	GetCharacterMovement()->GetNavAgentPropertiesRef().bCanCrouch = true;
 
-	//GetMovementComponent()->GetNavAgentPropertiesRef().bCanCrouch = true;
-	
 	bUseControllerRotationYaw = false;
 	
-	//  rotate the Character toward the direction of acceleration
+	// rotate the Character toward the direction of acceleration
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	
-	/*GetMovementComponent->bOrientRotationToMovement = true;*/
-	//GetCharacterMovement()->bUseControllerDesiredRotation = true;
-
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
 	CameraComp->bUsePawnControlRotation = false;
 	CameraComp->SetupAttachment(SpringArmComp);
-
 
 }
 
@@ -44,6 +39,15 @@ void ASICharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// Timeline Curve
+	if (SwichModesCurveFloat)
+	{
+		FOnTimelineFloat ProgressFunction;
+
+		ProgressFunction.BindUFunction(this, FName("AnimateCameraLocation"));
+		ModesTransitionTimeline.AddInterpFloat(SwichModesCurveFloat, ProgressFunction);
+		ModesTransitionTimeline.SetLooping(false);
+	}
 }
 
 void ASICharacter::MoveFoward(float Value)
@@ -103,16 +107,27 @@ void ASICharacter::CombatMode()
 	
 	GetMesh()->SetRelativeRotation(bIsCombatMode ? CombatModeCharacterRotation : DefaultModeCharacterRotation);	
 	
-	SpringArmComp->SetRelativeLocation(bIsCombatMode ? CombatModeSpringArmVector : DefaultModeSpringArmVector);
+	ModesTransitionTimeline.PlayFromStart();
 	
-	CameraComp->SetRelativeRotation(bIsCombatMode ? CombatModeCamRotation : DefaultModeCamRotation);
+	
 }
 
+
+void ASICharacter::AnimateCameraLocation(float Value)
+{
+	FVector NewLocation = bIsCombatMode ? FMath::Lerp(DefaultModeSpringArmVector, CombatModeSpringArmVector, Value) : FMath::Lerp(CombatModeSpringArmVector, DefaultModeSpringArmVector, Value);
+	SpringArmComp->SetRelativeLocation(NewLocation);
+
+	FRotator NewRotation = bIsCombatMode ? FMath::Lerp(DefaultModeCamRotation, CombatModeCamRotation, Value) : FMath::Lerp(CombatModeCamRotation, DefaultModeCamRotation, Value);
+	CameraComp->SetRelativeRotation(NewRotation);
+}
 
 // Called every frame
 void ASICharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	ModesTransitionTimeline.TickTimeline(DeltaTime);
 
 }
 

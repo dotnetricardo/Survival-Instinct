@@ -9,6 +9,8 @@
 
 class UCameraComponent;
 class USpringArmComponent;
+class UCurveFloat;
+
 
 
 UCLASS()
@@ -20,10 +22,10 @@ public:
 	// Sets default values for this character's properties
 	ASICharacter();
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
+	UPROPERTY(BlueprintReadWrite, Category = "Default")
 	bool bIsCombatMode;
 
-	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Default")
+	UPROPERTY(BlueprintReadOnly, Category = "Default")
 	float InputAxisYawValue = 0;
 
 protected:
@@ -42,11 +44,16 @@ protected:
 
 	void CombatMode();
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
+	
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components") 
 	UCameraComponent* CameraComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USpringArmComponent* SpringArmComp;
+
+	UPROPERTY(EditAnywhere, Category = "Timeline")
+	UCurveFloat* SwichModesCurveFloat;
 
 	FRotator CombatModeCharacterRotation = FRotator(0, -81.0f, 0); //y (pitch), z (yaw), x (roll)
 	
@@ -60,11 +67,13 @@ protected:
 
 	FRotator DefaultModeCamRotation = FRotator(0, 0, 0);
 
-	FTimeline* ModesTransitionTimeline;
+	FTimeline ModesTransitionTimeline;
 
 
 	
-
+private:
+	UFUNCTION()
+	void AnimateCameraLocation(float Value);
 
 public:	
 	// Called every frame
