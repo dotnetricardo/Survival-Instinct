@@ -49,15 +49,33 @@
     <Filter Include="Source\SI\Player\Public">
       <UniqueIdentifier>{ab8f9d17-b758-4079-8244-b701c938f3be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\SI\Weapons">
+      <UniqueIdentifier>{881a4492-ba2d-41da-8d1d-9d635823e82b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\SI\Weapons\Public">
+      <UniqueIdentifier>{d89db322-da08-4351-81df-307acf06e7c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\SI\Player\Public\SICharacter.h">
       <Filter>Source\SI\Player\Public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\SI\Weapons\Public\WeaponActualMaster.h">
+      <Filter>Source\SI\Weapons\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SI\Weapons\Public\WeaponPickupMaster.h">
+      <Filter>Source\SI\Weapons\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\SI\Player\Public\SICharacter.cpp">
       <Filter>Source\SI\Player\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SI\Weapons\Public\WeaponActualMaster.cpp">
+      <Filter>Source\SI\Weapons\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SI\Weapons\Public\WeaponPickupMaster.cpp">
+      <Filter>Source\SI\Weapons\Public</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

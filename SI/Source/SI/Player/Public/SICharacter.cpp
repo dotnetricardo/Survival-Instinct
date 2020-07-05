@@ -113,6 +113,11 @@ void ASICharacter::CombatMode()
 }
 
 
+void ASICharacter::Interact()
+{
+
+}
+
 void ASICharacter::AnimateCameraLocation(float Value)
 {
 	FVector NewLocation = bIsCombatMode ? FMath::Lerp(DefaultModeSpringArmVector, CombatModeSpringArmVector, Value) : FMath::Lerp(CombatModeSpringArmVector, DefaultModeSpringArmVector, Value);
@@ -131,6 +136,7 @@ void ASICharacter::Tick(float DeltaTime)
 
 }
 
+
 // Called to bind functionality to input
 void ASICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -148,6 +154,8 @@ void ASICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	
 	PlayerInputComponent->BindAction("CombatMode", IE_Pressed, this, &ASICharacter::CombatMode);
+
+	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &ASICharacter::Interact);
 
 }
 

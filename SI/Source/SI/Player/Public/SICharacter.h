@@ -44,6 +44,8 @@ protected:
 
 	void CombatMode();
 
+	void Interact();
+
 	
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components") 

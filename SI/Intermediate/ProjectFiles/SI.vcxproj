@@ -272,6 +272,10 @@
     <AdditionalOptions>/std:c++14</AdditionalOptions>
   </PropertyGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\SI\Weapons\Public\WeaponActualMaster.cpp" />
+    <ClCompile Include="..\..\Source\SI\Weapons\Public\WeaponPickupMaster.cpp" />
+    <ClInclude Include="..\..\Source\SI\Weapons\Public\WeaponActualMaster.h" />
+    <ClInclude Include="..\..\Source\SI\Weapons\Public\WeaponPickupMaster.h" />
     <None Include="..\..\SI.uproject" />
     <None Include="..\..\Source\SI.Target.cs" />
     <None Include="..\..\Source\SIEditor.Target.cs" />
