@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "SI/Weapons/Public/WeaponActualMaster.h"
 #include "GameFramework/Character.h"
 #include "Components/TimelineComponent.h"
 #include "SICharacter.generated.h"
@@ -25,8 +26,21 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Default")
 	bool bIsCombatMode;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
+	int MaxWeaponsCarry;
+
 	UPROPERTY(BlueprintReadOnly, Category = "Default")
 	float InputAxisYawValue = 0;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Components")
+	int WeaponInventoryIndex;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Default")
+	TArray<TSubclassOf<AWeaponActualMaster>> WeaponInventory;
+
+	void SpawnWeapon(TSubclassOf<AWeaponActualMaster> WeaponToSpawn);
+
+	AActor* SpawnedWeapon;
 
 protected:
 	// Called when the game starts or when spawned
@@ -43,8 +57,7 @@ protected:
 	void EndCrouch();
 
 	void CombatMode();
-
-	void Interact();
+	
 
 	
 
@@ -70,7 +83,6 @@ protected:
 	FRotator DefaultModeCamRotation = FRotator(0, 0, 0);
 
 	FTimeline ModesTransitionTimeline;
-
 
 	
 private:

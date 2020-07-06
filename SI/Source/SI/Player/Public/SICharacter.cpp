@@ -2,6 +2,7 @@
 
 
 #include "SICharacter.h"
+#include "../../Weapons/Public/WeaponPickupMaster.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/PawnMovementComponent.h"
@@ -32,6 +33,43 @@ ASICharacter::ASICharacter()
 	CameraComp->bUsePawnControlRotation = false;
 	CameraComp->SetupAttachment(SpringArmComp);
 
+	// Set defaults
+	MaxWeaponsCarry = 2;
+}
+
+void ASICharacter::SpawnWeapon(TSubclassOf<AWeaponActualMaster> WeaponToSpawn)
+{
+	if (WeaponToSpawn)
+	{
+		int index = WeaponInventory.AddUnique(WeaponToSpawn);
+
+		if (index != -1)
+		{
+			WeaponInventoryIndex = index;
+
+			// Spawn Weapon
+			if (SpawnedWeapon)
+			{
+				SpawnedWeapon->Destroy();
+			}
+
+			FName fnWeaponSocket = TEXT("WeaponSocket");
+			
+			FTransform SocketTransform = GetMesh()->GetSocketTransform(TEXT("WeaponSocket"), RTS_World);
+			
+			FActorSpawnParameters spawnParams;
+			spawnParams.Owner = this;
+			spawnParams.Instigator = this;
+
+			//FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, true);
+
+			SpawnedWeapon = GetWorld()->SpawnActor<AWeaponActualMaster>(WeaponToSpawn, SocketTransform);
+
+			SpawnedWeapon->K2_AttachRootComponentTo(GetMesh(), fnWeaponSocket, EAttachLocation::SnapToTarget, true);
+			
+		}
+
+	}
 }
 
 // Called when the game starts or when spawned
@@ -113,10 +151,19 @@ void ASICharacter::CombatMode()
 }
 
 
-void ASICharacter::Interact()
-{
-
-}
+//void ASICharacter::Interact()
+//{
+//	TArray<AActor*> OverlappingActors;
+//	TSubclassOf<AWeaponPickupMaster> ClassFilter;
+//	GetOverlappingActors(&OverlappingActors, ClassFilter);
+//
+//	if (OverlappingActors)
+//	{
+//		UE_LOG(LogTemp, Warning, TEXT("Overlapping"));
+//	}
+//
+//
+//}
 
 void ASICharacter::AnimateCameraLocation(float Value)
 {
@@ -154,8 +201,6 @@ void ASICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	
 	PlayerInputComponent->BindAction("CombatMode", IE_Pressed, this, &ASICharacter::CombatMode);
-
-	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &ASICharacter::Interact);
 
 }
 

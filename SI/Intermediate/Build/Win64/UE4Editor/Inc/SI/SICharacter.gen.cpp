@@ -20,6 +20,8 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 	ENGINE_API UClass* Z_Construct_UClass_UCurveFloat_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
+	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+	SI_API UClass* Z_Construct_UClass_AWeaponActualMaster_NoRegister();
 // End Cross Module References
 	DEFINE_FUNCTION(ASICharacter::execAnimateCameraLocation)
 	{
@@ -93,9 +95,22 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_CameraComp;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_WeaponInventory_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_WeaponInventory;
+		static const UE4CodeGen_Private::FClassPropertyParams NewProp_WeaponInventory_Inner;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_WeaponInventoryIndex_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_WeaponInventoryIndex;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_InputAxisYawValue_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_InputAxisYawValue;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MaxWeaponsCarry_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_MaxWeaponsCarry;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bIsCombatMode_MetaData[];
 #endif
@@ -143,12 +158,34 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASICharacter_Statics::NewProp_CameraComp = { "CameraComp", nullptr, (EPropertyFlags)0x00200800000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASICharacter, CameraComp), Z_Construct_UClass_UCameraComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ASICharacter_Statics::NewProp_CameraComp_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASICharacter_Statics::NewProp_CameraComp_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventory_MetaData[] = {
+		{ "Category", "Default" },
+		{ "ModuleRelativePath", "Player/Public/SICharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventory = { "WeaponInventory", nullptr, (EPropertyFlags)0x0014000000000004, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASICharacter, WeaponInventory), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventory_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventory_MetaData)) };
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventory_Inner = { "WeaponInventory", nullptr, (EPropertyFlags)0x0004000000000000, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_AWeaponActualMaster_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventoryIndex_MetaData[] = {
+		{ "Category", "Components" },
+		{ "ModuleRelativePath", "Player/Public/SICharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventoryIndex = { "WeaponInventoryIndex", nullptr, (EPropertyFlags)0x0010000000000014, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASICharacter, WeaponInventoryIndex), METADATA_PARAMS(Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventoryIndex_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventoryIndex_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASICharacter_Statics::NewProp_InputAxisYawValue_MetaData[] = {
 		{ "Category", "Default" },
 		{ "ModuleRelativePath", "Player/Public/SICharacter.h" },
 	};
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASICharacter_Statics::NewProp_InputAxisYawValue = { "InputAxisYawValue", nullptr, (EPropertyFlags)0x0010000000000014, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASICharacter, InputAxisYawValue), METADATA_PARAMS(Z_Construct_UClass_ASICharacter_Statics::NewProp_InputAxisYawValue_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASICharacter_Statics::NewProp_InputAxisYawValue_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASICharacter_Statics::NewProp_MaxWeaponsCarry_MetaData[] = {
+		{ "Category", "Default" },
+		{ "ModuleRelativePath", "Player/Public/SICharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASICharacter_Statics::NewProp_MaxWeaponsCarry = { "MaxWeaponsCarry", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASICharacter, MaxWeaponsCarry), METADATA_PARAMS(Z_Construct_UClass_ASICharacter_Statics::NewProp_MaxWeaponsCarry_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASICharacter_Statics::NewProp_MaxWeaponsCarry_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsCombatMode_MetaData[] = {
 		{ "Category", "Default" },
@@ -164,7 +201,11 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_SwichModesCurveFloat,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_SpringArmComp,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_CameraComp,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventory,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventory_Inner,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventoryIndex,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_InputAxisYawValue,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_MaxWeaponsCarry,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsCombatMode,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ASICharacter_Statics::StaticCppClassTypeInfo = {
@@ -194,7 +235,7 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASICharacter, 3255239278);
+	IMPLEMENT_CLASS(ASICharacter, 1417185364);
 	template<> SI_API UClass* StaticClass<ASICharacter>()
 	{
 		return ASICharacter::StaticClass();

@@ -23,6 +23,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	TSubclassOf<AWeaponActualMaster> WeaponActual;
 
+	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

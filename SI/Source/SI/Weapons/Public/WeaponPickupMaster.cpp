@@ -2,9 +2,11 @@
 
 
 #include "WeaponPickupMaster.h"
+#include "SI/Player/Public/SICharacter.h"
 #include "WeaponActualMaster.h"
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
+//#include "Kismet/KismetArrayLibrary.h"
 
 
 // Sets default values
@@ -21,6 +23,23 @@ AWeaponPickupMaster::AWeaponPickupMaster()
 	
 	WeaponStaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WeaponStaticMesh"));
 	WeaponStaticMesh->SetupAttachment(Box);
+
+}
+
+void AWeaponPickupMaster::NotifyActorBeginOverlap(AActor* OtherActor)
+{
+	Super::NotifyActorBeginOverlap(OtherActor);
+
+	ASICharacter* PlayerCharacter = Cast<ASICharacter>(OtherActor);
+
+	if (PlayerCharacter)
+	{
+		/*UE_LOG(LogTemp, Log, TEXT("Overlapped with Player"));*/
+
+		PlayerCharacter->SpawnWeapon(WeaponActual);
+
+		Destroy();
+	}
 
 }
 
