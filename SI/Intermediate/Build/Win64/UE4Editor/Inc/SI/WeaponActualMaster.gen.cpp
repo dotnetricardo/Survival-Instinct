@@ -61,6 +61,10 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_FireRateDelay;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_TotalGrenadeAmno_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_TotalGrenadeAmno;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_TotalAmno_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_TotalAmno;
@@ -68,6 +72,11 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ShellEjectPosition_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FStructPropertyParams NewProp_ShellEjectPosition;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bHasGrenadeLauncher_MetaData[];
+#endif
+		static void NewProp_bHasGrenadeLauncher_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bHasGrenadeLauncher;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bHasLaserSight_MetaData[];
 #endif
@@ -138,28 +147,46 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 		{ "ModuleRelativePath", "Weapons/Public/WeaponActualMaster.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_InflictingDamage = { "InflictingDamage", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, InflictingDamage), METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_InflictingDamage_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_InflictingDamage_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_InflictingDamage = { "InflictingDamage", nullptr, (EPropertyFlags)0x0010000000000015, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, InflictingDamage), METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_InflictingDamage_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_InflictingDamage_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_FireRateDelay_MetaData[] = {
 		{ "Category", "Default" },
 		{ "ModuleRelativePath", "Weapons/Public/WeaponActualMaster.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_FireRateDelay = { "FireRateDelay", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, FireRateDelay), METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_FireRateDelay_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_FireRateDelay_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_FireRateDelay = { "FireRateDelay", nullptr, (EPropertyFlags)0x0010000000000015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, FireRateDelay), METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_FireRateDelay_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_FireRateDelay_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_TotalGrenadeAmno_MetaData[] = {
+		{ "Category", "Default" },
+		{ "ModuleRelativePath", "Weapons/Public/WeaponActualMaster.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_TotalGrenadeAmno = { "TotalGrenadeAmno", nullptr, (EPropertyFlags)0x0010000000000015, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, TotalGrenadeAmno), METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_TotalGrenadeAmno_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_TotalGrenadeAmno_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_TotalAmno_MetaData[] = {
 		{ "Category", "Default" },
 		{ "ModuleRelativePath", "Weapons/Public/WeaponActualMaster.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_TotalAmno = { "TotalAmno", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, TotalAmno), METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_TotalAmno_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_TotalAmno_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_TotalAmno = { "TotalAmno", nullptr, (EPropertyFlags)0x0010000000000015, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, TotalAmno), METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_TotalAmno_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_TotalAmno_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_ShellEjectPosition_MetaData[] = {
 		{ "Category", "Default" },
 		{ "ModuleRelativePath", "Weapons/Public/WeaponActualMaster.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_ShellEjectPosition = { "ShellEjectPosition", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, ShellEjectPosition), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_ShellEjectPosition_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_ShellEjectPosition_MetaData)) };
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_ShellEjectPosition = { "ShellEjectPosition", nullptr, (EPropertyFlags)0x0010000000000015, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, ShellEjectPosition), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_ShellEjectPosition_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_ShellEjectPosition_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bHasGrenadeLauncher_MetaData[] = {
+		{ "Category", "Default" },
+		{ "ModuleRelativePath", "Weapons/Public/WeaponActualMaster.h" },
+	};
+#endif
+	void Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bHasGrenadeLauncher_SetBit(void* Obj)
+	{
+		((AWeaponActualMaster*)Obj)->bHasGrenadeLauncher = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bHasGrenadeLauncher = { "bHasGrenadeLauncher", nullptr, (EPropertyFlags)0x0010000000000015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AWeaponActualMaster), &Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bHasGrenadeLauncher_SetBit, METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bHasGrenadeLauncher_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bHasGrenadeLauncher_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bHasLaserSight_MetaData[] = {
 		{ "Category", "Default" },
@@ -170,21 +197,21 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 	{
 		((AWeaponActualMaster*)Obj)->bHasLaserSight = 1;
 	}
-	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bHasLaserSight = { "bHasLaserSight", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AWeaponActualMaster), &Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bHasLaserSight_SetBit, METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bHasLaserSight_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bHasLaserSight_MetaData)) };
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bHasLaserSight = { "bHasLaserSight", nullptr, (EPropertyFlags)0x0010000000000015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AWeaponActualMaster), &Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bHasLaserSight_SetBit, METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bHasLaserSight_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bHasLaserSight_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Category_MetaData[] = {
 		{ "Category", "Default" },
 		{ "ModuleRelativePath", "Weapons/Public/WeaponActualMaster.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Category = { "Category", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, Category), METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Category_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Category_MetaData)) };
+	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Category = { "Category", nullptr, (EPropertyFlags)0x0010000000000015, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, Category), METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Category_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Category_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Name_MetaData[] = {
 		{ "Category", "Default" },
 		{ "ModuleRelativePath", "Weapons/Public/WeaponActualMaster.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Name = { "Name", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, Name), METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Name_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Name_MetaData)) };
+	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Name = { "Name", nullptr, (EPropertyFlags)0x0010000000000015, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, Name), METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Name_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Name_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsPistol_MetaData[] = {
 		{ "Category", "Default" },
@@ -203,8 +230,10 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_WeaponActualSkeletalMesh,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_InflictingDamage,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_FireRateDelay,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_TotalGrenadeAmno,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_TotalAmno,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_ShellEjectPosition,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bHasGrenadeLauncher,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bHasLaserSight,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Category,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Name,
@@ -237,7 +266,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AWeaponActualMaster, 4062730106);
+	IMPLEMENT_CLASS(AWeaponActualMaster, 952645229);
 	template<> SI_API UClass* StaticClass<AWeaponActualMaster>()
 	{
 		return AWeaponActualMaster::StaticClass();

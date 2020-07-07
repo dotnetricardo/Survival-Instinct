@@ -2,15 +2,6 @@ C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI\Player\Public\SICharacter.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/Weapons/Public/WeaponActualMaster.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\WeaponActualMaster.generated.h
-C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/Character.h
-C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/RootMotionSource.h
-C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\RootMotionSource.generated.h
-C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Character.generated.h
-C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Components/TimelineComponent.h
-C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\TimelineComponent.generated.h
-C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\SICharacter.generated.h
-C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/Weapons/Public/WeaponPickupMaster.h
-C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\WeaponPickupMaster.generated.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/Widget/Public/HUDBase.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/HUD.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/HUDHitBox.h
@@ -135,8 +126,28 @@ C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\In
 C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\DynamicPropertyPath.generated.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\WidgetBlueprintGeneratedClass.generated.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\UserWidget.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\UMG\Public\Components/Border.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\UMG\Public\Components/ContentWidget.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\UMG\Public\Components/PanelWidget.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\UMG\Public\Components/PanelSlot.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\PanelSlot.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\PanelWidget.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\ContentWidget.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\Border.generated.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\UserWidgetMaster.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\UMG\Public\Components/CanvasPanel.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Slate\Public\Widgets/Layout/SConstraintCanvas.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\CanvasPanel.generated.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\HUDBase.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/Character.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/RootMotionSource.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\RootMotionSource.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Character.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Components/TimelineComponent.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\TimelineComponent.generated.h
+C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\SICharacter.generated.h
+C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/Weapons/Public/WeaponPickupMaster.h
+C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\WeaponPickupMaster.generated.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Kismet/GameplayStatics.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Kismet/KismetSystemLibrary.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/PropertyAccessUtil.h
@@ -148,6 +159,9 @@ C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\In
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Kismet\GameplayStaticsTypes.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStaticsTypes.generated.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStatics.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Kismet/KismetMathLibrary.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\KismetMathLibrary.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Kismet\KismetMathLibrary.inl
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Camera/CameraComponent.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CameraComponent.generated.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/SpringArmComponent.h

@@ -2,11 +2,14 @@
 
 
 #include "HUDBase.h"
+#include "Components/CanvasPanelSlot.h"
 
 AHUDBase::AHUDBase()
 {
+	
+	
 	// Create CrossHair
-	static ConstructorHelpers::FClassFinder<UUserWidgetMaster> CrossHairUIBPClass(TEXT("/Game/UI/SI_Crosshair_Round.SI_Crosshair_Round_C"));
+	static ConstructorHelpers::FClassFinder<UUserWidgetMaster> CrossHairUIBPClass(TEXT("/Game/UI/SI_Crosshair_Default.SI_Crosshair_Default_C"));
 
 	if (CrossHairUIBPClass.Class != nullptr && CrossHairUIBPClass.Succeeded())
 	{
@@ -28,3 +31,17 @@ void AHUDBase::SetCrossHairVisibility(bool bIsVisible)
 {
 	CrossHairWidget->SetVisibility(bIsVisible ? ESlateVisibility::Visible : ESlateVisibility::Hidden);
 }
+
+void AHUDBase::UpdateCrossHairSize(float Speed)
+{
+	if (CrossHairWidget != nullptr)
+	{
+		/*UE_LOG(LogTemp, Warning, TEXT("Speed, %f"), Speed);*/
+		FVector2D Size(60.0f, 60.0f);
+		UCanvasPanelSlot* slot = Cast<UCanvasPanelSlot>(CrossHairWidget->crosshair_default->Slot);
+		slot->SetSize(Speed > 0 ? Size * Speed : Size);
+		
+	}
+}
+
+

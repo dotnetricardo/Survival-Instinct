@@ -3,8 +3,8 @@
 
 #include "SICharacter.h"
 #include "SI/Weapons/Public/WeaponPickupMaster.h"
-#include "SI/Widget/Public/HUDBase.h"
 #include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/PawnMovementComponent.h"
@@ -143,6 +143,11 @@ void ASICharacter::EndCrouch()
 
 void ASICharacter::CombatMode()
 {
+	if (!SpawnedWeapon)
+	{
+		return;
+	}
+	
 	bIsCombatMode = !bIsCombatMode;
 
 	if (bIsCombatMode)
@@ -159,7 +164,7 @@ void ASICharacter::CombatMode()
 	
 	ModesTransitionTimeline.PlayFromStart();
 
-	AHUDBase* Hud = Cast<AHUDBase>(UGameplayStatics::GetPlayerController(this, 0)->GetHUD());
+	Hud = Cast<AHUDBase>(UGameplayStatics::GetPlayerController(this, 0)->GetHUD());
 
 	Hud->SetCrossHairVisibility(bIsCombatMode);
 
@@ -231,6 +236,16 @@ void ASICharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	ModesTransitionTimeline.TickTimeline(DeltaTime);
+
+	if (bIsCombatMode && Hud)
+	{
+		float VelocityMagnitude = GetVelocity().Size();
+		
+
+		float RangeUnclampled = UKismetMathLibrary::MapRangeUnclamped(VelocityMagnitude, 0, 600.0f, 1.0f, 1.3f);
+
+		Hud->UpdateCrossHairSize(RangeUnclampled);
+	}
 
 }
 

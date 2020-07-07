@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "SI/Weapons/Public/WeaponActualMaster.h"
+#include "SI/Widget/Public/HUDBase.h"
 #include "GameFramework/Character.h"
 #include "Components/TimelineComponent.h"
 #include "SICharacter.generated.h"
@@ -11,6 +12,9 @@
 class UCameraComponent;
 class USpringArmComponent;
 class UCurveFloat;
+class AHUDBase;
+class AWeaponActualMaster;
+
 
 
 
@@ -61,7 +65,8 @@ protected:
 	void IncrementInventory();
 
 	void DecrementInventory();
-	
+
+	AHUDBase* Hud;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components") 
 	UCameraComponent* CameraComp;

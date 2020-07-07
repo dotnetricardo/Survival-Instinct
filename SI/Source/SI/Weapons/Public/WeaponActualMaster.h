@@ -26,18 +26,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	bool bIsPistol;
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	FName Name;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	FName Category;
-	
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	bool bHasLaserSight;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	bool bHasGrenadeLauncher;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	FVector ShellEjectPosition;
@@ -46,10 +45,17 @@ protected:
 	int TotalAmno;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	int TotalGrenadeAmno;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	float FireRateDelay;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	int InflictingDamage;
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
 	USkeletalMeshComponent* WeaponActualSkeletalMesh;

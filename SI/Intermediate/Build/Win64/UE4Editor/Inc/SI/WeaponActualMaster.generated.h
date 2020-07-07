@@ -59,13 +59,6 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AWeaponActualMaster); \
 
 
 #define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_20_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__Name() { return STRUCT_OFFSET(AWeaponActualMaster, Name); } \
-	FORCEINLINE static uint32 __PPO__Category() { return STRUCT_OFFSET(AWeaponActualMaster, Category); } \
-	FORCEINLINE static uint32 __PPO__bHasLaserSight() { return STRUCT_OFFSET(AWeaponActualMaster, bHasLaserSight); } \
-	FORCEINLINE static uint32 __PPO__ShellEjectPosition() { return STRUCT_OFFSET(AWeaponActualMaster, ShellEjectPosition); } \
-	FORCEINLINE static uint32 __PPO__TotalAmno() { return STRUCT_OFFSET(AWeaponActualMaster, TotalAmno); } \
-	FORCEINLINE static uint32 __PPO__FireRateDelay() { return STRUCT_OFFSET(AWeaponActualMaster, FireRateDelay); } \
-	FORCEINLINE static uint32 __PPO__InflictingDamage() { return STRUCT_OFFSET(AWeaponActualMaster, InflictingDamage); } \
 	FORCEINLINE static uint32 __PPO__WeaponActualSkeletalMesh() { return STRUCT_OFFSET(AWeaponActualMaster, WeaponActualSkeletalMesh); } \
 	FORCEINLINE static uint32 __PPO__LaserSightMesh() { return STRUCT_OFFSET(AWeaponActualMaster, LaserSightMesh); } \
 	FORCEINLINE static uint32 __PPO__PointLight() { return STRUCT_OFFSET(AWeaponActualMaster, PointLight); } \

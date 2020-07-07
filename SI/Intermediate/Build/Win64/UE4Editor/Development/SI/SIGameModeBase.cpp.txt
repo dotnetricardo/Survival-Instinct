@@ -123,7 +123,18 @@ C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\In
 C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\DynamicPropertyPath.generated.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\WidgetBlueprintGeneratedClass.generated.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\UserWidget.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\UMG\Public\Components/Border.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\UMG\Public\Components/ContentWidget.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\UMG\Public\Components/PanelWidget.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\UMG\Public\Components/PanelSlot.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\PanelSlot.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\PanelWidget.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\ContentWidget.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\Border.generated.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\UserWidgetMaster.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\UMG\Public\Components/CanvasPanel.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Slate\Public\Widgets/Layout/SConstraintCanvas.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\CanvasPanel.generated.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\HUDBase.generated.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/Player/Public/SICharacter.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/Weapons/Public/WeaponActualMaster.h

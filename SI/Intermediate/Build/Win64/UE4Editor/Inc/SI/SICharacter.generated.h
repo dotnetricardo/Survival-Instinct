@@ -13,18 +13,18 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define SI_SICharacter_generated_h
 
-#define SI_Source_SI_Player_Public_SICharacter_h_20_SPARSE_DATA
-#define SI_Source_SI_Player_Public_SICharacter_h_20_RPC_WRAPPERS \
+#define SI_Source_SI_Player_Public_SICharacter_h_24_SPARSE_DATA
+#define SI_Source_SI_Player_Public_SICharacter_h_24_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execAnimateCameraLocation);
 
 
-#define SI_Source_SI_Player_Public_SICharacter_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
+#define SI_Source_SI_Player_Public_SICharacter_h_24_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execAnimateCameraLocation);
 
 
-#define SI_Source_SI_Player_Public_SICharacter_h_20_INCLASS_NO_PURE_DECLS \
+#define SI_Source_SI_Player_Public_SICharacter_h_24_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesASICharacter(); \
 	friend struct Z_Construct_UClass_ASICharacter_Statics; \
@@ -33,7 +33,7 @@ public: \
 	DECLARE_SERIALIZER(ASICharacter)
 
 
-#define SI_Source_SI_Player_Public_SICharacter_h_20_INCLASS \
+#define SI_Source_SI_Player_Public_SICharacter_h_24_INCLASS \
 private: \
 	static void StaticRegisterNativesASICharacter(); \
 	friend struct Z_Construct_UClass_ASICharacter_Statics; \
@@ -42,7 +42,7 @@ public: \
 	DECLARE_SERIALIZER(ASICharacter)
 
 
-#define SI_Source_SI_Player_Public_SICharacter_h_20_STANDARD_CONSTRUCTORS \
+#define SI_Source_SI_Player_Public_SICharacter_h_24_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ASICharacter(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ASICharacter) \
@@ -55,7 +55,7 @@ private: \
 public:
 
 
-#define SI_Source_SI_Player_Public_SICharacter_h_20_ENHANCED_CONSTRUCTORS \
+#define SI_Source_SI_Player_Public_SICharacter_h_24_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ASICharacter(ASICharacter&&); \
@@ -66,33 +66,33 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASICharacter); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ASICharacter)
 
 
-#define SI_Source_SI_Player_Public_SICharacter_h_20_PRIVATE_PROPERTY_OFFSET \
+#define SI_Source_SI_Player_Public_SICharacter_h_24_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__CameraComp() { return STRUCT_OFFSET(ASICharacter, CameraComp); } \
 	FORCEINLINE static uint32 __PPO__SpringArmComp() { return STRUCT_OFFSET(ASICharacter, SpringArmComp); } \
 	FORCEINLINE static uint32 __PPO__SwichModesCurveFloat() { return STRUCT_OFFSET(ASICharacter, SwichModesCurveFloat); }
 
 
-#define SI_Source_SI_Player_Public_SICharacter_h_17_PROLOG
-#define SI_Source_SI_Player_Public_SICharacter_h_20_GENERATED_BODY_LEGACY \
+#define SI_Source_SI_Player_Public_SICharacter_h_21_PROLOG
+#define SI_Source_SI_Player_Public_SICharacter_h_24_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	SI_Source_SI_Player_Public_SICharacter_h_20_PRIVATE_PROPERTY_OFFSET \
-	SI_Source_SI_Player_Public_SICharacter_h_20_SPARSE_DATA \
-	SI_Source_SI_Player_Public_SICharacter_h_20_RPC_WRAPPERS \
-	SI_Source_SI_Player_Public_SICharacter_h_20_INCLASS \
-	SI_Source_SI_Player_Public_SICharacter_h_20_STANDARD_CONSTRUCTORS \
+	SI_Source_SI_Player_Public_SICharacter_h_24_PRIVATE_PROPERTY_OFFSET \
+	SI_Source_SI_Player_Public_SICharacter_h_24_SPARSE_DATA \
+	SI_Source_SI_Player_Public_SICharacter_h_24_RPC_WRAPPERS \
+	SI_Source_SI_Player_Public_SICharacter_h_24_INCLASS \
+	SI_Source_SI_Player_Public_SICharacter_h_24_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define SI_Source_SI_Player_Public_SICharacter_h_20_GENERATED_BODY \
+#define SI_Source_SI_Player_Public_SICharacter_h_24_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	SI_Source_SI_Player_Public_SICharacter_h_20_PRIVATE_PROPERTY_OFFSET \
-	SI_Source_SI_Player_Public_SICharacter_h_20_SPARSE_DATA \
-	SI_Source_SI_Player_Public_SICharacter_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
-	SI_Source_SI_Player_Public_SICharacter_h_20_INCLASS_NO_PURE_DECLS \
-	SI_Source_SI_Player_Public_SICharacter_h_20_ENHANCED_CONSTRUCTORS \
+	SI_Source_SI_Player_Public_SICharacter_h_24_PRIVATE_PROPERTY_OFFSET \
+	SI_Source_SI_Player_Public_SICharacter_h_24_SPARSE_DATA \
+	SI_Source_SI_Player_Public_SICharacter_h_24_RPC_WRAPPERS_NO_PURE_DECLS \
+	SI_Source_SI_Player_Public_SICharacter_h_24_INCLASS_NO_PURE_DECLS \
+	SI_Source_SI_Player_Public_SICharacter_h_24_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
