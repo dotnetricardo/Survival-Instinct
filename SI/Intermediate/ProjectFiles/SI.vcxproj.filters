@@ -55,6 +55,12 @@
     <Filter Include="Source\SI\Weapons\Public">
       <UniqueIdentifier>{d89db322-da08-4351-81df-307acf06e7c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\SI\Widget">
+      <UniqueIdentifier>{e7a9ec71-9d35-42dc-b2f0-4afdf07d2908}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\SI\Widget\Public">
+      <UniqueIdentifier>{f5c91a08-7ded-49c0-8f65-7fb39cd11922}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\SI\Player\Public\SICharacter.h">
@@ -66,6 +72,12 @@
     <ClInclude Include="..\..\Source\SI\Weapons\Public\WeaponPickupMaster.h">
       <Filter>Source\SI\Weapons\Public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\SI\Widget\Public\UserWidgetMaster.h">
+      <Filter>Source\SI\Widget\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SI\Widget\Public\HUDBase.h">
+      <Filter>Source\SI\Widget\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\SI\Player\Public\SICharacter.cpp">
@@ -76,6 +88,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\SI\Weapons\Public\WeaponPickupMaster.cpp">
       <Filter>Source\SI\Weapons\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SI\Widget\Public\UserWidgetMaster.cpp">
+      <Filter>Source\SI\Widget\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SI\Widget\Public\HUDBase.cpp">
+      <Filter>Source\SI\Widget\Public</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

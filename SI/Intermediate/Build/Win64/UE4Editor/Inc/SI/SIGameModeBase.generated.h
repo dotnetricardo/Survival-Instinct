@@ -36,7 +36,7 @@ public: \
 
 #define SI_Source_SI_SIGameModeBase_h_15_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API ASIGameModeBase(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+	NO_API ASIGameModeBase(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ASIGameModeBase) \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, ASIGameModeBase); \
 DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASIGameModeBase); \
@@ -48,8 +48,6 @@ public:
 
 
 #define SI_Source_SI_SIGameModeBase_h_15_ENHANCED_CONSTRUCTORS \
-	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API ASIGameModeBase(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()) : Super(ObjectInitializer) { }; \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ASIGameModeBase(ASIGameModeBase&&); \
@@ -57,7 +55,7 @@ private: \
 public: \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, ASIGameModeBase); \
 DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASIGameModeBase); \
-	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ASIGameModeBase)
+	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ASIGameModeBase)
 
 
 #define SI_Source_SI_SIGameModeBase_h_15_PRIVATE_PROPERTY_OFFSET

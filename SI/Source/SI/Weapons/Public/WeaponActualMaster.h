@@ -23,6 +23,9 @@ public:
 	// Sets default values for this actor's properties
 	AWeaponActualMaster();
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	bool bIsPistol;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

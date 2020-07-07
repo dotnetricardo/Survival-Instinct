@@ -2,10 +2,13 @@
 
 
 #include "SICharacter.h"
-#include "../../Weapons/Public/WeaponPickupMaster.h"
+#include "SI/Weapons/Public/WeaponPickupMaster.h"
+#include "SI/Widget/Public/HUDBase.h"
+#include "Kismet/GameplayStatics.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/PawnMovementComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Math/UnrealMathVectorCommon.h"
 
@@ -35,12 +38,19 @@ ASICharacter::ASICharacter()
 
 	// Set defaults
 	MaxWeaponsCarry = 2;
+
+	
 }
 
 void ASICharacter::SpawnWeapon(TSubclassOf<AWeaponActualMaster> WeaponToSpawn)
 {
 	if (WeaponToSpawn)
 	{
+		if (!bIsCombatMode && !SpawnedWeapon)
+		{
+			CombatMode();
+		}
+		
 		int index = WeaponInventory.AddUnique(WeaponToSpawn);
 
 		if (index != -1)
@@ -61,11 +71,13 @@ void ASICharacter::SpawnWeapon(TSubclassOf<AWeaponActualMaster> WeaponToSpawn)
 			spawnParams.Owner = this;
 			spawnParams.Instigator = this;
 
-			//FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, true);
+			FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, true);
 
 			SpawnedWeapon = GetWorld()->SpawnActor<AWeaponActualMaster>(WeaponToSpawn, SocketTransform);
 
-			SpawnedWeapon->K2_AttachRootComponentTo(GetMesh(), fnWeaponSocket, EAttachLocation::SnapToTarget, true);
+			SpawnedWeapon->AttachToComponent(GetMesh(), TransformRules, fnWeaponSocket);
+
+			//SpawnedWeapon->K2_AttachRootComponentTo(GetMesh(), fnWeaponSocket, EAttachLocation::SnapToTarget, true);
 			
 		}
 
@@ -146,10 +158,48 @@ void ASICharacter::CombatMode()
 	GetMesh()->SetRelativeRotation(bIsCombatMode ? CombatModeCharacterRotation : DefaultModeCharacterRotation);	
 	
 	ModesTransitionTimeline.PlayFromStart();
-	
-	
+
+	AHUDBase* Hud = Cast<AHUDBase>(UGameplayStatics::GetPlayerController(this, 0)->GetHUD());
+
+	Hud->SetCrossHairVisibility(bIsCombatMode);
+
 }
 
+
+void ASICharacter::IncrementInventory()
+{
+	if (WeaponInventory.Num() > 1)
+	{
+		if (WeaponInventoryIndex >= WeaponInventory.Num() - 1)
+		{
+			WeaponInventoryIndex = 0;
+		}
+		else
+		{
+			WeaponInventoryIndex+=1;
+		}
+
+		SpawnWeapon(WeaponInventory[WeaponInventoryIndex]);
+		
+	}
+}
+
+void ASICharacter::DecrementInventory()
+{
+	if (WeaponInventory.Num() > 1)
+	{
+		if (WeaponInventoryIndex > 0)
+		{
+			WeaponInventoryIndex -= 1;
+		}
+		else
+		{
+			WeaponInventoryIndex = WeaponInventory.Num() - 1;
+		}
+
+		SpawnWeapon(WeaponInventory[WeaponInventoryIndex]);
+	}
+}
 
 //void ASICharacter::Interact()
 //{
@@ -173,6 +223,7 @@ void ASICharacter::AnimateCameraLocation(float Value)
 	FRotator NewRotation = bIsCombatMode ? FMath::Lerp(DefaultModeCamRotation, CombatModeCamRotation, Value) : FMath::Lerp(CombatModeCamRotation, DefaultModeCamRotation, Value);
 	CameraComp->SetRelativeRotation(NewRotation);
 }
+
 
 // Called every frame
 void ASICharacter::Tick(float DeltaTime)
@@ -201,6 +252,10 @@ void ASICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	
 	PlayerInputComponent->BindAction("CombatMode", IE_Pressed, this, &ASICharacter::CombatMode);
+
+	PlayerInputComponent->BindAction("IncrementInventory", IE_Pressed, this, &ASICharacter::IncrementInventory);
+
+	PlayerInputComponent->BindAction("DecrementInventory", IE_Pressed, this, &ASICharacter::DecrementInventory);
 
 }
 

@@ -57,8 +57,10 @@ protected:
 	void EndCrouch();
 
 	void CombatMode();
-	
 
+	void IncrementInventory();
+
+	void DecrementInventory();
 	
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components") 

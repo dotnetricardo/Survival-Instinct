@@ -274,8 +274,12 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\SI\Weapons\Public\WeaponActualMaster.cpp" />
     <ClCompile Include="..\..\Source\SI\Weapons\Public\WeaponPickupMaster.cpp" />
+    <ClCompile Include="..\..\Source\SI\Widget\Public\HUDBase.cpp" />
+    <ClCompile Include="..\..\Source\SI\Widget\Public\UserWidgetMaster.cpp" />
     <ClInclude Include="..\..\Source\SI\Weapons\Public\WeaponActualMaster.h" />
     <ClInclude Include="..\..\Source\SI\Weapons\Public\WeaponPickupMaster.h" />
+    <ClInclude Include="..\..\Source\SI\Widget\Public\HUDBase.h" />
+    <ClInclude Include="..\..\Source\SI\Widget\Public\UserWidgetMaster.h" />
     <None Include="..\..\SI.uproject" />
     <None Include="..\..\Source\SI.Target.cs" />
     <None Include="..\..\Source\SIEditor.Target.cs" />

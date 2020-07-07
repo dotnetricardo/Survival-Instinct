@@ -13,5 +13,8 @@ UCLASS()
 class SI_API ASIGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
+
+public:
+	ASIGameModeBase();
 	
 };
