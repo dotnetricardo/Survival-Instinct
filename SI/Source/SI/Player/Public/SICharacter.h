@@ -70,6 +70,8 @@ protected:
 
 	void EndAim();
 
+	FORCEINLINE AWeaponActualMaster* GetSpawnedWeaponAsWeaponMaster() const { return Cast<AWeaponActualMaster>(SpawnedWeapon); }
+
 	AHUDBase* Hud;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components") 

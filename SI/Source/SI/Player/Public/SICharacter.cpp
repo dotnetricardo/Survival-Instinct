@@ -206,20 +206,31 @@ void ASICharacter::DecrementInventory()
 
 void ASICharacter::BeginAim()
 {
-	if (bIsCombatMode)
+
+	if (bIsCombatMode && GetSpawnedWeaponAsWeaponMaster()->CanAim())
 	{
 		bIsAiming = true;
+
+		Hud->SetCrossHairVisibility(false);
+		
 		AimTimeline.Play();
+		
+		GetSpawnedWeaponAsWeaponMaster()->SetAimMode(bIsAiming);
 	}
 	
 }
 
 void ASICharacter::EndAim()
 {
-	if (bIsCombatMode)
+	if (bIsCombatMode && GetSpawnedWeaponAsWeaponMaster()->CanAim())
 	{
 		bIsAiming = false;
+
+		Hud->SetCrossHairVisibility(true);
+		
 		AimTimeline.Reverse();
+
+		GetSpawnedWeaponAsWeaponMaster()->SetAimMode(bIsAiming);
 	}
 }
 

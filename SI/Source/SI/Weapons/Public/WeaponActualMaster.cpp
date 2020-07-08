@@ -31,6 +31,16 @@ AWeaponActualMaster::AWeaponActualMaster()
 	
 }
 
+void AWeaponActualMaster::SetAimMode(bool bIsAiming)
+{
+	bIsAimMode = bIsAiming;
+}
+
+bool AWeaponActualMaster::CanAim()
+{
+	return bHasLaserSight || bHasMicroscopicSight;
+}
+
 // Called when the game starts or when spawned
 void AWeaponActualMaster::BeginPlay()
 {
@@ -43,5 +53,35 @@ void AWeaponActualMaster::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (bIsAimMode)
+	{
+		CheckAimMode();
+	}
+
 }
+
+#pragma region Private
+void AWeaponActualMaster::CheckAimMode()
+{
+	FVector muzzle1Location;
+	FVector grenadeMuzzleLocation;
+
+
+	// If weapon has grenade launcher and user has activated it only grab the grenade muzzle
+	if (bHasGrenadeLauncher && bIsGrenadeModeActive)
+	{
+		grenadeMuzzleLocation = WeaponActualSkeletalMesh->GetSocketLocation(TEXT("Muzzle_Grenade"));
+	}
+	else
+	{
+		// All weapons have at least Muzzle_1 so let's grab its location
+		muzzle1Location = WeaponActualSkeletalMesh->GetSocketLocation(TEXT("Muzzle_1"));
+	}
+
+	//TODO: Continue here...
+}
+#pragma endregion
+
+
+
 

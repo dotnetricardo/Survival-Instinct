@@ -23,6 +23,10 @@ public:
 	// Sets default values for this actor's properties
 	AWeaponActualMaster();
 
+	void SetAimMode(bool bIsAiming);
+
+	bool CanAim();
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	bool bIsPistol;
 
@@ -34,6 +38,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	bool bHasLaserSight;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	bool bHasMicroscopicSight;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	bool bHasGrenadeLauncher;
@@ -53,6 +60,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	int InflictingDamage;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	int TotalMuzzles;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -69,8 +79,17 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
 	USceneComponent* DefaultSceneRoot;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
+	bool bIsAimMode;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
+	bool bIsGrenadeModeActive;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+private:
+	void CheckAimMode();
 
 };
