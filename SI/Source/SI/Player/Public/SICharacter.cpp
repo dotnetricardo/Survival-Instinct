@@ -89,15 +89,12 @@ void ASICharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// Timeline Curve
-	if (SwichModesCurveFloat)
-	{
-		FOnTimelineFloat ProgressFunction;
+	// Modes Transition Timeline Curve
+	BindTimelineToCurve(ModesTransitionTimeline, FName("AnimateCameraLocation"), SwichModesCurveFloat);
 
-		ProgressFunction.BindUFunction(this, FName("AnimateCameraLocation"));
-		ModesTransitionTimeline.AddInterpFloat(SwichModesCurveFloat, ProgressFunction);
-		ModesTransitionTimeline.SetLooping(false);
-	}
+	// Aim Transition Timeline Curve
+	BindTimelineToCurve(AimTimeline, FName("AnimateSpringArmLength"), AimCurveFloat);
+	
 }
 
 void ASICharacter::MoveFoward(float Value)
@@ -164,6 +161,7 @@ void ASICharacter::CombatMode()
 	
 	ModesTransitionTimeline.PlayFromStart();
 
+	// Cross hair
 	Hud = Cast<AHUDBase>(UGameplayStatics::GetPlayerController(this, 0)->GetHUD());
 
 	Hud->SetCrossHairVisibility(bIsCombatMode);
@@ -206,6 +204,25 @@ void ASICharacter::DecrementInventory()
 	}
 }
 
+void ASICharacter::BeginAim()
+{
+	if (bIsCombatMode)
+	{
+		bIsAiming = true;
+		AimTimeline.Play();
+	}
+	
+}
+
+void ASICharacter::EndAim()
+{
+	if (bIsCombatMode)
+	{
+		bIsAiming = false;
+		AimTimeline.Reverse();
+	}
+}
+
 //void ASICharacter::Interact()
 //{
 //	TArray<AActor*> OverlappingActors;
@@ -229,6 +246,11 @@ void ASICharacter::AnimateCameraLocation(float Value)
 	CameraComp->SetRelativeRotation(NewRotation);
 }
 
+void ASICharacter::AnimateSpringArmLength(float Value)
+{
+	SpringArmComp->TargetArmLength = Value;
+}
+
 
 // Called every frame
 void ASICharacter::Tick(float DeltaTime)
@@ -236,11 +258,13 @@ void ASICharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	ModesTransitionTimeline.TickTimeline(DeltaTime);
+	
+	AimTimeline.TickTimeline(DeltaTime);
 
 	if (bIsCombatMode && Hud)
 	{
+		// Cross hair size variation according to speed
 		float VelocityMagnitude = GetVelocity().Size();
-		
 
 		float RangeUnclampled = UKismetMathLibrary::MapRangeUnclamped(VelocityMagnitude, 0, 600.0f, 1.0f, 1.3f);
 
@@ -272,5 +296,23 @@ void ASICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 	PlayerInputComponent->BindAction("DecrementInventory", IE_Pressed, this, &ASICharacter::DecrementInventory);
 
+	PlayerInputComponent->BindAction("Aim", IE_Pressed, this, &ASICharacter::BeginAim);
+	PlayerInputComponent->BindAction("Aim", IE_Released, this, &ASICharacter::EndAim);
+
 }
+
+#pragma region Private
+void ASICharacter::BindTimelineToCurve(FTimeline &Timeline, FName FunctionName, UCurveFloat* Curve)
+{
+	if (Curve != nullptr)
+	{
+		FOnTimelineFloat TimelineFunction;
+
+		TimelineFunction.BindUFunction(this, FunctionName);
+		Timeline.AddInterpFloat(Curve, TimelineFunction);
+		Timeline.SetLooping(false);
+	}
+}
+#pragma endregion
+
 

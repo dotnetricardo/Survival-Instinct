@@ -36,11 +36,10 @@ void AHUDBase::UpdateCrossHairSize(float Speed)
 {
 	if (CrossHairWidget != nullptr)
 	{
-		/*UE_LOG(LogTemp, Warning, TEXT("Speed, %f"), Speed);*/
 		FVector2D Size(60.0f, 60.0f);
+		
 		UCanvasPanelSlot* slot = Cast<UCanvasPanelSlot>(CrossHairWidget->crosshair_default->Slot);
 		slot->SetSize(Speed > 0 ? Size * Speed : Size);
-		
 	}
 }
 

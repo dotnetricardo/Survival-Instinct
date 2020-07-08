@@ -66,6 +66,10 @@ protected:
 
 	void DecrementInventory();
 
+	void BeginAim();
+
+	void EndAim();
+
 	AHUDBase* Hud;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components") 
@@ -76,6 +80,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Timeline")
 	UCurveFloat* SwichModesCurveFloat;
+
+	UPROPERTY(EditAnywhere, Category = "Timeline")
+	UCurveFloat* AimCurveFloat;
 
 	FRotator CombatModeCharacterRotation = FRotator(0, -81.0f, 0); //y (pitch), z (yaw), x (roll)
 	
@@ -91,10 +98,19 @@ protected:
 
 	FTimeline ModesTransitionTimeline;
 
+	FTimeline AimTimeline;
+
+	bool bIsAiming;
+
 	
 private:
 	UFUNCTION()
 	void AnimateCameraLocation(float Value);
+
+	UFUNCTION()
+	void AnimateSpringArmLength(float Value);
+
+	void BindTimelineToCurve(FTimeline &Timeline, FName FunctionName, UCurveFloat* Curve);
 
 public:	
 	// Called every frame
