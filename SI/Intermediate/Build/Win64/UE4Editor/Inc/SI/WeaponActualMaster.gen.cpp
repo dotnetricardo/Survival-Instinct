@@ -42,11 +42,6 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 		static void NewProp_bIsGrenadeModeActive_SetBit(void* Obj);
 		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bIsGrenadeModeActive;
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bIsAimMode_MetaData[];
-#endif
-		static void NewProp_bIsAimMode_SetBit(void* Obj);
-		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bIsAimMode;
-#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_DefaultSceneRoot_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_DefaultSceneRoot;
@@ -139,17 +134,6 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 		((AWeaponActualMaster*)Obj)->bIsGrenadeModeActive = 1;
 	}
 	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsGrenadeModeActive = { "bIsGrenadeModeActive", nullptr, (EPropertyFlags)0x0020080000020015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AWeaponActualMaster), &Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsGrenadeModeActive_SetBit, METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsGrenadeModeActive_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsGrenadeModeActive_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsAimMode_MetaData[] = {
-		{ "Category", "Default" },
-		{ "ModuleRelativePath", "Weapons/Public/WeaponActualMaster.h" },
-	};
-#endif
-	void Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsAimMode_SetBit(void* Obj)
-	{
-		((AWeaponActualMaster*)Obj)->bIsAimMode = 1;
-	}
-	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsAimMode = { "bIsAimMode", nullptr, (EPropertyFlags)0x0020080000020015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AWeaponActualMaster), &Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsAimMode_SetBit, METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsAimMode_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsAimMode_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_DefaultSceneRoot_MetaData[] = {
 		{ "Category", "Default" },
@@ -284,7 +268,6 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsPistol = { "bIsPistol", nullptr, (EPropertyFlags)0x0010000000000015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AWeaponActualMaster), &Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsPistol_SetBit, METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsPistol_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsPistol_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AWeaponActualMaster_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsGrenadeModeActive,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsAimMode,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_DefaultSceneRoot,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_PointLight,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_LaserSightMesh,
@@ -329,7 +312,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AWeaponActualMaster, 4116884793);
+	IMPLEMENT_CLASS(AWeaponActualMaster, 2596982665);
 	template<> SI_API UClass* StaticClass<AWeaponActualMaster>()
 	{
 		return AWeaponActualMaster::StaticClass();

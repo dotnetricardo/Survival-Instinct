@@ -69,7 +69,6 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASICharacter); \
 
 
 #define SI_Source_SI_Player_Public_SICharacter_h_24_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__CameraComp() { return STRUCT_OFFSET(ASICharacter, CameraComp); } \
 	FORCEINLINE static uint32 __PPO__SpringArmComp() { return STRUCT_OFFSET(ASICharacter, SpringArmComp); } \
 	FORCEINLINE static uint32 __PPO__SwichModesCurveFloat() { return STRUCT_OFFSET(ASICharacter, SwichModesCurveFloat); } \
 	FORCEINLINE static uint32 __PPO__AimCurveFloat() { return STRUCT_OFFSET(ASICharacter, AimCurveFloat); }

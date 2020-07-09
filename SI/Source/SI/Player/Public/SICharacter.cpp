@@ -73,7 +73,7 @@ void ASICharacter::SpawnWeapon(TSubclassOf<AWeaponActualMaster> WeaponToSpawn)
 
 			FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, true);
 
-			SpawnedWeapon = GetWorld()->SpawnActor<AWeaponActualMaster>(WeaponToSpawn, SocketTransform);
+			SpawnedWeapon = GetWorld()->SpawnActor<AWeaponActualMaster>(WeaponToSpawn, SocketTransform, spawnParams);
 
 			SpawnedWeapon->AttachToComponent(GetMesh(), TransformRules, fnWeaponSocket);
 
@@ -83,6 +83,16 @@ void ASICharacter::SpawnWeapon(TSubclassOf<AWeaponActualMaster> WeaponToSpawn)
 
 	}
 }
+
+//FVector ASICharacter::GetPawnViewLocation() const
+//{
+//	if (CameraComp)
+//	{
+//		return CameraComp->GetComponentLocation();
+//	}
+//
+//	return Super::GetPawnViewLocation();
+//}
 
 // Called when the game starts or when spawned
 void ASICharacter::BeginPlay()
@@ -215,7 +225,6 @@ void ASICharacter::BeginAim()
 		
 		AimTimeline.Play();
 		
-		GetSpawnedWeaponAsWeaponMaster()->SetAimMode(bIsAiming);
 	}
 	
 }
@@ -230,7 +239,8 @@ void ASICharacter::EndAim()
 		
 		AimTimeline.Reverse();
 
-		GetSpawnedWeaponAsWeaponMaster()->SetAimMode(bIsAiming);
+		GetSpawnedWeaponAsWeaponMaster()->StopAim();
+		
 	}
 }
 
@@ -280,6 +290,13 @@ void ASICharacter::Tick(float DeltaTime)
 		float RangeUnclampled = UKismetMathLibrary::MapRangeUnclamped(VelocityMagnitude, 0, 600.0f, 1.0f, 1.3f);
 
 		Hud->UpdateCrossHairSize(RangeUnclampled);
+	}
+
+	if (bIsAiming)
+	{
+		/*GetSpawnedWeaponAsWeaponMaster()->UpdateAimLocation(CameraComp->GetComponentToWorld().GetLocation(), CameraComp->GetForwardVector())*/
+
+		GetSpawnedWeaponAsWeaponMaster()->Aim();
 	}
 
 }

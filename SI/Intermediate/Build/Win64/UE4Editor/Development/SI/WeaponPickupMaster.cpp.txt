@@ -1,8 +1,8 @@
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\Definitions.SI.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI\Weapons\Public\WeaponPickupMaster.h
-C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\WeaponPickupMaster.generated.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/Player/Public/SICharacter.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/Weapons/Public/WeaponActualMaster.h
+C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/SI.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\WeaponActualMaster.generated.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/Widget/Public/HUDBase.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/HUD.h
@@ -148,6 +148,9 @@ C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\In
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Components/TimelineComponent.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\TimelineComponent.generated.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\SICharacter.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Camera/CameraComponent.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CameraComponent.generated.h
+C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\WeaponPickupMaster.generated.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Components/BoxComponent.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Components/ShapeComponent.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ShapeComponent.generated.h

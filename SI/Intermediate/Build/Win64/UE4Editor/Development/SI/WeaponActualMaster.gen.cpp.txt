@@ -2,4 +2,5 @@ C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/Weapons/Public/WeaponActualMaster.h
+C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/SI.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\WeaponActualMaster.generated.h

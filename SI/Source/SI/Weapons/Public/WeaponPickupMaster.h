@@ -4,12 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "SI/Player/Public/SICharacter.h"
+#include "Camera/CameraComponent.h"
 #include "WeaponPickupMaster.generated.h"
 
 class UBoxComponent;
 class UStaticMeshComponent;
 class USceneComponent;
 class AWeaponActualMaster;
+class UCameraComponent;
+class ASICharacter;
 
 UCLASS()
 class SI_API AWeaponPickupMaster : public AActor

@@ -2,17 +2,16 @@
 
 #pragma once
 
+#include "SI/SI.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "WeaponActualMaster.generated.h"
-
-
-
 
 class USkeletalMeshComponent;
 class USceneComponent;
 class UStaticMeshComponent;
 class UPointLightComponent;
+
 
 UCLASS()
 class SI_API AWeaponActualMaster : public AActor
@@ -23,9 +22,11 @@ public:
 	// Sets default values for this actor's properties
 	AWeaponActualMaster();
 
-	void SetAimMode(bool bIsAiming);
-
 	bool CanAim();
+
+	void Aim();
+
+	void StopAim();
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	bool bIsPistol;
@@ -80,9 +81,6 @@ protected:
 	USceneComponent* DefaultSceneRoot;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
-	bool bIsAimMode;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
 	bool bIsGrenadeModeActive;
 
 public:	
@@ -90,6 +88,6 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
-	void CheckAimMode();
+	std::pair<FHitResult, bool> GetHit(bool bDebug);
 
 };

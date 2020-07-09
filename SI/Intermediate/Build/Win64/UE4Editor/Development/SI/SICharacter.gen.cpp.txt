@@ -3,6 +3,7 @@ C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UOb
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/Player/Public/SICharacter.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/Weapons/Public/WeaponActualMaster.h
+C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/SI.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\WeaponActualMaster.generated.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/Widget/Public/HUDBase.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/HUD.h

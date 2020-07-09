@@ -42,7 +42,12 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Default")
 	TArray<TSubclassOf<AWeaponActualMaster>> WeaponInventory;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	UCameraComponent* CameraComp;
+
 	void SpawnWeapon(TSubclassOf<AWeaponActualMaster> WeaponToSpawn);
+
+	//virtual FVector GetPawnViewLocation() const override;
 
 	AActor* SpawnedWeapon;
 
@@ -73,9 +78,6 @@ protected:
 	FORCEINLINE AWeaponActualMaster* GetSpawnedWeaponAsWeaponMaster() const { return Cast<AWeaponActualMaster>(SpawnedWeapon); }
 
 	AHUDBase* Hud;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components") 
-	UCameraComponent* CameraComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USpringArmComponent* SpringArmComp;
