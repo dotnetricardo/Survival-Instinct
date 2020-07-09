@@ -104,6 +104,9 @@ void ASICharacter::BeginPlay()
 
 	// Aim Transition Timeline Curve
 	BindTimelineToCurve(AimTimeline, FName("AnimateSpringArmLength"), AimCurveFloat);
+
+	// Crouch Transition Timeline Curve
+	BindTimelineToCurve(CrouchTransitionTimeline, FName("AnimateSpringArmHeight"), SwichModesCurveFloat);
 	
 }
 
@@ -140,12 +143,22 @@ void ASICharacter::Turn(float Value)
 
 void ASICharacter::BeginCrouch()
 {
-	Crouch();
+	if (bIsCombatMode)
+	{
+		bIsCrouching = true;
+		CrouchTransitionTimeline.PlayFromStart();
+	}
+
 }
 
 void ASICharacter::EndCrouch()
 {
-	UnCrouch();
+	if (bIsCombatMode)
+	{
+		bIsCrouching = false;
+		CrouchTransitionTimeline.PlayFromStart();
+	}
+	
 }
 
 void ASICharacter::CombatMode()
@@ -272,6 +285,14 @@ void ASICharacter::AnimateSpringArmLength(float Value)
 	SpringArmComp->TargetArmLength = Value;
 }
 
+void ASICharacter::AnimateSpringArmHeight(float Value)
+{
+	FVector CombatModeWithZOffsetVector = FVector(CombatModeSpringArmVector.X, CombatModeSpringArmVector.Y, CombatModeSpringArmVector.Z * 0.5f);
+	FVector NewLocation = bIsCrouching ? FMath::Lerp(CombatModeSpringArmVector, CombatModeWithZOffsetVector, Value) : FMath::Lerp(CombatModeWithZOffsetVector, CombatModeSpringArmVector, Value);
+
+	SpringArmComp->SetRelativeLocation(NewLocation);
+}
+
 
 // Called every frame
 void ASICharacter::Tick(float DeltaTime)
@@ -281,6 +302,8 @@ void ASICharacter::Tick(float DeltaTime)
 	ModesTransitionTimeline.TickTimeline(DeltaTime);
 	
 	AimTimeline.TickTimeline(DeltaTime);
+
+	CrouchTransitionTimeline.TickTimeline(DeltaTime);
 
 	if (bIsCombatMode && Hud)
 	{

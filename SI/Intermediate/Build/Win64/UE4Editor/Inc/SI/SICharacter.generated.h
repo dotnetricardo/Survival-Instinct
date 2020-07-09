@@ -16,12 +16,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define SI_Source_SI_Player_Public_SICharacter_h_24_SPARSE_DATA
 #define SI_Source_SI_Player_Public_SICharacter_h_24_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execAnimateSpringArmHeight); \
 	DECLARE_FUNCTION(execAnimateSpringArmLength); \
 	DECLARE_FUNCTION(execAnimateCameraLocation);
 
 
 #define SI_Source_SI_Player_Public_SICharacter_h_24_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execAnimateSpringArmHeight); \
 	DECLARE_FUNCTION(execAnimateSpringArmLength); \
 	DECLARE_FUNCTION(execAnimateCameraLocation);
 

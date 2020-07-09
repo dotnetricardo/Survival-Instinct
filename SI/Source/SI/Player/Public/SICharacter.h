@@ -36,6 +36,9 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Default")
 	float InputAxisYawValue = 0;
 
+	UPROPERTY(BlueprintReadOnly, Category = "Default")
+	bool bIsCrouching;
+
 	UPROPERTY(BlueprintReadOnly, Category = "Components")
 	int WeaponInventoryIndex;
 
@@ -104,6 +107,8 @@ protected:
 
 	FTimeline AimTimeline;
 
+	FTimeline CrouchTransitionTimeline;
+
 	bool bIsAiming;
 
 	
@@ -113,6 +118,9 @@ private:
 
 	UFUNCTION()
 	void AnimateSpringArmLength(float Value);
+
+	UFUNCTION()
+	void AnimateSpringArmHeight(float Value);
 
 	void BindTimelineToCurve(FTimeline &Timeline, FName FunctionName, UCurveFloat* Curve);
 
@@ -124,3 +132,5 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 };
+
+

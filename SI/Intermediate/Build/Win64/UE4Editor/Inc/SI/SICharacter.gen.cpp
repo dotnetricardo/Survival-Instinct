@@ -23,6 +23,14 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	SI_API UClass* Z_Construct_UClass_AWeaponActualMaster_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(ASICharacter::execAnimateSpringArmHeight)
+	{
+		P_GET_PROPERTY(FFloatProperty,Z_Param_Value);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->AnimateSpringArmHeight(Z_Param_Value);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(ASICharacter::execAnimateSpringArmLength)
 	{
 		P_GET_PROPERTY(FFloatProperty,Z_Param_Value);
@@ -44,6 +52,7 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 		UClass* Class = ASICharacter::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "AnimateCameraLocation", &ASICharacter::execAnimateCameraLocation },
+			{ "AnimateSpringArmHeight", &ASICharacter::execAnimateSpringArmHeight },
 			{ "AnimateSpringArmLength", &ASICharacter::execAnimateSpringArmLength },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -77,6 +86,38 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 		if (!ReturnFunction)
 		{
 			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASICharacter_AnimateCameraLocation_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ASICharacter_AnimateSpringArmHeight_Statics
+	{
+		struct SICharacter_eventAnimateSpringArmHeight_Parms
+		{
+			float Value;
+		};
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_Value;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ASICharacter_AnimateSpringArmHeight_Statics::NewProp_Value = { "Value", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(SICharacter_eventAnimateSpringArmHeight_Parms, Value), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASICharacter_AnimateSpringArmHeight_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASICharacter_AnimateSpringArmHeight_Statics::NewProp_Value,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASICharacter_AnimateSpringArmHeight_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Player/Public/SICharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ASICharacter_AnimateSpringArmHeight_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASICharacter, nullptr, "AnimateSpringArmHeight", nullptr, nullptr, sizeof(SICharacter_eventAnimateSpringArmHeight_Parms), Z_Construct_UFunction_ASICharacter_AnimateSpringArmHeight_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ASICharacter_AnimateSpringArmHeight_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ASICharacter_AnimateSpringArmHeight_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ASICharacter_AnimateSpringArmHeight_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ASICharacter_AnimateSpringArmHeight()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASICharacter_AnimateSpringArmHeight_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -149,6 +190,11 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 #endif
 		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_WeaponInventoryIndex;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bIsCrouching_MetaData[];
+#endif
+		static void NewProp_bIsCrouching_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bIsCrouching;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_InputAxisYawValue_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_InputAxisYawValue;
@@ -171,6 +217,7 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ASICharacter_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_ASICharacter_AnimateCameraLocation, "AnimateCameraLocation" }, // 1445427505
+		{ &Z_Construct_UFunction_ASICharacter_AnimateSpringArmHeight, "AnimateSpringArmHeight" }, // 604125465
 		{ &Z_Construct_UFunction_ASICharacter_AnimateSpringArmLength, "AnimateSpringArmLength" }, // 327589450
 	};
 #if WITH_METADATA
@@ -226,6 +273,17 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 #endif
 	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventoryIndex = { "WeaponInventoryIndex", nullptr, (EPropertyFlags)0x0010000000000014, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASICharacter, WeaponInventoryIndex), METADATA_PARAMS(Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventoryIndex_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventoryIndex_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsCrouching_MetaData[] = {
+		{ "Category", "Default" },
+		{ "ModuleRelativePath", "Player/Public/SICharacter.h" },
+	};
+#endif
+	void Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsCrouching_SetBit(void* Obj)
+	{
+		((ASICharacter*)Obj)->bIsCrouching = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsCrouching = { "bIsCrouching", nullptr, (EPropertyFlags)0x0010000000000014, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ASICharacter), &Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsCrouching_SetBit, METADATA_PARAMS(Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsCrouching_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsCrouching_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASICharacter_Statics::NewProp_InputAxisYawValue_MetaData[] = {
 		{ "Category", "Default" },
 		{ "ModuleRelativePath", "Player/Public/SICharacter.h" },
@@ -258,6 +316,7 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventory,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventory_Inner,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventoryIndex,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsCrouching,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_InputAxisYawValue,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_MaxWeaponsCarry,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsCombatMode,
@@ -289,7 +348,7 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASICharacter, 3453143602);
+	IMPLEMENT_CLASS(ASICharacter, 1611993994);
 	template<> SI_API UClass* StaticClass<ASICharacter>()
 	{
 		return ASICharacter::StaticClass();
