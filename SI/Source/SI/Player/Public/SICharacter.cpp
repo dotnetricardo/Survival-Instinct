@@ -289,6 +289,14 @@ void ASICharacter::FireWeapon()
 	}
 }
 
+void ASICharacter::SetWeaponGrenadeMode()
+{
+	if (SpawnedWeapon)
+	{
+		GetSpawnedWeaponAsWeaponMaster()->SetGrenadeMode();
+	}
+}
+
 //void ASICharacter::Interact()
 //{
 //	TArray<AActor*> OverlappingActors;
@@ -382,6 +390,8 @@ void ASICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAction("Aim", IE_Released, this, &ASICharacter::EndAim);
 
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ASICharacter::FireWeapon);
+
+	PlayerInputComponent->BindAction("GrenadeMode", IE_Pressed, this, &ASICharacter::SetWeaponGrenadeMode);
 
 }
 

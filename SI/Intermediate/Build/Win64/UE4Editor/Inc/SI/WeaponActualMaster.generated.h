@@ -62,8 +62,7 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AWeaponActualMaster); \
 	FORCEINLINE static uint32 __PPO__WeaponActualSkeletalMesh() { return STRUCT_OFFSET(AWeaponActualMaster, WeaponActualSkeletalMesh); } \
 	FORCEINLINE static uint32 __PPO__LaserSightMesh() { return STRUCT_OFFSET(AWeaponActualMaster, LaserSightMesh); } \
 	FORCEINLINE static uint32 __PPO__PointLight() { return STRUCT_OFFSET(AWeaponActualMaster, PointLight); } \
-	FORCEINLINE static uint32 __PPO__DefaultSceneRoot() { return STRUCT_OFFSET(AWeaponActualMaster, DefaultSceneRoot); } \
-	FORCEINLINE static uint32 __PPO__bIsGrenadeModeActive() { return STRUCT_OFFSET(AWeaponActualMaster, bIsGrenadeModeActive); }
+	FORCEINLINE static uint32 __PPO__DefaultSceneRoot() { return STRUCT_OFFSET(AWeaponActualMaster, DefaultSceneRoot); }
 
 
 #define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_PROLOG

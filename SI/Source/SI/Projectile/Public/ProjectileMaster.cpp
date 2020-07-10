@@ -22,16 +22,22 @@ AProjectileMaster::AProjectileMaster()
 	ProjectileMovementComponent->SetUpdatedComponent(BulletComponent);
 
 	SetRootComponent(BulletComponent);
-	
 }
 
 void AProjectileMaster::OnCompHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactParticle, Hit.ImpactPoint, Hit.ImpactNormal.Rotation());
+	BlastAndDestroyAfter(Hit.ImpactPoint, Hit.ImpactNormal.Rotation(), 0.2f);
+}
 
-	FTimerHandle UnusedHandle;
-	GetWorldTimerManager().SetTimer(
-		UnusedHandle, this, &AProjectileMaster::SelfDestruct, 0.2f, false);
+void AProjectileMaster::ExplodeWhenNotCollided()
+{
+	if (DestroyOnSpawnAfterSec > 0)
+	{
+		FTimerHandle UnusedHandle;
+		GetWorldTimerManager().SetTimer(
+			UnusedHandle, this, &AProjectileMaster::SelfDestructWithBlast, DestroyOnSpawnAfterSec, false);
+
+	}
 }
 
 // Called when the game starts or when spawned
@@ -41,8 +47,26 @@ void AProjectileMaster::BeginPlay()
 	
 }
 
+void AProjectileMaster::BlastAndDestroyAfter(FVector EmiterSpawnLocation, FRotator EmiterSpawnRotation, float time)
+{
+	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactParticle, EmiterSpawnLocation, EmiterSpawnRotation);
+
+	FTimerHandle UnusedHandle;
+	GetWorldTimerManager().SetTimer(
+		UnusedHandle, this, &AProjectileMaster::SelfDestruct, time, false);
+}
+
 void AProjectileMaster::SelfDestruct()
 {
 	Destroy();
+}
+
+void AProjectileMaster::SelfDestructWithBlast()
+{
+	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactParticle, GetActorLocation(), FRotator(0,0,0));
+
+	FTimerHandle UnusedHandle;
+	GetWorldTimerManager().SetTimer(
+		UnusedHandle, this, &AProjectileMaster::SelfDestruct, 0.2, false);
 }
 

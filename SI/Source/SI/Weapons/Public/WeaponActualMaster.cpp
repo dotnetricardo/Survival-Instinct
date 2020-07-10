@@ -122,8 +122,8 @@ void AWeaponActualMaster::Fire()
 
 	if (bIsGrenadeMode)
 	{
-		// TODO: Change ProjectileToSpawn to a new Projectile Grenade BP class
-		SpawnedProjectile1 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot1To, spawnParams);
+		SpawnedProjectile1 = GetWorld()->SpawnActor<AProjectileMaster>(GrenadeProjectileToSpawn, Shoot1To, spawnParams);
+		SpawnedProjectile1->ExplodeWhenNotCollided();
 	}
 	else
 	{
@@ -134,9 +134,9 @@ void AWeaponActualMaster::Fire()
 		{
 			SpawnedProjectile2 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot2To, spawnParams);
 		}
-
-		CreateMuzzleFlash();
 	}
+
+	CreateMuzzleFlash();
 
 	// NOTE: Projectile Components will auto destroy as AProjectileMaster implements on component hit.
 
@@ -144,7 +144,15 @@ void AWeaponActualMaster::Fire()
 
 bool AWeaponActualMaster::CanFire()
 {
-	return CurrentAmmo > 0;
+	return bIsGrenadeMode ? CurrentGrenadeAmmo > 0 : CurrentAmmo > 0;
+}
+
+void AWeaponActualMaster::SetGrenadeMode()
+{
+	if (bHasGrenadeLauncher)
+	{
+		bIsGrenadeMode = !bIsGrenadeMode;
+	}
 }
 
 void AWeaponActualMaster::Aim()
@@ -238,9 +246,11 @@ std::pair<FHitResult, bool> AWeaponActualMaster::GetHit(bool bDebug)
 
 void AWeaponActualMaster::CreateMuzzleFlash()
 {
+	UParticleSystemComponent* MuzzleFlashComp;
+
 	if (!bIsGrenadeMode)
 	{
-		UParticleSystemComponent* MuzzleFlashComp = UGameplayStatics::SpawnEmitterAttached(MuzzleFlashParticle, WeaponActualSkeletalMesh, TEXT("Muzzle_1"), FVector(10.0f, 0, 0), FRotator(0, 0, 0), EAttachLocation::SnapToTargetIncludingScale);
+		MuzzleFlashComp = UGameplayStatics::SpawnEmitterAttached(MuzzleFlashParticle, WeaponActualSkeletalMesh, TEXT("Muzzle_1"), FVector(10.0f, 0, 0), FRotator(0, 0, 0), EAttachLocation::SnapToTargetIncludingScale);
 		MuzzleFlashComp->SetFloatParameter(TEXT("ShellPos"), ShellEjectPosition.X);
 
 		if (TotalMuzzles == 2)
@@ -252,6 +262,7 @@ void AWeaponActualMaster::CreateMuzzleFlash()
 	else
 	{
 		// TODO: Grenade launcher
+		MuzzleFlashComp = UGameplayStatics::SpawnEmitterAttached(GrenadeMuzzleFlashParticle, WeaponActualSkeletalMesh, TEXT("Muzzle_Grenade"), FVector(10.0f, 0, 0), FRotator(0, 0, 0), EAttachLocation::SnapToTargetIncludingScale);
 	}
 	
 }

@@ -82,6 +82,8 @@ protected:
 
 	void FireWeapon();
 
+	void SetWeaponGrenadeMode();
+
 	FORCEINLINE AWeaponActualMaster* GetSpawnedWeaponAsWeaponMaster() const { return Cast<AWeaponActualMaster>(SpawnedWeapon); }
 
 	AHUDBase* Hud;

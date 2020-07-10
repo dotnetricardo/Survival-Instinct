@@ -35,8 +35,13 @@ public:
 
 	bool CanFire();
 
+	void SetGrenadeMode();
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
 	UParticleSystem* MuzzleFlashParticle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
+	UParticleSystem* GrenadeMuzzleFlashParticle;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	bool bIsPistol;
@@ -58,6 +63,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	TSubclassOf<AProjectileMaster> ProjectileToSpawn;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	TSubclassOf<AProjectileMaster> GrenadeProjectileToSpawn;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	bool bIsGrenadeMode;
@@ -101,9 +109,6 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
 	USceneComponent* DefaultSceneRoot;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
-	bool bIsGrenadeModeActive;
 
 public:	
 	// Called every frame

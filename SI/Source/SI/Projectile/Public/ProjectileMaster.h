@@ -20,14 +20,23 @@ public:
 	// Sets default values for this actor's properties
 	AProjectileMaster();
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
+	float DestroyOnSpawnAfterSec;
+
 	UFUNCTION()
 	void OnCompHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+
+	void ExplodeWhenNotCollided();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	void BlastAndDestroyAfter(FVector EmiterSpawnLocation , FRotator EmiterSpawnRotation, float time);
+
 	void SelfDestruct();
+
+	void SelfDestructWithBlast();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USphereComponent* BulletComponent;
