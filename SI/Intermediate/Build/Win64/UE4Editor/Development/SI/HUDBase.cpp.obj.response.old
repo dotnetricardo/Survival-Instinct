@@ -266,7 +266,7 @@
 /FI"C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\SIEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
 /Yu"C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\SIEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
 /Fp"C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\SIEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
-"C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI\Private\Widget\Public\HUDBase.cpp"
+"C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI\Widget\Public\HUDBase.cpp"
 /FI"C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\Definitions.SI.h"
 /Fo"C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\HUDBase.cpp.obj"
 /TP

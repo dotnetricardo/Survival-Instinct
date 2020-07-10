@@ -48,8 +48,8 @@ void AWeaponActualMaster::Fire()
 	FVector Muzzle2Location;
 	FVector GrenadeMuzzleLocation;
 	FRotator LookAtRotation;
-	/*AProjectileMaster* SpawnedProjectile1;
-	AProjectileMaster* SpawnedProjectile2;*/
+	AProjectileMaster* SpawnedProjectile1;
+	AProjectileMaster* SpawnedProjectile2;
 
 	AActor* MyOwner = GetOwner();
 	ASICharacter* Character = Cast<ASICharacter>(MyOwner);
@@ -57,7 +57,7 @@ void AWeaponActualMaster::Fire()
 	FVector TraceStart = Character->CameraComp->GetComponentLocation();
 	FVector TraceEnd = TraceStart + (Character->CameraComp->GetForwardVector() * 10000);
 
-	std::pair<FHitResult, bool> result = GetHit(true);
+	std::pair<FHitResult, bool> result = GetHit(false);
 
 
 	if (result.second)
@@ -117,21 +117,21 @@ void AWeaponActualMaster::Fire()
 	spawnParams.Instigator = Cast<APawn>(MyOwner);
 	spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-	//if (bIsGrenadeMode)
-	//{
-	//	// TODO: Change ProjectileToSpawn to a new Projectile Grenade BP class
-	//	SpawnedProjectile1 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot1To, spawnParams);
-	//}
-	//else
-	//{
-	//	// Single Shot
-	//	SpawnedProjectile1 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot1To, spawnParams);
+	if (bIsGrenadeMode)
+	{
+		// TODO: Change ProjectileToSpawn to a new Projectile Grenade BP class
+		SpawnedProjectile1 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot1To, spawnParams);
+	}
+	else
+	{
+		// Single Shot
+		SpawnedProjectile1 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot1To, spawnParams);
 
-	//	if (TotalMuzzles == 2)
-	//	{
-	//		SpawnedProjectile2 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot2To, spawnParams);
-	//	}
-	//}
+		if (TotalMuzzles == 2)
+		{
+			SpawnedProjectile2 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot2To, spawnParams);
+		}
+	}
 
 	// NOTE: Projectile Components will auto destroy as AProjectileMaster implements on component hit.
 
@@ -144,7 +144,7 @@ bool AWeaponActualMaster::CanFire()
 
 void AWeaponActualMaster::Aim()
 {
-	std::pair<FHitResult, bool> result = GetHit(true);
+	std::pair<FHitResult, bool> result = GetHit(false);
 
 	if (result.second)
 	{
