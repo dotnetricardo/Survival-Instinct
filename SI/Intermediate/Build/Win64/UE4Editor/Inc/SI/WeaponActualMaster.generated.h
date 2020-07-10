@@ -13,10 +13,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define SI_WeaponActualMaster_generated_h
 
-#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_SPARSE_DATA
-#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_RPC_WRAPPERS
-#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_RPC_WRAPPERS_NO_PURE_DECLS
-#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_INCLASS_NO_PURE_DECLS \
+#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_SPARSE_DATA
+#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_RPC_WRAPPERS
+#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_RPC_WRAPPERS_NO_PURE_DECLS
+#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAWeaponActualMaster(); \
 	friend struct Z_Construct_UClass_AWeaponActualMaster_Statics; \
@@ -25,7 +25,7 @@ public: \
 	DECLARE_SERIALIZER(AWeaponActualMaster)
 
 
-#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_INCLASS \
+#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_INCLASS \
 private: \
 	static void StaticRegisterNativesAWeaponActualMaster(); \
 	friend struct Z_Construct_UClass_AWeaponActualMaster_Statics; \
@@ -34,7 +34,7 @@ public: \
 	DECLARE_SERIALIZER(AWeaponActualMaster)
 
 
-#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_STANDARD_CONSTRUCTORS \
+#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AWeaponActualMaster(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AWeaponActualMaster) \
@@ -47,7 +47,7 @@ private: \
 public:
 
 
-#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_ENHANCED_CONSTRUCTORS \
+#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API AWeaponActualMaster(AWeaponActualMaster&&); \
@@ -58,7 +58,7 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AWeaponActualMaster); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AWeaponActualMaster)
 
 
-#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_PRIVATE_PROPERTY_OFFSET \
+#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__WeaponActualSkeletalMesh() { return STRUCT_OFFSET(AWeaponActualMaster, WeaponActualSkeletalMesh); } \
 	FORCEINLINE static uint32 __PPO__LaserSightMesh() { return STRUCT_OFFSET(AWeaponActualMaster, LaserSightMesh); } \
 	FORCEINLINE static uint32 __PPO__PointLight() { return STRUCT_OFFSET(AWeaponActualMaster, PointLight); } \
@@ -66,27 +66,27 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AWeaponActualMaster); \
 	FORCEINLINE static uint32 __PPO__bIsGrenadeModeActive() { return STRUCT_OFFSET(AWeaponActualMaster, bIsGrenadeModeActive); }
 
 
-#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_16_PROLOG
-#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_GENERATED_BODY_LEGACY \
+#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_18_PROLOG
+#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_PRIVATE_PROPERTY_OFFSET \
-	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_SPARSE_DATA \
-	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_RPC_WRAPPERS \
-	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_INCLASS \
-	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_STANDARD_CONSTRUCTORS \
+	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_PRIVATE_PROPERTY_OFFSET \
+	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_SPARSE_DATA \
+	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_RPC_WRAPPERS \
+	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_INCLASS \
+	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_GENERATED_BODY \
+#define SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_PRIVATE_PROPERTY_OFFSET \
-	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_SPARSE_DATA \
-	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
-	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_INCLASS_NO_PURE_DECLS \
-	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_19_ENHANCED_CONSTRUCTORS \
+	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_PRIVATE_PROPERTY_OFFSET \
+	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_SPARSE_DATA \
+	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_RPC_WRAPPERS_NO_PURE_DECLS \
+	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_INCLASS_NO_PURE_DECLS \
+	SI_Source_SI_Weapons_Public_WeaponActualMaster_h_21_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

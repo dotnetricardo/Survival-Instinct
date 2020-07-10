@@ -40,10 +40,112 @@ bool AWeaponActualMaster::CanAim()
 	return bHasLaserSight || bHasMicroscopicSight;
 }
 
+void AWeaponActualMaster::Fire()
+{
+	FTransform Shoot1To;
+	FTransform Shoot2To;
+	FVector Muzzle1Location;
+	FVector Muzzle2Location;
+	FVector GrenadeMuzzleLocation;
+	FRotator LookAtRotation;
+	/*AProjectileMaster* SpawnedProjectile1;
+	AProjectileMaster* SpawnedProjectile2;*/
+
+	AActor* MyOwner = GetOwner();
+	ASICharacter* Character = Cast<ASICharacter>(MyOwner);
+
+	FVector TraceStart = Character->CameraComp->GetComponentLocation();
+	FVector TraceEnd = TraceStart + (Character->CameraComp->GetForwardVector() * 10000);
+
+	std::pair<FHitResult, bool> result = GetHit(true);
+
+
+	if (result.second)
+	{
+		// It will hit something
+		UE_LOG(LogTemp, Warning, TEXT("will hit"));
+		if (bIsGrenadeMode)
+		{
+			GrenadeMuzzleLocation = WeaponActualSkeletalMesh->GetSocketLocation(TEXT("Muzzle_Grenade"));
+			LookAtRotation = UKismetMathLibrary::FindLookAtRotation(GrenadeMuzzleLocation, result.first.ImpactPoint);
+			Shoot1To = UKismetMathLibrary::MakeTransform(GrenadeMuzzleLocation, LookAtRotation, FVector(1.0f, 1.0f, 1.0f));
+
+		}
+		else
+		{
+			Muzzle1Location = WeaponActualSkeletalMesh->GetSocketLocation(TEXT("Muzzle_1"));
+			LookAtRotation = UKismetMathLibrary::FindLookAtRotation(Muzzle1Location, result.first.ImpactPoint);
+			Shoot1To = UKismetMathLibrary::MakeTransform(Muzzle1Location, LookAtRotation, FVector(1.0f, 1.0f, 1.0f));
+
+			if (TotalMuzzles == 2)
+			{
+				Muzzle2Location = WeaponActualSkeletalMesh->GetSocketLocation(TEXT("Muzzle_2"));
+				LookAtRotation = UKismetMathLibrary::FindLookAtRotation(Muzzle2Location, result.first.ImpactPoint);
+				Shoot2To = UKismetMathLibrary::MakeTransform(Muzzle2Location, LookAtRotation, FVector(1.0f, 1.0f, 1.0f));
+			}
+		}
+
+	}
+	else
+	{
+		// It will not hit anything
+		UE_LOG(LogTemp, Warning, TEXT("will not hit"));
+		if (bIsGrenadeMode)
+		{
+			GrenadeMuzzleLocation = WeaponActualSkeletalMesh->GetSocketLocation(TEXT("Muzzle_Grenade"));
+			LookAtRotation = UKismetMathLibrary::FindLookAtRotation(GrenadeMuzzleLocation, TraceEnd);
+			Shoot1To = UKismetMathLibrary::MakeTransform(GrenadeMuzzleLocation, LookAtRotation, FVector(1.0f, 1.0f, 1.0f));
+
+		}
+		else
+		{
+			Muzzle1Location = WeaponActualSkeletalMesh->GetSocketLocation(TEXT("Muzzle_1"));
+			LookAtRotation = UKismetMathLibrary::FindLookAtRotation(Muzzle1Location, TraceEnd);
+			Shoot1To = UKismetMathLibrary::MakeTransform(Muzzle1Location, LookAtRotation, FVector(1.0f, 1.0f, 1.0f));
+
+			if (TotalMuzzles == 2)
+			{
+				Muzzle2Location = WeaponActualSkeletalMesh->GetSocketLocation(TEXT("Muzzle_2"));
+				LookAtRotation = UKismetMathLibrary::FindLookAtRotation(Muzzle2Location, TraceEnd);
+				Shoot2To = UKismetMathLibrary::MakeTransform(Muzzle2Location, LookAtRotation, FVector(1.0f, 1.0f, 1.0f));
+			}
+		}
+	}
+
+	FActorSpawnParameters spawnParams;
+	spawnParams.Owner = this;
+	spawnParams.Instigator = Cast<APawn>(MyOwner);
+	spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+	//if (bIsGrenadeMode)
+	//{
+	//	// TODO: Change ProjectileToSpawn to a new Projectile Grenade BP class
+	//	SpawnedProjectile1 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot1To, spawnParams);
+	//}
+	//else
+	//{
+	//	// Single Shot
+	//	SpawnedProjectile1 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot1To, spawnParams);
+
+	//	if (TotalMuzzles == 2)
+	//	{
+	//		SpawnedProjectile2 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot2To, spawnParams);
+	//	}
+	//}
+
+	// NOTE: Projectile Components will auto destroy as AProjectileMaster implements on component hit.
+
+}
+
+bool AWeaponActualMaster::CanFire()
+{
+	return CurrentAmmo > 0;
+}
+
 void AWeaponActualMaster::Aim()
 {
-	std::pair<FHitResult, bool> result = GetHit(false);
-	
+	std::pair<FHitResult, bool> result = GetHit(true);
+
 	if (result.second)
 	{
 		FVector MuzzleLocation = WeaponActualSkeletalMesh->GetSocketLocation(TEXT("Muzzle_1"));
@@ -58,11 +160,11 @@ void AWeaponActualMaster::Aim()
 		LaserSightMesh->SetWorldScale3D(VectorScale);
 		LaserSightMesh->SetWorldRotation(LaserRotation);
 		PointLight->SetWorldLocation(result.first.ImpactPoint - PointLight->GetForwardVector());
-		
+
 		if (Distance < 400)
 		{
 			PointLight->SetAttenuationRadius(2.0f);
-		} 
+		}
 		else {
 			PointLight->SetAttenuationRadius(4.0f);
 		}
@@ -113,16 +215,15 @@ std::pair<FHitResult, bool> AWeaponActualMaster::GetHit(bool bDebug)
 		QueryParams.AddIgnoredActor(this);
 		QueryParams.bTraceComplex = true;
 
-		
+		if (bDebug)
+		{
+			DrawDebugLine(GetWorld(), TraceStart, TraceEnd, FColor::White, false, 1.0f, 0, 1.0f);
+		}
+
 		if (GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, PROJECTILE_CHANNEL, QueryParams))
 		{
 			// Blocking hit! Process Damage
 			return std::make_pair(Hit, true);
-		}
-
-		if (bDebug)
-		{
-			DrawDebugLine(GetWorld(), TraceStart, TraceEnd, FColor::White, false, 1.0f, 0, 1.0f);
 		}
 
 	}

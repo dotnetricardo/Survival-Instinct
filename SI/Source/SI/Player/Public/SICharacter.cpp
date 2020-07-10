@@ -36,8 +36,14 @@ ASICharacter::ASICharacter()
 	CameraComp->bUsePawnControlRotation = false;
 	CameraComp->SetupAttachment(SpringArmComp);
 
+	// Set capsule collision presets
+	GetCapsuleComponent()->SetCollisionProfileName(TEXT("SI_CapsuleCollision"));
+	GetMesh()->SetCollisionProfileName(TEXT("SI_CharacterMeshCollision"));
+	
 	// Set defaults
 	MaxWeaponsCarry = 2;
+
+
 
 	
 }
@@ -141,24 +147,13 @@ void ASICharacter::Turn(float Value)
 	AddControllerYawInput(Value);
 }
 
-void ASICharacter::BeginCrouch()
+void ASICharacter::SetCrouch()
 {
-	if (bIsCombatMode)
+	if (SpawnedWeapon && bIsCombatMode)
 	{
-		bIsCrouching = true;
+		bIsCrouching = !bIsCrouching;
 		CrouchTransitionTimeline.PlayFromStart();
 	}
-
-}
-
-void ASICharacter::EndCrouch()
-{
-	if (bIsCombatMode)
-	{
-		bIsCrouching = false;
-		CrouchTransitionTimeline.PlayFromStart();
-	}
-	
 }
 
 void ASICharacter::CombatMode()
@@ -168,7 +163,18 @@ void ASICharacter::CombatMode()
 		return;
 	}
 	
+	if (bIsCombatMode)
+	{
+		// Can only crouch in combat mode
+		SetCrouch();
+
+		// Can only aim in combat mode
+		EndAim();
+	}
+	
 	bIsCombatMode = !bIsCombatMode;
+
+	
 
 	if (bIsCombatMode)
 	{
@@ -230,13 +236,20 @@ void ASICharacter::DecrementInventory()
 void ASICharacter::BeginAim()
 {
 
-	if (bIsCombatMode && GetSpawnedWeaponAsWeaponMaster()->CanAim())
+	if (SpawnedWeapon && GetSpawnedWeaponAsWeaponMaster()->CanAim())
 	{
-		bIsAiming = true;
+		if (!bIsCombatMode)
+		{
+			CombatMode();
+		}
 
+		bIsAiming = true;
+		
 		Hud->SetCrossHairVisibility(false);
 		
 		AimTimeline.Play();
+
+		
 		
 	}
 	
@@ -254,6 +267,19 @@ void ASICharacter::EndAim()
 
 		GetSpawnedWeaponAsWeaponMaster()->StopAim();
 		
+	}
+}
+
+void ASICharacter::FireWeapon()
+{
+	if (SpawnedWeapon && bIsCombatMode)
+	{
+		if (GetSpawnedWeaponAsWeaponMaster()->CanFire())
+		{
+			GetSpawnedWeaponAsWeaponMaster()->Fire();
+		}
+		
+		//TODO: else play sound effect of no ammo
 	}
 }
 
@@ -336,8 +362,7 @@ void ASICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAxis("LookUp", this, &ASICharacter::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("Turn", this, &ASICharacter::Turn);
 
-	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &ASICharacter::BeginCrouch);
-	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &ASICharacter::EndCrouch);
+	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &ASICharacter::SetCrouch);
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	
@@ -349,6 +374,8 @@ void ASICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 	PlayerInputComponent->BindAction("Aim", IE_Pressed, this, &ASICharacter::BeginAim);
 	PlayerInputComponent->BindAction("Aim", IE_Released, this, &ASICharacter::EndAim);
+
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ASICharacter::FireWeapon);
 
 }
 

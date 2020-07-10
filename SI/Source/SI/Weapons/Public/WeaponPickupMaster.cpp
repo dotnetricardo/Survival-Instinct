@@ -20,6 +20,7 @@ AWeaponPickupMaster::AWeaponPickupMaster()
 
 	Box = CreateDefaultSubobject<UBoxComponent>(TEXT("Box"));
 	Box->SetupAttachment(DefaultSceneRoot);
+	Box->SetCollisionProfileName(TEXT("SI_WeaponPickupCollision"));
 	
 	WeaponStaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WeaponStaticMesh"));
 	WeaponStaticMesh->SetupAttachment(Box);
@@ -32,10 +33,10 @@ void AWeaponPickupMaster::NotifyActorBeginOverlap(AActor* OtherActor)
 
 	ASICharacter* PlayerCharacter = Cast<ASICharacter>(OtherActor);
 
+	UE_LOG(LogTemp, Log, TEXT("Overlapped"));
+
 	if (PlayerCharacter)
 	{
-		/*UE_LOG(LogTemp, Log, TEXT("Overlapped with Player"));*/
-
 		PlayerCharacter->SpawnWeapon(WeaponActual);
 
 		Destroy();

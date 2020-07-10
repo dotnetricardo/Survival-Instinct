@@ -85,3 +85,8 @@ DerivedDataCache/*
 # Pdb
 *.pdb
 
+# Some Packages
+Content/ParagonTwinblast/*
+Content/AnimStarterPack/*
+
+

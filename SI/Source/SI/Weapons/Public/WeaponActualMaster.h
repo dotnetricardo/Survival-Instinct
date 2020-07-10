@@ -5,12 +5,14 @@
 #include "SI/SI.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "SI/Projectile/Public/ProjectileMaster.h"
 #include "WeaponActualMaster.generated.h"
 
 class USkeletalMeshComponent;
 class USceneComponent;
 class UStaticMeshComponent;
 class UPointLightComponent;
+class AProjectileMaster;
 
 
 UCLASS()
@@ -27,6 +29,10 @@ public:
 	void Aim();
 
 	void StopAim();
+
+	void Fire();
+
+	bool CanFire();
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	bool bIsPistol;
@@ -47,13 +53,25 @@ public:
 	bool bHasGrenadeLauncher;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	TSubclassOf<AProjectileMaster> ProjectileToSpawn;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	bool bIsGrenadeMode;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	FVector ShellEjectPosition;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
-	int TotalAmno;
+	int MaxAmmo;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
-	int TotalGrenadeAmno;
+	int CurrentAmmo;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	int MaxGrenadeAmmp;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	int CurrentGrenadeAmmo;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	float FireRateDelay;

@@ -272,10 +272,12 @@
     <AdditionalOptions>/std:c++14</AdditionalOptions>
   </PropertyGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\SI\Projectile\Public\ProjectileMaster.cpp" />
     <ClCompile Include="..\..\Source\SI\Weapons\Public\WeaponActualMaster.cpp" />
     <ClCompile Include="..\..\Source\SI\Weapons\Public\WeaponPickupMaster.cpp" />
     <ClCompile Include="..\..\Source\SI\Widget\Public\HUDBase.cpp" />
     <ClCompile Include="..\..\Source\SI\Widget\Public\UserWidgetMaster.cpp" />
+    <ClInclude Include="..\..\Source\SI\Projectile\Public\ProjectileMaster.h" />
     <ClInclude Include="..\..\Source\SI\Weapons\Public\WeaponActualMaster.h" />
     <ClInclude Include="..\..\Source\SI\Weapons\Public\WeaponPickupMaster.h" />
     <ClInclude Include="..\..\Source\SI\Widget\Public\HUDBase.h" />

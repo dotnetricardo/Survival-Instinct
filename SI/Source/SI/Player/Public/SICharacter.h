@@ -7,6 +7,7 @@
 #include "SI/Widget/Public/HUDBase.h"
 #include "GameFramework/Character.h"
 #include "Components/TimelineComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "SICharacter.generated.h"
 
 class UCameraComponent;
@@ -14,6 +15,7 @@ class USpringArmComponent;
 class UCurveFloat;
 class AHUDBase;
 class AWeaponActualMaster;
+class UCapsuleComponent;
 
 
 
@@ -64,9 +66,7 @@ protected:
 
 	void Turn(float Value);
 
-	void BeginCrouch();
-
-	void EndCrouch();
+	void SetCrouch();
 
 	void CombatMode();
 
@@ -77,6 +77,8 @@ protected:
 	void BeginAim();
 
 	void EndAim();
+
+	void FireWeapon();
 
 	FORCEINLINE AWeaponActualMaster* GetSpawnedWeaponAsWeaponMaster() const { return Cast<AWeaponActualMaster>(SpawnedWeapon); }
 

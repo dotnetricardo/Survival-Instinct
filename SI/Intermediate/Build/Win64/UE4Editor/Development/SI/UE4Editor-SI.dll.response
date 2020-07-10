@@ -35,6 +35,7 @@
 /FUNCTIONPADMIN
 "C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\SIEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
 "C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\SICharacter.cpp.obj"
+"C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\ProjectileMaster.cpp.obj"
 "C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\WeaponActualMaster.cpp.obj"
 "C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\WeaponPickupMaster.cpp.obj"
 "C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\HUDBase.cpp.obj"
@@ -42,6 +43,7 @@
 "C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\SI.cpp.obj"
 "C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\SIGameModeBase.cpp.obj"
 "C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\HUDBase.gen.cpp.obj"
+"C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\ProjectileMaster.gen.cpp.obj"
 "C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\SI.init.gen.cpp.obj"
 "C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\SICharacter.gen.cpp.obj"
 "C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\SIGameModeBase.gen.cpp.obj"
