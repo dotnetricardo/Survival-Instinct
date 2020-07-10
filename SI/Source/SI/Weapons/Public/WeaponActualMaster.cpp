@@ -8,6 +8,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "Components/PointLightComponent.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"
 
 // Sets default values
@@ -32,6 +33,8 @@ AWeaponActualMaster::AWeaponActualMaster()
 
 	PointLight = CreateDefaultSubobject<UPointLightComponent>(TEXT("PointLight"));
 	PointLight->SetupAttachment(LaserSightMesh);
+
+	SetRootComponent(DefaultSceneRoot);
 
 }
 
@@ -63,7 +66,7 @@ void AWeaponActualMaster::Fire()
 	if (result.second)
 	{
 		// It will hit something
-		UE_LOG(LogTemp, Warning, TEXT("will hit"));
+	/*	UE_LOG(LogTemp, Warning, TEXT("will hit"));*/
 		if (bIsGrenadeMode)
 		{
 			GrenadeMuzzleLocation = WeaponActualSkeletalMesh->GetSocketLocation(TEXT("Muzzle_Grenade"));
@@ -89,7 +92,7 @@ void AWeaponActualMaster::Fire()
 	else
 	{
 		// It will not hit anything
-		UE_LOG(LogTemp, Warning, TEXT("will not hit"));
+		/*UE_LOG(LogTemp, Warning, TEXT("will not hit"));*/
 		if (bIsGrenadeMode)
 		{
 			GrenadeMuzzleLocation = WeaponActualSkeletalMesh->GetSocketLocation(TEXT("Muzzle_Grenade"));
@@ -131,6 +134,8 @@ void AWeaponActualMaster::Fire()
 		{
 			SpawnedProjectile2 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot2To, spawnParams);
 		}
+
+		CreateMuzzleFlash();
 	}
 
 	// NOTE: Projectile Components will auto destroy as AProjectileMaster implements on component hit.
@@ -229,6 +234,26 @@ std::pair<FHitResult, bool> AWeaponActualMaster::GetHit(bool bDebug)
 	}
 
 	return std::make_pair(Hit, false);
+}
+
+void AWeaponActualMaster::CreateMuzzleFlash()
+{
+	if (!bIsGrenadeMode)
+	{
+		UParticleSystemComponent* MuzzleFlashComp = UGameplayStatics::SpawnEmitterAttached(MuzzleFlashParticle, WeaponActualSkeletalMesh, TEXT("Muzzle_1"), FVector(10.0f, 0, 0), FRotator(0, 0, 0), EAttachLocation::SnapToTargetIncludingScale);
+		MuzzleFlashComp->SetFloatParameter(TEXT("ShellPos"), ShellEjectPosition.X);
+
+		if (TotalMuzzles == 2)
+		{
+			MuzzleFlashComp = UGameplayStatics::SpawnEmitterAttached(MuzzleFlashParticle, WeaponActualSkeletalMesh, TEXT("Muzzle_2"), FVector(10.0f, 0, 0), FRotator(0, 0, 0), EAttachLocation::SnapToTargetIncludingScale);
+			MuzzleFlashComp->SetFloatParameter(TEXT("ShellPos"), ShellEjectPosition.X);
+		}
+	}
+	else
+	{
+		// TODO: Grenade launcher
+	}
+	
 }
 
 #pragma endregion

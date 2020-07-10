@@ -24,6 +24,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	SI_API UClass* Z_Construct_UClass_AProjectileMaster_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 // End Cross Module References
 	void AWeaponActualMaster::StaticRegisterNativesAWeaponActualMaster()
 	{
@@ -128,6 +129,10 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 #endif
 		static void NewProp_bIsPistol_SetBit(void* Obj);
 		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bIsPistol;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MuzzleFlashParticle_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_MuzzleFlashParticle;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -317,6 +322,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 		((AWeaponActualMaster*)Obj)->bIsPistol = 1;
 	}
 	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsPistol = { "bIsPistol", nullptr, (EPropertyFlags)0x0010000000000015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AWeaponActualMaster), &Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsPistol_SetBit, METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsPistol_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsPistol_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_MuzzleFlashParticle_MetaData[] = {
+		{ "Category", "FX" },
+		{ "ModuleRelativePath", "Weapons/Public/WeaponActualMaster.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_MuzzleFlashParticle = { "MuzzleFlashParticle", nullptr, (EPropertyFlags)0x0010000000000015, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, MuzzleFlashParticle), Z_Construct_UClass_UParticleSystem_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_MuzzleFlashParticle_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_MuzzleFlashParticle_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AWeaponActualMaster_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsGrenadeModeActive,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_DefaultSceneRoot,
@@ -339,6 +351,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Category,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_Name,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_bIsPistol,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_MuzzleFlashParticle,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AWeaponActualMaster_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AWeaponActualMaster>::IsAbstract,
@@ -367,7 +380,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AWeaponActualMaster, 3121628544);
+	IMPLEMENT_CLASS(AWeaponActualMaster, 2842299145);
 	template<> SI_API UClass* StaticClass<AWeaponActualMaster>()
 	{
 		return AWeaponActualMaster::StaticClass();

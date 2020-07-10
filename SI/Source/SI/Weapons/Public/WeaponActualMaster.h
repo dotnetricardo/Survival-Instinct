@@ -6,6 +6,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "SI/Projectile/Public/ProjectileMaster.h"
+#include "Particles/ParticleSystemComponent.h"
 #include "WeaponActualMaster.generated.h"
 
 class USkeletalMeshComponent;
@@ -33,6 +34,9 @@ public:
 	void Fire();
 
 	bool CanFire();
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
+	UParticleSystem* MuzzleFlashParticle;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	bool bIsPistol;
@@ -107,5 +111,7 @@ public:
 
 private:
 	std::pair<FHitResult, bool> GetHit(bool bDebug);
+
+	void CreateMuzzleFlash();
 
 };

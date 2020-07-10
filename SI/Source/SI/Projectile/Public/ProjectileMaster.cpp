@@ -20,6 +20,8 @@ AProjectileMaster::AProjectileMaster()
 
 	ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));
 	ProjectileMovementComponent->SetUpdatedComponent(BulletComponent);
+
+	SetRootComponent(BulletComponent);
 	
 }
 

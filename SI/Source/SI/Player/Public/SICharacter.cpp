@@ -156,6 +156,12 @@ void ASICharacter::SetCrouch()
 	}
 }
 
+void ASICharacter::EndCrouch()
+{
+	bIsCrouching = false;
+	CrouchTransitionTimeline.PlayFromStart();
+}
+
 void ASICharacter::CombatMode()
 {
 	if (!SpawnedWeapon)
@@ -166,7 +172,7 @@ void ASICharacter::CombatMode()
 	if (bIsCombatMode)
 	{
 		// Can only crouch in combat mode
-		SetCrouch();
+		EndCrouch();
 
 		// Can only aim in combat mode
 		EndAim();

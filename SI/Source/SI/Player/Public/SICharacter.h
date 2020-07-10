@@ -68,6 +68,8 @@ protected:
 
 	void SetCrouch();
 
+	void EndCrouch();
+
 	void CombatMode();
 
 	void IncrementInventory();
