@@ -8,7 +8,9 @@
 #include "GameFramework/Character.h"
 #include "Components/TimelineComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Animation/AnimInstance.h"
 #include "SICharacter.generated.h"
+
 
 class UCameraComponent;
 class USpringArmComponent;
@@ -16,6 +18,7 @@ class UCurveFloat;
 class AHUDBase;
 class AWeaponActualMaster;
 class UCapsuleComponent;
+class UAnimMontage;
 
 
 
@@ -40,6 +43,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Category = "Default")
 	bool bIsCrouching;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Default")
+	bool bIsFiring;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Components")
 	int WeaponInventoryIndex;
@@ -80,7 +86,9 @@ protected:
 
 	void EndAim();
 
-	void FireWeapon();
+	void BeginFireWeapon();
+
+	void EndFireWeapon();
 
 	void SetWeaponGrenadeMode();
 
@@ -96,6 +104,12 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Timeline")
 	UCurveFloat* AimCurveFloat;
+
+	UPROPERTY(EditAnywhere, Category = "Timeline")
+	UAnimMontage* ShootOnceAnimMontage;
+
+	UPROPERTY(EditAnywhere, Category = "Timeline")
+	UAnimMontage* ShootGrenadeAnimMontage;
 
 	FRotator CombatModeCharacterRotation = FRotator(0, -81.0f, 0); //y (pitch), z (yaw), x (roll)
 	
@@ -129,6 +143,8 @@ private:
 	void AnimateSpringArmHeight(float Value);
 
 	void BindTimelineToCurve(FTimeline &Timeline, FName FunctionName, UCurveFloat* Curve);
+
+	float PlayingMontage;
 
 public:	
 	// Called every frame

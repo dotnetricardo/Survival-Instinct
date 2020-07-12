@@ -47,6 +47,9 @@ public:
 	bool bIsPistol;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	bool bIsAutomatic;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	FName Name;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
@@ -78,6 +81,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	int CurrentAmmo;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	int ShotsUntilReload;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	int MaxGrenadeAmmp;

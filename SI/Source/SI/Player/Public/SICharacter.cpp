@@ -276,17 +276,48 @@ void ASICharacter::EndAim()
 	}
 }
 
-void ASICharacter::FireWeapon()
+void ASICharacter::BeginFireWeapon()
 {
-	if (SpawnedWeapon && bIsCombatMode)
+	
+
+	if (!bIsCombatMode)
+	{
+		CombatMode();
+	}
+	
+	if (SpawnedWeapon)
 	{
 		if (GetSpawnedWeaponAsWeaponMaster()->CanFire())
 		{
+			bIsFiring = true;
+
+			if (ShootOnceAnimMontage && ShootGrenadeAnimMontage)
+			{
+				if (!GetSpawnedWeaponAsWeaponMaster()->bIsGrenadeMode)
+				{
+					if (!GetSpawnedWeaponAsWeaponMaster()->bIsAutomatic)
+					{
+						PlayingMontage = GetMesh()->GetAnimInstance()->Montage_Play(ShootOnceAnimMontage);
+					}
+				}
+				else 
+				{
+					GetMesh()->GetAnimInstance()->Montage_Play(ShootGrenadeAnimMontage);
+				}
+			}
 			GetSpawnedWeaponAsWeaponMaster()->Fire();
+		
+			
 		}
 		
 		//TODO: else play sound effect of no ammo
 	}
+}
+
+void ASICharacter::EndFireWeapon()
+{
+	/*GetMesh()->GetAnimInstance()->Montage_Stop(PlayingMontage);*/
+	bIsFiring = false;
 }
 
 void ASICharacter::SetWeaponGrenadeMode()
@@ -389,7 +420,8 @@ void ASICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAction("Aim", IE_Pressed, this, &ASICharacter::BeginAim);
 	PlayerInputComponent->BindAction("Aim", IE_Released, this, &ASICharacter::EndAim);
 
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ASICharacter::FireWeapon);
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ASICharacter::BeginFireWeapon);
+	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ASICharacter::EndFireWeapon);
 
 	PlayerInputComponent->BindAction("GrenadeMode", IE_Pressed, this, &ASICharacter::SetWeaponGrenadeMode);
 
