@@ -279,6 +279,10 @@ void ASICharacter::EndAim()
 void ASICharacter::BeginFireWeapon()
 {
 	
+	if (bIsReloading)
+	{
+		return;
+	}
 
 	if (!bIsCombatMode)
 	{
@@ -290,6 +294,8 @@ void ASICharacter::BeginFireWeapon()
 		if (GetSpawnedWeaponAsWeaponMaster()->CanFire())
 		{
 			bIsFiring = true;
+
+			GetSpawnedWeaponAsWeaponMaster()->ShootAudioComponent->Play();
 
 			if (ShootOnceAnimMontage && ShootGrenadeAnimMontage)
 			{
@@ -332,6 +338,7 @@ void ASICharacter::Reload()
 {
 	if (bIsCombatMode && SpawnedWeapon && GetSpawnedWeaponAsWeaponMaster()->ReloadMontage)
 	{
+		bIsReloading = true;
 		GetMesh()->GetAnimInstance()->Montage_Play(GetSpawnedWeaponAsWeaponMaster()->ReloadMontage);
 	}
 }
@@ -365,6 +372,7 @@ void ASICharacter::ReleaseMagazine()
 {
 	if (SpawnedWeapon != nullptr && GetSpawnedWeaponAsWeaponMaster() != nullptr && GetSpawnedWeaponAsWeaponMaster()->DynamicMagazine != nullptr)
 	{
+		GetSpawnedWeaponAsWeaponMaster()->ReloadAudioComponent->Play();
 		FTransform MagazineTransform = GetSpawnedWeaponAsWeaponMaster()->GetMagazineTransform();
 		MagazineTransform.SetScale3D(FVector(1, 1, 1));
 		MagazineTransform.SetRotation(FQuat(0, 0, 0, 0));

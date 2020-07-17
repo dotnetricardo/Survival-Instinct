@@ -73,6 +73,8 @@ public:
 
 	AActor* SpawnedMagazine;
 
+	bool bIsReloading;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -156,7 +158,6 @@ protected:
 	FTimeline CrouchTransitionTimeline;
 
 	bool bIsAiming;
-
 	
 private:
 	UFUNCTION()

@@ -9,6 +9,8 @@
 #include "SI/Weapons/Public/DynamicMagazineMaster.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "Animation/AnimInstance.h"
+#include "Sound/SoundCue.h"
+#include "Components/AudioComponent.h"
 #include "WeaponActualMaster.generated.h"
 
 class USkeletalMeshComponent;
@@ -18,6 +20,8 @@ class UPointLightComponent;
 class AProjectileMaster;
 class ADynamicMagazineMaster;
 class UAnimMontage;
+class USoundCue;
+class UAudioComponent;
 
 
 
@@ -108,9 +112,22 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	TSubclassOf<ADynamicMagazineMaster> DynamicMagazine;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
+	USoundCue* ReloadSoundFx;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
+	USoundCue* ShootSoundFx;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
+	USoundCue* ShootGrenadeSoundFx;
+
 	void SetMagazineVisible(bool bVisible);
 
 	FTransform GetMagazineTransform();
+
+	UAudioComponent* ReloadAudioComponent;
+	UAudioComponent* ShootAudioComponent;
+	UAudioComponent* ShootGrenadeAudioComponent;
 
 protected:
 	// Called when the game starts or when spawned
