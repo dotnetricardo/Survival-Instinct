@@ -4,16 +4,13 @@
 #include "WeaponPickupMaster.h"
 #include "SI/Player/Public/SICharacter.h"
 #include "WeaponActualMaster.h"
-#include "Components/BoxComponent.h"
-#include "Components/StaticMeshComponent.h"
+
 //#include "Kismet/KismetArrayLibrary.h"
 
 
 // Sets default values
 AWeaponPickupMaster::AWeaponPickupMaster()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
 
 	DefaultSceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("DefaultSceneRoot"));
 	DefaultSceneRoot->SetupAttachment(RootComponent);
@@ -33,7 +30,7 @@ void AWeaponPickupMaster::NotifyActorBeginOverlap(AActor* OtherActor)
 
 	ASICharacter* PlayerCharacter = Cast<ASICharacter>(OtherActor);
 
-	UE_LOG(LogTemp, Log, TEXT("Overlapped"));
+	//UE_LOG(LogTemp, Log, TEXT("Overlapped"));
 
 	if (PlayerCharacter)
 	{
@@ -50,11 +47,3 @@ void AWeaponPickupMaster::BeginPlay()
 	Super::BeginPlay();
 	
 }
-
-// Called every frame
-void AWeaponPickupMaster::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-

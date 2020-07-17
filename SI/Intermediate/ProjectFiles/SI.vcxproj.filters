@@ -67,6 +67,18 @@
     <Filter Include="Source\SI\Projectile\Public">
       <UniqueIdentifier>{4fc6ad9d-20ac-4faa-8164-1780c309394d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\SI\AmmoPickup">
+      <UniqueIdentifier>{68b413cd-447e-45ca-90ce-4d790c52e3e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\SI\AmmoPickup\Public">
+      <UniqueIdentifier>{a3a4afaf-978d-49ef-855d-cf8746796b05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\SI\AnimNotifies">
+      <UniqueIdentifier>{081865a1-0891-4705-b60c-950736159058}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\SI\AnimNotifies\Public">
+      <UniqueIdentifier>{33c16eb8-0d37-4e07-866a-da3bb6aee164}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\SI\Player\Public\SICharacter.h">
@@ -87,6 +99,24 @@
     <ClInclude Include="..\..\Source\SI\Projectile\Public\ProjectileMaster.h">
       <Filter>Source\SI\Projectile\Public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\SI\AmmoPickup\Public\AmmoPickupMaster.h">
+      <Filter>Source\SI\AmmoPickup\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\MagReleaseAnimNotify.h">
+      <Filter>Source\SI\AnimNotifies\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\MagReleaseAnimNotifyState.h">
+      <Filter>Source\SI\AnimNotifies\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SI\Weapons\Public\DynamicMagazineMaster.h">
+      <Filter>Source\SI\Weapons\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\SpawnMagazineAnimNotify.h">
+      <Filter>Source\SI\AnimNotifies\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\MagAttachAnimNotify.h">
+      <Filter>Source\SI\AnimNotifies\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\SI\Player\Public\SICharacter.cpp">
@@ -106,6 +136,24 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\SI\Projectile\Public\ProjectileMaster.cpp">
       <Filter>Source\SI\Projectile\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SI\AmmoPickup\Public\AmmoPickupMaster.cpp">
+      <Filter>Source\SI\AmmoPickup\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\MagReleaseAnimNotify.cpp">
+      <Filter>Source\SI\AnimNotifies\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\MagReleaseAnimNotifyState.cpp">
+      <Filter>Source\SI\AnimNotifies\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SI\Weapons\Public\DynamicMagazineMaster.cpp">
+      <Filter>Source\SI\Weapons\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\SpawnMagazineAnimNotify.cpp">
+      <Filter>Source\SI\AnimNotifies\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\MagAttachAnimNotify.cpp">
+      <Filter>Source\SI\AnimNotifies\Public</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

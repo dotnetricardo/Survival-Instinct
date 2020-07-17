@@ -6,7 +6,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "SI/Projectile/Public/ProjectileMaster.h"
+#include "SI/Weapons/Public/DynamicMagazineMaster.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "Animation/AnimInstance.h"
 #include "WeaponActualMaster.generated.h"
 
 class USkeletalMeshComponent;
@@ -14,6 +16,9 @@ class USceneComponent;
 class UStaticMeshComponent;
 class UPointLightComponent;
 class AProjectileMaster;
+class ADynamicMagazineMaster;
+class UAnimMontage;
+
 
 
 UCLASS()
@@ -83,10 +88,7 @@ public:
 	int CurrentAmmo;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
-	int ShotsUntilReload;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
-	int MaxGrenadeAmmp;
+	int MaxGrenadeAmmo;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	int CurrentGrenadeAmmo;
@@ -99,6 +101,16 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	int TotalMuzzles;
+
+	UPROPERTY(EditAnywhere, Category = "Timeline")
+	UAnimMontage* ReloadMontage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	TSubclassOf<ADynamicMagazineMaster> DynamicMagazine;
+
+	void SetMagazineVisible(bool bVisible);
+
+	FTransform GetMagazineTransform();
 
 protected:
 	// Called when the game starts or when spawned

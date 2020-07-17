@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "SI/Weapons/Public/WeaponActualMaster.h"
 #include "SI/Widget/Public/HUDBase.h"
+#include "SI/Weapons/Public/DynamicMagazineMaster.h"
 #include "GameFramework/Character.h"
 #include "Components/TimelineComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -19,8 +20,7 @@ class AHUDBase;
 class AWeaponActualMaster;
 class UCapsuleComponent;
 class UAnimMontage;
-
-
+class ADynamicMagazineMaster;
 
 
 UCLASS()
@@ -34,9 +34,6 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, Category = "Default")
 	bool bIsCombatMode;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
-	int MaxWeaponsCarry;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Default")
 	float InputAxisYawValue = 0;
@@ -58,9 +55,23 @@ public:
 
 	void SpawnWeapon(TSubclassOf<AWeaponActualMaster> WeaponToSpawn);
 
+	bool CanAddMags();
+
+	void AddMags(int WeaponMags, int GrenadeMags);
+
+	void ReleaseMagazine();
+	
+	void SpawnMagazine();
+
+	void AttachMagazine();
+
 	//virtual FVector GetPawnViewLocation() const override;
 
+	FORCEINLINE AWeaponActualMaster* GetSpawnedWeaponAsWeaponMaster() const { return Cast<AWeaponActualMaster>(SpawnedWeapon); }
+
 	AActor* SpawnedWeapon;
+
+	AActor* SpawnedMagazine;
 
 protected:
 	// Called when the game starts or when spawned
@@ -92,7 +103,7 @@ protected:
 
 	void SetWeaponGrenadeMode();
 
-	FORCEINLINE AWeaponActualMaster* GetSpawnedWeaponAsWeaponMaster() const { return Cast<AWeaponActualMaster>(SpawnedWeapon); }
+	void Reload();
 
 	AHUDBase* Hud;
 
@@ -110,6 +121,21 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Timeline")
 	UAnimMontage* ShootGrenadeAnimMontage;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Components")
+	int WeaponMagsCount;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Components")
+	int GrenadeMagsCount;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
+	int MaxWeaponMagsCarry;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
+	int MaxGrenameMagsCarry;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
+	int MaxWeaponsCarry;
 
 	FRotator CombatModeCharacterRotation = FRotator(0, -81.0f, 0); //y (pitch), z (yaw), x (roll)
 	
@@ -144,7 +170,7 @@ private:
 
 	void BindTimelineToCurve(FTimeline &Timeline, FName FunctionName, UCurveFloat* Curve);
 
-	float PlayingMontage;
+	/*float PlayingMontage;*/
 
 public:	
 	// Called every frame

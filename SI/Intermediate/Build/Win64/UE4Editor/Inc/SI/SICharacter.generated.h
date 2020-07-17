@@ -75,7 +75,12 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASICharacter); \
 	FORCEINLINE static uint32 __PPO__SwichModesCurveFloat() { return STRUCT_OFFSET(ASICharacter, SwichModesCurveFloat); } \
 	FORCEINLINE static uint32 __PPO__AimCurveFloat() { return STRUCT_OFFSET(ASICharacter, AimCurveFloat); } \
 	FORCEINLINE static uint32 __PPO__ShootOnceAnimMontage() { return STRUCT_OFFSET(ASICharacter, ShootOnceAnimMontage); } \
-	FORCEINLINE static uint32 __PPO__ShootGrenadeAnimMontage() { return STRUCT_OFFSET(ASICharacter, ShootGrenadeAnimMontage); }
+	FORCEINLINE static uint32 __PPO__ShootGrenadeAnimMontage() { return STRUCT_OFFSET(ASICharacter, ShootGrenadeAnimMontage); } \
+	FORCEINLINE static uint32 __PPO__WeaponMagsCount() { return STRUCT_OFFSET(ASICharacter, WeaponMagsCount); } \
+	FORCEINLINE static uint32 __PPO__GrenadeMagsCount() { return STRUCT_OFFSET(ASICharacter, GrenadeMagsCount); } \
+	FORCEINLINE static uint32 __PPO__MaxWeaponMagsCarry() { return STRUCT_OFFSET(ASICharacter, MaxWeaponMagsCarry); } \
+	FORCEINLINE static uint32 __PPO__MaxGrenameMagsCarry() { return STRUCT_OFFSET(ASICharacter, MaxGrenameMagsCarry); } \
+	FORCEINLINE static uint32 __PPO__MaxWeaponsCarry() { return STRUCT_OFFSET(ASICharacter, MaxWeaponsCarry); }
 
 
 #define SI_Source_SI_Player_Public_SICharacter_h_26_PROLOG

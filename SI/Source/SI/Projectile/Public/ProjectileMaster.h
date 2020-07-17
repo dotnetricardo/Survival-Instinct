@@ -10,6 +10,7 @@
 #include "ProjectileMaster.generated.h"
 
 class UParticleSystem;
+class UProjectileMovementComponent;
 
 UCLASS()
 class SI_API AProjectileMaster : public AActor

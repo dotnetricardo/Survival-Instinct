@@ -115,24 +115,24 @@ void AWeaponActualMaster::Fire()
 		}
 	}
 
-	FActorSpawnParameters spawnParams;
-	spawnParams.Owner = this;
-	spawnParams.Instigator = Cast<APawn>(MyOwner);
-	spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.Owner = this;
+	SpawnParams.Instigator = Cast<APawn>(MyOwner);
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
 	if (bIsGrenadeMode)
 	{
-		SpawnedProjectile1 = GetWorld()->SpawnActor<AProjectileMaster>(GrenadeProjectileToSpawn, Shoot1To, spawnParams);
+		SpawnedProjectile1 = GetWorld()->SpawnActor<AProjectileMaster>(GrenadeProjectileToSpawn, Shoot1To, SpawnParams);
 		SpawnedProjectile1->ExplodeWhenNotCollided();
 	}
 	else
 	{
 		// Single Shot
-		SpawnedProjectile1 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot1To, spawnParams);
+		SpawnedProjectile1 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot1To, SpawnParams);
 
 		if (TotalMuzzles == 2)
 		{
-			SpawnedProjectile2 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot2To, spawnParams);
+			SpawnedProjectile2 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot2To, SpawnParams);
 		}
 	}
 
@@ -153,6 +153,17 @@ void AWeaponActualMaster::SetGrenadeMode()
 	{
 		bIsGrenadeMode = !bIsGrenadeMode;
 	}
+}
+
+void AWeaponActualMaster::SetMagazineVisible(bool bVisible)
+{
+	!bVisible ? WeaponActualSkeletalMesh->HideBoneByName(TEXT("Magazine"), PBO_None) : WeaponActualSkeletalMesh->UnHideBoneByName(TEXT("Magazine"));
+}
+
+FTransform AWeaponActualMaster::GetMagazineTransform()
+{
+	int MagazineBoneIndex = WeaponActualSkeletalMesh->GetBoneIndex(TEXT("Magazine"));
+	return WeaponActualSkeletalMesh->GetBoneTransform(MagazineBoneIndex);
 }
 
 void AWeaponActualMaster::Aim()

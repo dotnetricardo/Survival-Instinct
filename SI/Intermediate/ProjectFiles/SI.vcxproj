@@ -272,12 +272,24 @@
     <AdditionalOptions>/std:c++14</AdditionalOptions>
   </PropertyGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\SI\AmmoPickup\Public\AmmoPickupMaster.cpp" />
+    <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\MagAttachAnimNotify.cpp" />
+    <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\MagReleaseAnimNotify.cpp" />
+    <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\MagReleaseAnimNotifyState.cpp" />
+    <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\SpawnMagazineAnimNotify.cpp" />
     <ClCompile Include="..\..\Source\SI\Projectile\Public\ProjectileMaster.cpp" />
+    <ClCompile Include="..\..\Source\SI\Weapons\Public\DynamicMagazineMaster.cpp" />
     <ClCompile Include="..\..\Source\SI\Weapons\Public\WeaponActualMaster.cpp" />
     <ClCompile Include="..\..\Source\SI\Weapons\Public\WeaponPickupMaster.cpp" />
     <ClCompile Include="..\..\Source\SI\Widget\Public\HUDBase.cpp" />
     <ClCompile Include="..\..\Source\SI\Widget\Public\UserWidgetMaster.cpp" />
+    <ClInclude Include="..\..\Source\SI\AmmoPickup\Public\AmmoPickupMaster.h" />
+    <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\MagAttachAnimNotify.h" />
+    <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\MagReleaseAnimNotify.h" />
+    <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\MagReleaseAnimNotifyState.h" />
+    <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\SpawnMagazineAnimNotify.h" />
     <ClInclude Include="..\..\Source\SI\Projectile\Public\ProjectileMaster.h" />
+    <ClInclude Include="..\..\Source\SI\Weapons\Public\DynamicMagazineMaster.h" />
     <ClInclude Include="..\..\Source\SI\Weapons\Public\WeaponActualMaster.h" />
     <ClInclude Include="..\..\Source\SI\Weapons\Public\WeaponPickupMaster.h" />
     <ClInclude Include="..\..\Source\SI\Widget\Public\HUDBase.h" />

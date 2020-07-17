@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "SI/Player/Public/SICharacter.h"
 #include "Camera/CameraComponent.h"
+#include "Components/BoxComponent.h"
+#include "Components/StaticMeshComponent.h"
 #include "WeaponPickupMaster.generated.h"
 
 class UBoxComponent;
@@ -42,11 +44,5 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
 	USceneComponent* DefaultSceneRoot;
 
-	
-		
-
-public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 };

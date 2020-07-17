@@ -69,9 +69,9 @@ void ASICharacter::SpawnWeapon(TSubclassOf<AWeaponActualMaster> WeaponToSpawn)
 				SpawnedWeapon->Destroy();
 			}
 
-			FName fnWeaponSocket = TEXT("WeaponSocket");
+			FName fnWeaponSocket = TEXT("weaponSocket");
 			
-			FTransform SocketTransform = GetMesh()->GetSocketTransform(TEXT("WeaponSocket"), RTS_World);
+			FTransform SocketTransform = GetMesh()->GetSocketTransform(TEXT("weaponSocket"), RTS_World);
 			
 			FActorSpawnParameters spawnParams;
 			spawnParams.Owner = this;
@@ -297,7 +297,7 @@ void ASICharacter::BeginFireWeapon()
 				{
 					if (!GetSpawnedWeaponAsWeaponMaster()->bIsAutomatic)
 					{
-						PlayingMontage = GetMesh()->GetAnimInstance()->Montage_Play(ShootOnceAnimMontage);
+						GetMesh()->GetAnimInstance()->Montage_Play(ShootOnceAnimMontage);
 					}
 				}
 				else 
@@ -326,6 +326,123 @@ void ASICharacter::SetWeaponGrenadeMode()
 	{
 		GetSpawnedWeaponAsWeaponMaster()->SetGrenadeMode();
 	}
+}
+
+void ASICharacter::Reload()
+{
+	if (bIsCombatMode && SpawnedWeapon && GetSpawnedWeaponAsWeaponMaster()->ReloadMontage)
+	{
+		GetMesh()->GetAnimInstance()->Montage_Play(GetSpawnedWeaponAsWeaponMaster()->ReloadMontage);
+	}
+}
+
+void ASICharacter::AddMags(int WeaponMags, int GrenadeMags)
+{
+	if (MaxWeaponMagsCarry < WeaponMagsCount)
+	{
+		WeaponMagsCount += WeaponMags;
+
+		if (WeaponMagsCount > MaxWeaponMagsCarry)
+		{
+			WeaponMagsCount = MaxWeaponMagsCarry;
+		}
+	}
+
+	if (MaxGrenameMagsCarry < GrenadeMagsCount)
+	{
+		GrenadeMagsCount += GrenadeMags;
+
+		if (GrenadeMagsCount > MaxGrenameMagsCarry)
+		{
+			GrenadeMagsCount = MaxGrenameMagsCarry;
+		}
+	}
+}
+	
+	
+
+void ASICharacter::ReleaseMagazine()
+{
+	if (SpawnedWeapon != nullptr && GetSpawnedWeaponAsWeaponMaster() != nullptr && GetSpawnedWeaponAsWeaponMaster()->DynamicMagazine != nullptr)
+	{
+		FTransform MagazineTransform = GetSpawnedWeaponAsWeaponMaster()->GetMagazineTransform();
+		MagazineTransform.SetScale3D(FVector(1, 1, 1));
+		MagazineTransform.SetRotation(FQuat(0, 0, 0, 0));
+
+		GetSpawnedWeaponAsWeaponMaster()->SetMagazineVisible(false);
+
+		FActorSpawnParameters SpawnParams;
+		SpawnParams.Owner = SpawnedWeapon;
+		SpawnParams.Instigator = this;
+		SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+		ADynamicMagazineMaster* FallingMagazine = GetWorld()->SpawnActor<ADynamicMagazineMaster>(GetSpawnedWeaponAsWeaponMaster()->DynamicMagazine, MagazineTransform, SpawnParams);
+
+		FallingMagazine->MagazineStaticMesh->SetSimulatePhysics(true);
+
+		/*	FallingMagazine->MagazineStaticMesh->GetBodyInstance()->bLockXRotation = true;
+			FallingMagazine->MagazineStaticMesh->GetBodyInstance()->bLockYRotation = true;
+			FallingMagazine->MagazineStaticMesh->GetBodyInstance()->bLockZRotation = true;*/
+			/*FallingMagazine->MagazineStaticMesh->GetBodyInstance()->bLockXTranslation = true;*/
+			//FallingMagazine->MagazineStaticMesh->GetBodyInstance()->bLockYTranslation = true;
+			//FallingMagazine->MagazineStaticMesh->GetBodyInstance()->bLockZTranslation = true;
+			/*FallingMagazine->MagazineStaticMesh->GetBodyInstance()->bLockXTranslation = true;
+			FallingMagazine->MagazineStaticMesh->GetBodyInstance()->bLockYTranslation = true;
+			FallingMagazine->MagazineStaticMesh->GetBodyInstance()->SetDOFLock(EDOFMode::SixDOF);*/
+
+			/*	FallingMagazine->MagazineStaticMesh->SetConstraintMode(EDOFMode::YZPlane);*/
+
+				/*FallingMagazine->MagazineStaticMesh->bIgnoreRadialForce = true;
+				FallingMagazine->MagazineStaticMesh->bIgnoreRadialImpulse = true;
+				FallingMagazine->MagazineStaticMesh->GetBodyInstance()->ClearForces();*/
+		
+		FallingMagazine->SelfDestructAfterSec(3);
+
+	}
+}
+
+void ASICharacter::SpawnMagazine()
+{
+	if (SpawnedWeapon != nullptr && GetSpawnedWeaponAsWeaponMaster() != nullptr && GetSpawnedWeaponAsWeaponMaster()->DynamicMagazine != nullptr)
+	{
+		if (SpawnedMagazine)
+		{
+			SpawnedMagazine->Destroy();
+		}
+
+		FName fnMagazineSocket = TEXT("magazineSocket");
+
+		FTransform SocketTransform = GetMesh()->GetSocketTransform(TEXT("magazineSocket"), RTS_World);
+
+		FActorSpawnParameters spawnParams;
+		spawnParams.Owner = this;
+		spawnParams.Instigator = this;
+
+		FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, true);
+
+		SpawnedMagazine = GetWorld()->SpawnActor<ADynamicMagazineMaster>(GetSpawnedWeaponAsWeaponMaster()->DynamicMagazine, SocketTransform, spawnParams);
+
+		SpawnedMagazine->AttachToComponent(GetMesh(), TransformRules, fnMagazineSocket);
+	}
+}
+
+void ASICharacter::AttachMagazine()
+{
+	if (SpawnedWeapon != nullptr && GetSpawnedWeaponAsWeaponMaster() != nullptr)
+	{
+		if (SpawnedMagazine)
+		{
+			SpawnedMagazine->Destroy();
+		}
+
+		GetSpawnedWeaponAsWeaponMaster()->SetMagazineVisible(true);
+	}
+	
+}
+
+bool ASICharacter::CanAddMags()
+{
+	return WeaponMagsCount < MaxWeaponMagsCarry || GrenadeMagsCount < MaxGrenameMagsCarry;
 }
 
 //void ASICharacter::Interact()
@@ -424,6 +541,8 @@ void ASICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ASICharacter::EndFireWeapon);
 
 	PlayerInputComponent->BindAction("GrenadeMode", IE_Pressed, this, &ASICharacter::SetWeaponGrenadeMode);
+
+	PlayerInputComponent->BindAction("Reload", IE_Pressed, this, &ASICharacter::Reload);
 
 }
 
