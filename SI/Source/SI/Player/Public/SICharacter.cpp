@@ -295,19 +295,21 @@ void ASICharacter::BeginFireWeapon()
 		{
 			bIsFiring = true;
 
-			GetSpawnedWeaponAsWeaponMaster()->ShootAudioComponent->Play();
-
 			if (ShootOnceAnimMontage && ShootGrenadeAnimMontage)
 			{
 				if (!GetSpawnedWeaponAsWeaponMaster()->bIsGrenadeMode)
 				{
 					if (!GetSpawnedWeaponAsWeaponMaster()->bIsAutomatic)
 					{
+						//GetSpawnedWeaponAsWeaponMaster()->ShootAudioComponent->Play();
+						UGameplayStatics::PlaySoundAtLocation(GetWorld(), GetSpawnedWeaponAsWeaponMaster()->ShootSoundFx, SpawnedWeapon->GetActorLocation());
 						GetMesh()->GetAnimInstance()->Montage_Play(ShootOnceAnimMontage);
 					}
 				}
 				else 
 				{
+					UGameplayStatics::PlaySoundAtLocation(GetWorld(), GetSpawnedWeaponAsWeaponMaster()->ShootGrenadeSoundFx, SpawnedWeapon->GetActorLocation());
+					//GetSpawnedWeaponAsWeaponMaster()->ShootGrenadeAudioComponent->Play();
 					GetMesh()->GetAnimInstance()->Montage_Play(ShootGrenadeAnimMontage);
 				}
 			}
@@ -339,7 +341,17 @@ void ASICharacter::Reload()
 	if (bIsCombatMode && SpawnedWeapon && GetSpawnedWeaponAsWeaponMaster()->ReloadMontage)
 	{
 		bIsReloading = true;
-		GetMesh()->GetAnimInstance()->Montage_Play(GetSpawnedWeaponAsWeaponMaster()->ReloadMontage);
+
+		if (!GetSpawnedWeaponAsWeaponMaster()->bIsGrenadeMode)
+		{
+			GetMesh()->GetAnimInstance()->Montage_Play(GetSpawnedWeaponAsWeaponMaster()->ReloadMontage);
+		}
+		else
+		{
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), GetSpawnedWeaponAsWeaponMaster()->ReloadGrenadeSoundFx, SpawnedWeapon->GetActorLocation());
+			GetMesh()->GetAnimInstance()->Montage_Play(GetSpawnedWeaponAsWeaponMaster()->ReloadGrenadeMontage);
+		}
+		
 	}
 }
 
@@ -372,7 +384,10 @@ void ASICharacter::ReleaseMagazine()
 {
 	if (SpawnedWeapon != nullptr && GetSpawnedWeaponAsWeaponMaster() != nullptr && GetSpawnedWeaponAsWeaponMaster()->DynamicMagazine != nullptr)
 	{
-		GetSpawnedWeaponAsWeaponMaster()->ReloadAudioComponent->Play();
+		/*GetSpawnedWeaponAsWeaponMaster()->ReloadAudioComponent->Play();*/
+
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), GetSpawnedWeaponAsWeaponMaster()->ReloadSoundFx, SpawnedWeapon->GetActorLocation());
+
 		FTransform MagazineTransform = GetSpawnedWeaponAsWeaponMaster()->GetMagazineTransform();
 		MagazineTransform.SetScale3D(FVector(1, 1, 1));
 		MagazineTransform.SetRotation(FQuat(0, 0, 0, 0));

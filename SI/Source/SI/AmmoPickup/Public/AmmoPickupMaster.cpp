@@ -3,6 +3,7 @@
 
 #include "AmmoPickupMaster.h"
 #include "Components/BoxComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "Components/StaticMeshComponent.h"
 
 // Sets default values
@@ -30,6 +31,7 @@ void AAmmoPickupMaster::NotifyActorBeginOverlap(AActor* OtherActor)
 	{
 		if (PlayerCharacter->CanAddMags())
 		{
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), PickupSoundFx, OtherActor->GetActorLocation());
 			PlayerCharacter->AddMags(WeaponMags, GrenadeMags);
 			Destroy();
 		}

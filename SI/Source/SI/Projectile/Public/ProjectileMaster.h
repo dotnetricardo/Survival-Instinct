@@ -7,10 +7,14 @@
 #include "Components/SphereComponent.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "Sound/SoundCue.h"
+#include "Components/AudioComponent.h"
 #include "ProjectileMaster.generated.h"
 
 class UParticleSystem;
 class UProjectileMovementComponent;
+class USoundCue;
+class UAudioComponent;
 
 UCLASS()
 class SI_API AProjectileMaster : public AActor
@@ -50,5 +54,10 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UProjectileMovementComponent* ProjectileMovementComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
+	USoundCue* ImpactSoundFx;
+
+	/*UAudioComponent* AudioComponent;*/
 
 };

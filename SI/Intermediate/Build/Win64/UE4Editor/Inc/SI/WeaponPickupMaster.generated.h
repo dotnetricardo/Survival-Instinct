@@ -61,7 +61,8 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AWeaponPickupMaster); \
 #define SI_Source_SI_Weapons_Public_WeaponPickupMaster_h_23_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__Box() { return STRUCT_OFFSET(AWeaponPickupMaster, Box); } \
 	FORCEINLINE static uint32 __PPO__WeaponStaticMesh() { return STRUCT_OFFSET(AWeaponPickupMaster, WeaponStaticMesh); } \
-	FORCEINLINE static uint32 __PPO__DefaultSceneRoot() { return STRUCT_OFFSET(AWeaponPickupMaster, DefaultSceneRoot); }
+	FORCEINLINE static uint32 __PPO__DefaultSceneRoot() { return STRUCT_OFFSET(AWeaponPickupMaster, DefaultSceneRoot); } \
+	FORCEINLINE static uint32 __PPO__PickupSoundFx() { return STRUCT_OFFSET(AWeaponPickupMaster, PickupSoundFx); }
 
 
 #define SI_Source_SI_Weapons_Public_WeaponPickupMaster_h_20_PROLOG

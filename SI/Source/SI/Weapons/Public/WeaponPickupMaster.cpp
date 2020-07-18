@@ -3,6 +3,7 @@
 
 #include "WeaponPickupMaster.h"
 #include "SI/Player/Public/SICharacter.h"
+#include "Kismet/GameplayStatics.h"
 #include "WeaponActualMaster.h"
 
 //#include "Kismet/KismetArrayLibrary.h"
@@ -28,6 +29,8 @@ void AWeaponPickupMaster::NotifyActorBeginOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
 
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), PickupSoundFx, OtherActor->GetActorLocation());
+	
 	ASICharacter* PlayerCharacter = Cast<ASICharacter>(OtherActor);
 
 	//UE_LOG(LogTemp, Log, TEXT("Overlapped"));

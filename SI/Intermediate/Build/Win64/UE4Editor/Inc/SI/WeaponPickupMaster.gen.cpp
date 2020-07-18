@@ -17,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponPickupMaster() {}
 	SI_API UClass* Z_Construct_UClass_AWeaponPickupMaster();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_SI();
+	ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USceneComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UBoxComponent_NoRegister();
@@ -36,6 +37,10 @@ void EmptyLinkFunctionForGeneratedCodeWeaponPickupMaster() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PickupSoundFx_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_PickupSoundFx;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_DefaultSceneRoot_MetaData[];
 #endif
@@ -66,6 +71,13 @@ void EmptyLinkFunctionForGeneratedCodeWeaponPickupMaster() {}
 		{ "ModuleRelativePath", "Weapons/Public/WeaponPickupMaster.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponPickupMaster_Statics::NewProp_PickupSoundFx_MetaData[] = {
+		{ "Category", "FX" },
+		{ "ModuleRelativePath", "Weapons/Public/WeaponPickupMaster.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWeaponPickupMaster_Statics::NewProp_PickupSoundFx = { "PickupSoundFx", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponPickupMaster, PickupSoundFx), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AWeaponPickupMaster_Statics::NewProp_PickupSoundFx_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponPickupMaster_Statics::NewProp_PickupSoundFx_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponPickupMaster_Statics::NewProp_DefaultSceneRoot_MetaData[] = {
 		{ "Category", "Default" },
@@ -98,6 +110,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponPickupMaster() {}
 #endif
 	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AWeaponPickupMaster_Statics::NewProp_WeaponActual = { "WeaponActual", nullptr, (EPropertyFlags)0x0014000000000015, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponPickupMaster, WeaponActual), Z_Construct_UClass_AWeaponActualMaster_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_AWeaponPickupMaster_Statics::NewProp_WeaponActual_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponPickupMaster_Statics::NewProp_WeaponActual_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AWeaponPickupMaster_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponPickupMaster_Statics::NewProp_PickupSoundFx,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponPickupMaster_Statics::NewProp_DefaultSceneRoot,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponPickupMaster_Statics::NewProp_WeaponStaticMesh,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponPickupMaster_Statics::NewProp_Box,
@@ -130,7 +143,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponPickupMaster() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AWeaponPickupMaster, 2902257019);
+	IMPLEMENT_CLASS(AWeaponPickupMaster, 1218448417);
 	template<> SI_API UClass* StaticClass<AWeaponPickupMaster>()
 	{
 		return AWeaponPickupMaster::StaticClass();

@@ -44,5 +44,8 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
 	USceneComponent* DefaultSceneRoot;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
+	USoundCue* PickupSoundFx;
+
 
 };

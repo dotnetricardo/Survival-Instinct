@@ -43,5 +43,8 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	int GrenadeMags;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
+	USoundCue* PickupSoundFx;
+
 
 };

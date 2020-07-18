@@ -109,11 +109,17 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Timeline")
 	UAnimMontage* ReloadMontage;
 
+	UPROPERTY(EditAnywhere, Category = "Timeline")
+	UAnimMontage* ReloadGrenadeMontage;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	TSubclassOf<ADynamicMagazineMaster> DynamicMagazine;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
 	USoundCue* ReloadSoundFx;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
+	USoundCue* ReloadGrenadeSoundFx;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
 	USoundCue* ShootSoundFx;
@@ -125,9 +131,9 @@ public:
 
 	FTransform GetMagazineTransform();
 
-	UAudioComponent* ReloadAudioComponent;
+	/*UAudioComponent* ReloadAudioComponent;
 	UAudioComponent* ShootAudioComponent;
-	UAudioComponent* ShootGrenadeAudioComponent;
+	UAudioComponent* ShootGrenadeAudioComponent;*/
 
 protected:
 	// Called when the game starts or when spawned

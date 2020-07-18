@@ -34,14 +34,14 @@ AWeaponActualMaster::AWeaponActualMaster()
 	PointLight = CreateDefaultSubobject<UPointLightComponent>(TEXT("PointLight"));
 	PointLight->SetupAttachment(LaserSightMesh);
 
-	ReloadAudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("ReloadAudioComponent"));
+	/*ReloadAudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("ReloadAudioComponent"));
 	ReloadAudioComponent->SetupAttachment(DefaultSceneRoot);
 
 	ShootAudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("ShootAudioComponent"));
 	ShootAudioComponent->SetupAttachment(DefaultSceneRoot);
 
 	ShootGrenadeAudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("ShootGrenadeAudioComponent"));
-	ShootGrenadeAudioComponent->SetupAttachment(DefaultSceneRoot);
+	ShootGrenadeAudioComponent->SetupAttachment(DefaultSceneRoot);*/
 
 	SetRootComponent(DefaultSceneRoot);
 
@@ -212,7 +212,7 @@ void AWeaponActualMaster::StopAim()
 // Called when the game starts or when spawned
 void AWeaponActualMaster::BeginPlay()
 {
-	if (ReloadSoundFx)
+	/*if (ReloadSoundFx)
 	{
 		ReloadAudioComponent->SetSound(ReloadSoundFx);
 	}
@@ -225,7 +225,7 @@ void AWeaponActualMaster::BeginPlay()
 	if (ShootGrenadeSoundFx)
 	{
 		ShootGrenadeAudioComponent->SetSound(ShootGrenadeSoundFx);
-	}
+	}*/
 
 	Super::BeginPlay();
 
