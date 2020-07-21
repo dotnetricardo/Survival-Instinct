@@ -1,6 +1,7 @@
 {
 	"SourceFiles": [
 		"C:\\My\\UnrealProjects\\SI\\Survival-Instinct\\SI\\Source\\SI\\SI.Build.cs",
+		"C:\\My\\UnrealProjects\\SI\\Survival-Instinct\\SI\\Plugins\\Auto_Setup_1.04\\Source\\RLPlugin\\RLPlugin.Build.cs",
 		"C:\\My\\UnrealProjects\\SI\\Survival-Instinct\\SI\\Source\\SI.Target.cs",
 		"C:\\My\\UnrealProjects\\SI\\Survival-Instinct\\SI\\Source\\SIEditor.Target.cs"
 	],
