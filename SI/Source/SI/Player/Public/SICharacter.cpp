@@ -11,8 +11,10 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Math/UnrealMathVectorCommon.h"
+#include "Kismet/GameplayStatics.h"
 
 
+class AMyPlayerCameraManager;
 
 // Sets default values
 ASICharacter::ASICharacter()
@@ -31,7 +33,7 @@ ASICharacter::ASICharacter()
 	
 	// rotate the Character toward the direction of acceleration
 	GetCharacterMovement()->bOrientRotationToMovement = true;
-	
+
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
 	CameraComp->bUsePawnControlRotation = false;
 	CameraComp->SetupAttachment(SpringArmComp);
@@ -39,13 +41,7 @@ ASICharacter::ASICharacter()
 	// Set capsule collision presets
 	GetCapsuleComponent()->SetCollisionProfileName(TEXT("SI_CapsuleCollision"));
 	GetMesh()->SetCollisionProfileName(TEXT("SI_CharacterMeshCollision"));
-	
-	// Set defaults
-	MaxWeaponsCarry = 2;
 
-
-
-	
 }
 
 void ASICharacter::SpawnWeapon(TSubclassOf<AWeaponActualMaster> WeaponToSpawn)
@@ -170,6 +166,8 @@ void ASICharacter::CombatMode()
 	{
 		return;
 	}
+
+	SetWalkSpeed(DefaultRunSpeed);
 	
 	if (bIsCombatMode)
 	{
@@ -178,6 +176,11 @@ void ASICharacter::CombatMode()
 
 		// Can only aim in combat mode
 		EndAim();
+
+		if (bIsWalkMode)
+		{
+			SetWalkSpeed(DefaultWalkSpeed);
+		}
 	}
 	
 	bIsCombatMode = !bIsCombatMode;
@@ -355,6 +358,13 @@ void ASICharacter::Reload()
 		}
 		
 	}
+}
+
+void ASICharacter::ToggleWalkMode()
+{
+	bIsWalkMode = !bIsWalkMode;
+
+	SetWalkSpeed(bIsWalkMode ? DefaultWalkSpeed : DefaultRunSpeed);
 }
 
 void ASICharacter::AddMags(int WeaponMags, int GrenadeMags)
@@ -569,6 +579,7 @@ void ASICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 	PlayerInputComponent->BindAction("Reload", IE_Pressed, this, &ASICharacter::Reload);
 
+	PlayerInputComponent->BindAction("ToggleWalkMode", IE_Pressed, this, &ASICharacter::ToggleWalkMode);
 }
 
 #pragma region Private
@@ -583,6 +594,12 @@ void ASICharacter::BindTimelineToCurve(FTimeline &Timeline, FName FunctionName, 
 		Timeline.SetLooping(false);
 	}
 }
+
+void ASICharacter::SetWalkSpeed(float Speed)
+{
+	GetCharacterMovement()->MaxWalkSpeed = Speed;
+}
+
 #pragma endregion
 
 

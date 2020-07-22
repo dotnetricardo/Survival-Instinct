@@ -35,6 +35,12 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Default")
 	bool bIsCombatMode;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
+	float DefaultWalkSpeed = 300;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
+	float DefaultRunSpeed = 600;
+
 	UPROPERTY(BlueprintReadOnly, Category = "Default")
 	float InputAxisYawValue = 0;
 
@@ -43,6 +49,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Category = "Default")
 	bool bIsFiring;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Defaults")
+	bool bIsWalkMode;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Components")
 	int WeaponInventoryIndex;
@@ -75,6 +84,7 @@ public:
 
 	bool bIsReloading;
 
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -106,6 +116,10 @@ protected:
 	void SetWeaponGrenadeMode();
 
 	void Reload();
+	
+	void ToggleWalkMode();
+
+	void Sprint();
 
 	AHUDBase* Hud;
 
@@ -137,7 +151,7 @@ protected:
 	int MaxGrenameMagsCarry;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
-	int MaxWeaponsCarry;
+	int MaxWeaponsCarry = 3;
 
 	FRotator CombatModeCharacterRotation = FRotator(0, -81.0f, 0); //y (pitch), z (yaw), x (roll)
 	
@@ -172,6 +186,8 @@ private:
 	void BindTimelineToCurve(FTimeline &Timeline, FName FunctionName, UCurveFloat* Curve);
 
 	/*float PlayingMontage;*/
+
+	void SetWalkSpeed(float Speed);
 
 public:	
 	// Called every frame

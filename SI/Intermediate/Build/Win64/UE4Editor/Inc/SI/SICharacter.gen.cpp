@@ -219,6 +219,11 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 #endif
 		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_WeaponInventoryIndex;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bIsWalkMode_MetaData[];
+#endif
+		static void NewProp_bIsWalkMode_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bIsWalkMode;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bIsFiring_MetaData[];
 #endif
 		static void NewProp_bIsFiring_SetBit(void* Obj);
@@ -232,6 +237,14 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_InputAxisYawValue_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_InputAxisYawValue;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_DefaultRunSpeed_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_DefaultRunSpeed;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_DefaultWalkSpeed_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_DefaultWalkSpeed;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bIsCombatMode_MetaData[];
 #endif
@@ -352,6 +365,17 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 #endif
 	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventoryIndex = { "WeaponInventoryIndex", nullptr, (EPropertyFlags)0x0010000000000014, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASICharacter, WeaponInventoryIndex), METADATA_PARAMS(Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventoryIndex_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventoryIndex_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsWalkMode_MetaData[] = {
+		{ "Category", "Defaults" },
+		{ "ModuleRelativePath", "Player/Public/SICharacter.h" },
+	};
+#endif
+	void Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsWalkMode_SetBit(void* Obj)
+	{
+		((ASICharacter*)Obj)->bIsWalkMode = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsWalkMode = { "bIsWalkMode", nullptr, (EPropertyFlags)0x0010000000020015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ASICharacter), &Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsWalkMode_SetBit, METADATA_PARAMS(Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsWalkMode_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsWalkMode_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsFiring_MetaData[] = {
 		{ "Category", "Default" },
 		{ "ModuleRelativePath", "Player/Public/SICharacter.h" },
@@ -381,6 +405,20 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASICharacter_Statics::NewProp_InputAxisYawValue = { "InputAxisYawValue", nullptr, (EPropertyFlags)0x0010000000000014, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASICharacter, InputAxisYawValue), METADATA_PARAMS(Z_Construct_UClass_ASICharacter_Statics::NewProp_InputAxisYawValue_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASICharacter_Statics::NewProp_InputAxisYawValue_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASICharacter_Statics::NewProp_DefaultRunSpeed_MetaData[] = {
+		{ "Category", "Default" },
+		{ "ModuleRelativePath", "Player/Public/SICharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASICharacter_Statics::NewProp_DefaultRunSpeed = { "DefaultRunSpeed", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASICharacter, DefaultRunSpeed), METADATA_PARAMS(Z_Construct_UClass_ASICharacter_Statics::NewProp_DefaultRunSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASICharacter_Statics::NewProp_DefaultRunSpeed_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASICharacter_Statics::NewProp_DefaultWalkSpeed_MetaData[] = {
+		{ "Category", "Default" },
+		{ "ModuleRelativePath", "Player/Public/SICharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASICharacter_Statics::NewProp_DefaultWalkSpeed = { "DefaultWalkSpeed", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASICharacter, DefaultWalkSpeed), METADATA_PARAMS(Z_Construct_UClass_ASICharacter_Statics::NewProp_DefaultWalkSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASICharacter_Statics::NewProp_DefaultWalkSpeed_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsCombatMode_MetaData[] = {
 		{ "Category", "Default" },
 		{ "ModuleRelativePath", "Player/Public/SICharacter.h" },
@@ -406,9 +444,12 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventory,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventory_Inner,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventoryIndex,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsWalkMode,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsFiring,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsCrouching,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_InputAxisYawValue,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_DefaultRunSpeed,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_DefaultWalkSpeed,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsCombatMode,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ASICharacter_Statics::StaticCppClassTypeInfo = {
@@ -438,7 +479,7 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASICharacter, 2388409874);
+	IMPLEMENT_CLASS(ASICharacter, 2181870272);
 	template<> SI_API UClass* StaticClass<ASICharacter>()
 	{
 		return ASICharacter::StaticClass();

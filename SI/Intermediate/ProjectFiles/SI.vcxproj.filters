@@ -79,6 +79,18 @@
     <Filter Include="Source\SI\AnimNotifies\Public">
       <UniqueIdentifier>{33c16eb8-0d37-4e07-866a-da3bb6aee164}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\SI\CameraManager">
+      <UniqueIdentifier>{73dd435f-0ff5-4539-86a0-168b957d2f42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\SI\CameraManager\Public">
+      <UniqueIdentifier>{bcac6305-43fe-4b65-9272-feead407fbf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\SI\PlayerController">
+      <UniqueIdentifier>{776b0f96-ee5e-493a-a9fa-13c7c486e41f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\SI\PlayerController\Public">
+      <UniqueIdentifier>{784fd1f3-3e7c-49bb-9b2e-aa8aac48bacd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\SI\Player\Public\SICharacter.h">
@@ -120,6 +132,12 @@
     <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\EndReloadAnimNotify.h">
       <Filter>Source\SI\AnimNotifies\Public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\SI\CameraManager\Public\MyPlayerCameraManager.h">
+      <Filter>Source\SI\CameraManager\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SI\PlayerController\Public\SIPlayerController.h">
+      <Filter>Source\SI\PlayerController\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\SI\Player\Public\SICharacter.cpp">
@@ -160,6 +178,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\EndReloadAnimNotify.cpp">
       <Filter>Source\SI\AnimNotifies\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SI\CameraManager\Public\MyPlayerCameraManager.cpp">
+      <Filter>Source\SI\CameraManager\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SI\PlayerController\Public\SIPlayerController.cpp">
+      <Filter>Source\SI\PlayerController\Public</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
