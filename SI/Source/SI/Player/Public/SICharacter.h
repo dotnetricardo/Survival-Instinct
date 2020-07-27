@@ -50,7 +50,7 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Default")
 	bool bIsFiring;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Defaults")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
 	bool bIsWalkMode;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Components")
@@ -61,6 +61,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UCameraComponent* CameraComp;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Default")
+	AActor* SpawnedWeapon;
 
 	void SpawnWeapon(TSubclassOf<AWeaponActualMaster> WeaponToSpawn);
 
@@ -77,8 +80,6 @@ public:
 	//virtual FVector GetPawnViewLocation() const override;
 
 	FORCEINLINE AWeaponActualMaster* GetSpawnedWeaponAsWeaponMaster() const { return Cast<AWeaponActualMaster>(SpawnedWeapon); }
-
-	AActor* SpawnedWeapon;
 
 	AActor* SpawnedMagazine;
 
@@ -119,8 +120,6 @@ protected:
 	
 	void ToggleWalkMode();
 
-	void Sprint();
-
 	AHUDBase* Hud;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
@@ -134,6 +133,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Timeline")
 	UAnimMontage* ShootOnceAnimMontage;
+
+	UPROPERTY(EditAnywhere, Category = "Timeline")
+	UAnimMontage* ShootOnceHandgunAnimMontage;
 
 	UPROPERTY(EditAnywhere, Category = "Timeline")
 	UAnimMontage* ShootGrenadeAnimMontage;

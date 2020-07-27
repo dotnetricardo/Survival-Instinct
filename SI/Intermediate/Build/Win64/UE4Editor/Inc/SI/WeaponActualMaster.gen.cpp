@@ -24,6 +24,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 	ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	SI_API UClass* Z_Construct_UClass_ADynamicMagazineMaster_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UAnimSequence_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	SI_API UClass* Z_Construct_UClass_AProjectileMaster_NoRegister();
@@ -78,6 +79,14 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_DynamicMagazine_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FClassPropertyParams NewProp_DynamicMagazine;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_BarrelCloseAnimation_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_BarrelCloseAnimation;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_BarrelOpenAnimation_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_BarrelOpenAnimation;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ReloadGrenadeMontage_MetaData[];
 #endif
@@ -254,15 +263,29 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 #endif
 	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_DynamicMagazine = { "DynamicMagazine", nullptr, (EPropertyFlags)0x0014000000000015, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, DynamicMagazine), Z_Construct_UClass_ADynamicMagazineMaster_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_DynamicMagazine_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_DynamicMagazine_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_BarrelCloseAnimation_MetaData[] = {
+		{ "Category", "Animation" },
+		{ "ModuleRelativePath", "Weapons/Public/WeaponActualMaster.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_BarrelCloseAnimation = { "BarrelCloseAnimation", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, BarrelCloseAnimation), Z_Construct_UClass_UAnimSequence_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_BarrelCloseAnimation_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_BarrelCloseAnimation_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_BarrelOpenAnimation_MetaData[] = {
+		{ "Category", "Animation" },
+		{ "ModuleRelativePath", "Weapons/Public/WeaponActualMaster.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_BarrelOpenAnimation = { "BarrelOpenAnimation", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, BarrelOpenAnimation), Z_Construct_UClass_UAnimSequence_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_BarrelOpenAnimation_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_BarrelOpenAnimation_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_ReloadGrenadeMontage_MetaData[] = {
-		{ "Category", "Timeline" },
+		{ "Category", "Animation" },
 		{ "ModuleRelativePath", "Weapons/Public/WeaponActualMaster.h" },
 	};
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_ReloadGrenadeMontage = { "ReloadGrenadeMontage", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, ReloadGrenadeMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_ReloadGrenadeMontage_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_ReloadGrenadeMontage_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_ReloadMontage_MetaData[] = {
-		{ "Category", "Timeline" },
+		{ "Category", "Animation" },
 		{ "ModuleRelativePath", "Weapons/Public/WeaponActualMaster.h" },
 	};
 #endif
@@ -441,6 +464,8 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_ReloadGrenadeSoundFx,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_ReloadSoundFx,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_DynamicMagazine,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_BarrelCloseAnimation,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_BarrelOpenAnimation,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_ReloadGrenadeMontage,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_ReloadMontage,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_TotalMuzzles,
@@ -491,7 +516,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AWeaponActualMaster, 2803109164);
+	IMPLEMENT_CLASS(AWeaponActualMaster, 3043572157);
 	template<> SI_API UClass* StaticClass<AWeaponActualMaster>()
 	{
 		return AWeaponActualMaster::StaticClass();

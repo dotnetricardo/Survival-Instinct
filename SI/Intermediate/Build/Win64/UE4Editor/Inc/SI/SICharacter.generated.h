@@ -75,6 +75,7 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASICharacter); \
 	FORCEINLINE static uint32 __PPO__SwichModesCurveFloat() { return STRUCT_OFFSET(ASICharacter, SwichModesCurveFloat); } \
 	FORCEINLINE static uint32 __PPO__AimCurveFloat() { return STRUCT_OFFSET(ASICharacter, AimCurveFloat); } \
 	FORCEINLINE static uint32 __PPO__ShootOnceAnimMontage() { return STRUCT_OFFSET(ASICharacter, ShootOnceAnimMontage); } \
+	FORCEINLINE static uint32 __PPO__ShootOnceHandgunAnimMontage() { return STRUCT_OFFSET(ASICharacter, ShootOnceHandgunAnimMontage); } \
 	FORCEINLINE static uint32 __PPO__ShootGrenadeAnimMontage() { return STRUCT_OFFSET(ASICharacter, ShootGrenadeAnimMontage); } \
 	FORCEINLINE static uint32 __PPO__WeaponMagsCount() { return STRUCT_OFFSET(ASICharacter, WeaponMagsCount); } \
 	FORCEINLINE static uint32 __PPO__GrenadeMagsCount() { return STRUCT_OFFSET(ASICharacter, GrenadeMagsCount); } \

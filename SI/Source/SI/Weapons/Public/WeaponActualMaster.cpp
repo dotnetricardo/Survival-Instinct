@@ -47,11 +47,6 @@ AWeaponActualMaster::AWeaponActualMaster()
 
 }
 
-bool AWeaponActualMaster::CanAim()
-{
-	return bHasLaserSight || bHasMicroscopicSight;
-}
-
 void AWeaponActualMaster::Fire()
 {
 	FTransform Shoot1To;
@@ -175,31 +170,51 @@ FTransform AWeaponActualMaster::GetMagazineTransform()
 	return WeaponActualSkeletalMesh->GetBoneTransform(MagazineBoneIndex);
 }
 
+void AWeaponActualMaster::AnimatePistolBarrel()
+{
+	if (bIsPistol && BarrelOpenAnimation && BarrelCloseAnimation)
+	{
+		if (bIsPistolBarrelOpen)
+		{
+			WeaponActualSkeletalMesh->PlayAnimation(BarrelCloseAnimation, false);
+		}
+		else
+		{
+			WeaponActualSkeletalMesh->PlayAnimation(BarrelOpenAnimation, false);
+		}
+	}
+
+	bIsPistolBarrelOpen = !bIsPistolBarrelOpen;
+}
+
 void AWeaponActualMaster::Aim()
 {
-	std::pair<FHitResult, bool> result = GetHit(false);
-
-	if (result.second)
+	if (bHasLaserSight)
 	{
-		FVector MuzzleLocation = WeaponActualSkeletalMesh->GetSocketLocation(TEXT("Muzzle_1"));
+		std::pair<FHitResult, bool> result = GetHit(false);
 
-		FRotator LaserRotation = UKismetMathLibrary::FindLookAtRotation(MuzzleLocation, result.first.ImpactPoint);
-
-		float Distance = (MuzzleLocation - result.first.ImpactPoint).Size();
-
-		FVector VectorScale = UKismetMathLibrary::MakeVector(Distance, 0, 0);
-
-		LaserSightMesh->SetHiddenInGame(false, true);
-		LaserSightMesh->SetWorldScale3D(VectorScale);
-		LaserSightMesh->SetWorldRotation(LaserRotation);
-		PointLight->SetWorldLocation(result.first.ImpactPoint - PointLight->GetForwardVector());
-
-		if (Distance < 400)
+		if (result.second)
 		{
-			PointLight->SetAttenuationRadius(2.0f);
-		}
-		else {
-			PointLight->SetAttenuationRadius(4.0f);
+			FVector MuzzleLocation = WeaponActualSkeletalMesh->GetSocketLocation(TEXT("Muzzle_1"));
+
+			FRotator LaserRotation = UKismetMathLibrary::FindLookAtRotation(MuzzleLocation, result.first.ImpactPoint);
+
+			float Distance = (MuzzleLocation - result.first.ImpactPoint).Size();
+
+			FVector VectorScale = UKismetMathLibrary::MakeVector(Distance, 0, 0);
+
+			LaserSightMesh->SetHiddenInGame(false, true);
+			LaserSightMesh->SetWorldScale3D(VectorScale);
+			LaserSightMesh->SetWorldRotation(LaserRotation);
+			PointLight->SetWorldLocation(result.first.ImpactPoint - PointLight->GetForwardVector());
+
+			if (Distance < 400)
+			{
+				PointLight->SetAttenuationRadius(2.0f);
+			}
+			else {
+				PointLight->SetAttenuationRadius(4.0f);
+			}
 		}
 	}
 }

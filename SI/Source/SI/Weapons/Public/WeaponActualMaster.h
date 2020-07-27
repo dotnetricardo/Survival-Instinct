@@ -20,8 +20,10 @@ class UPointLightComponent;
 class AProjectileMaster;
 class ADynamicMagazineMaster;
 class UAnimMontage;
+class UAnimSequence;
 class USoundCue;
 class UAudioComponent;
+
 
 
 
@@ -33,8 +35,6 @@ class SI_API AWeaponActualMaster : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AWeaponActualMaster();
-
-	bool CanAim();
 
 	void Aim();
 
@@ -106,11 +106,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	int TotalMuzzles;
 
-	UPROPERTY(EditAnywhere, Category = "Timeline")
+	UPROPERTY(EditAnywhere, Category = "Animation")
 	UAnimMontage* ReloadMontage;
 
-	UPROPERTY(EditAnywhere, Category = "Timeline")
+	UPROPERTY(EditAnywhere, Category = "Animation")
 	UAnimMontage* ReloadGrenadeMontage;
+
+	UPROPERTY(EditAnywhere, Category = "Animation")
+	UAnimSequence* BarrelOpenAnimation;
+
+	UPROPERTY(EditAnywhere, Category = "Animation")
+	UAnimSequence* BarrelCloseAnimation;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	TSubclassOf<ADynamicMagazineMaster> DynamicMagazine;
@@ -130,6 +136,8 @@ public:
 	void SetMagazineVisible(bool bVisible);
 
 	FTransform GetMagazineTransform();
+
+	void AnimatePistolBarrel();
 
 	/*UAudioComponent* ReloadAudioComponent;
 	UAudioComponent* ShootAudioComponent;
@@ -159,5 +167,7 @@ private:
 	std::pair<FHitResult, bool> GetHit(bool bDebug);
 
 	void CreateMuzzleFlash();
+
+	bool bIsPistolBarrelOpen;
 
 };

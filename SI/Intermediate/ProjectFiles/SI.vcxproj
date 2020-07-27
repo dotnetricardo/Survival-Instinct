@@ -277,6 +277,7 @@
     <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\MagAttachAnimNotify.cpp" />
     <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\MagReleaseAnimNotify.cpp" />
     <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\MagReleaseAnimNotifyState.cpp" />
+    <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\PistolBarrellAnimNotify.cpp" />
     <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\SpawnMagazineAnimNotify.cpp" />
     <ClCompile Include="..\..\Source\SI\CameraManager\Public\MyPlayerCameraManager.cpp" />
     <ClCompile Include="..\..\Source\SI\PlayerController\Public\SIPlayerController.cpp" />
@@ -291,6 +292,7 @@
     <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\MagAttachAnimNotify.h" />
     <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\MagReleaseAnimNotify.h" />
     <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\MagReleaseAnimNotifyState.h" />
+    <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\PistolBarrellAnimNotify.h" />
     <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\SpawnMagazineAnimNotify.h" />
     <ClInclude Include="..\..\Source\SI\CameraManager\Public\MyPlayerCameraManager.h" />
     <ClInclude Include="..\..\Source\SI\PlayerController\Public\SIPlayerController.h" />
