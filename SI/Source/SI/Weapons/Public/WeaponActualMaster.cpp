@@ -296,23 +296,26 @@ std::pair<FHitResult, bool> AWeaponActualMaster::GetHit(bool bDebug)
 
 void AWeaponActualMaster::CreateMuzzleFlash()
 {
-	UParticleSystemComponent* MuzzleFlashComp;
-
-	if (!bIsGrenadeMode)
+	if (MuzzleFlashParticle)
 	{
-		MuzzleFlashComp = UGameplayStatics::SpawnEmitterAttached(MuzzleFlashParticle, WeaponActualSkeletalMesh, TEXT("Muzzle_1"), FVector(10.0f, 0, 0), FRotator(0, 0, 0), EAttachLocation::SnapToTargetIncludingScale);
-		MuzzleFlashComp->SetFloatParameter(TEXT("ShellPos"), ShellEjectPosition.X);
+		UParticleSystemComponent* MuzzleFlashComp;
 
-		if (TotalMuzzles == 2)
+		if (!bIsGrenadeMode)
 		{
-			MuzzleFlashComp = UGameplayStatics::SpawnEmitterAttached(MuzzleFlashParticle, WeaponActualSkeletalMesh, TEXT("Muzzle_2"), FVector(10.0f, 0, 0), FRotator(0, 0, 0), EAttachLocation::SnapToTargetIncludingScale);
+			MuzzleFlashComp = UGameplayStatics::SpawnEmitterAttached(MuzzleFlashParticle, WeaponActualSkeletalMesh, TEXT("Muzzle_1"), FVector(10.0f, 0, 0), FRotator(0, 0, 0), EAttachLocation::SnapToTargetIncludingScale);
 			MuzzleFlashComp->SetFloatParameter(TEXT("ShellPos"), ShellEjectPosition.X);
+
+			if (TotalMuzzles == 2)
+			{
+				MuzzleFlashComp = UGameplayStatics::SpawnEmitterAttached(MuzzleFlashParticle, WeaponActualSkeletalMesh, TEXT("Muzzle_2"), FVector(10.0f, 0, 0), FRotator(0, 0, 0), EAttachLocation::SnapToTargetIncludingScale);
+				MuzzleFlashComp->SetFloatParameter(TEXT("ShellPos"), ShellEjectPosition.X);
+			}
 		}
-	}
-	else
-	{
-		// TODO: Grenade launcher
-		MuzzleFlashComp = UGameplayStatics::SpawnEmitterAttached(GrenadeMuzzleFlashParticle, WeaponActualSkeletalMesh, TEXT("Muzzle_Grenade"), FVector(10.0f, 0, 0), FRotator(0, 0, 0), EAttachLocation::SnapToTargetIncludingScale);
+		else
+		{
+			// TODO: Grenade launcher
+			MuzzleFlashComp = UGameplayStatics::SpawnEmitterAttached(GrenadeMuzzleFlashParticle, WeaponActualSkeletalMesh, TEXT("Muzzle_Grenade"), FVector(10.0f, 0, 0), FRotator(0, 0, 0), EAttachLocation::SnapToTargetIncludingScale);
+		}
 	}
 	
 }

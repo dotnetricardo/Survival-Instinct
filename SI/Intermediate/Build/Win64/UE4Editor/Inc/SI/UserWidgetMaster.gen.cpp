@@ -54,11 +54,12 @@ void EmptyLinkFunctionForGeneratedCodeUserWidgetMaster() {}
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UUserWidgetMaster_Statics::NewProp_crosshair_default_MetaData[] = {
 		{ "BindWidget", "" },
+		{ "Category", "UserWidgetMaster" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Widget/Public/UserWidgetMaster.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UUserWidgetMaster_Statics::NewProp_crosshair_default = { "crosshair_default", nullptr, (EPropertyFlags)0x0010000000080008, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UUserWidgetMaster, crosshair_default), Z_Construct_UClass_UBorder_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UUserWidgetMaster_Statics::NewProp_crosshair_default_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UUserWidgetMaster_Statics::NewProp_crosshair_default_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UUserWidgetMaster_Statics::NewProp_crosshair_default = { "crosshair_default", nullptr, (EPropertyFlags)0x00100000000a000d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UUserWidgetMaster, crosshair_default), Z_Construct_UClass_UBorder_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UUserWidgetMaster_Statics::NewProp_crosshair_default_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UUserWidgetMaster_Statics::NewProp_crosshair_default_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UUserWidgetMaster_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UUserWidgetMaster_Statics::NewProp_crosshair_default,
 	};
@@ -89,7 +90,7 @@ void EmptyLinkFunctionForGeneratedCodeUserWidgetMaster() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UUserWidgetMaster, 2132345087);
+	IMPLEMENT_CLASS(UUserWidgetMaster, 1695708599);
 	template<> SI_API UClass* StaticClass<UUserWidgetMaster>()
 	{
 		return UUserWidgetMaster::StaticClass();

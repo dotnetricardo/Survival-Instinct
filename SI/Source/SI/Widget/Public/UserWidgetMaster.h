@@ -16,7 +16,7 @@ class SI_API UUserWidgetMaster : public UUserWidget
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(meta = (BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	UBorder* crosshair_default;
 
 };

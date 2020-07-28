@@ -75,7 +75,9 @@ void ASICharacter::SpawnWeapon(TSubclassOf<AWeaponActualMaster> WeaponToSpawn)
 
 			SpawnedWeapon = GetWorld()->SpawnActor<AWeaponActualMaster>(WeaponToSpawn, SocketTransform, spawnParams);
 
-			if (GetSpawnedWeaponAsWeaponMaster()->bIsPistol)
+			AWeaponActualMaster* WeaponMaster = GetSpawnedWeaponAsWeaponMaster();
+
+			if (WeaponMaster->bIsPistol)
 			{
 				SpawnedWeapon->SetActorTransform(GetMesh()->GetSocketTransform(TEXT("pistolSocket"), RTS_World));
 				SpawnedWeapon->AttachToComponent(GetMesh(), TransformRules, TEXT("pistolSocket"));
@@ -84,6 +86,11 @@ void ASICharacter::SpawnWeapon(TSubclassOf<AWeaponActualMaster> WeaponToSpawn)
 			{
 				SpawnedWeapon->SetActorTransform(GetMesh()->GetSocketTransform(TEXT("rifleSocket"), RTS_World));
 				SpawnedWeapon->AttachToComponent(GetMesh(), TransformRules, TEXT("rifleSocket"));
+			}
+
+			if (!WeaponMaster->CanAim() && bIsAiming)
+			{
+				EndAim();
 			}
 			
 			
@@ -257,42 +264,44 @@ void ASICharacter::BeginAim()
 
 	if (SpawnedWeapon)
 	{
-		if (!bIsCombatMode)
-		{
-			CombatMode();
-		}
-
-		bIsAiming = true;
-		
 		AWeaponActualMaster* WeaponMaster = GetSpawnedWeaponAsWeaponMaster();
 
-		if (WeaponMaster->bHasLaserSight || WeaponMaster->bHasMicroscopicSight)
+		if (WeaponMaster->CanAim())
 		{
-			Hud->SetCrossHairVisibility(false);
+			if (!bIsCombatMode)
+			{
+				CombatMode();
+			}
+
+			bIsAiming = true;
+
+
+
+			if (WeaponMaster->bHasLaserSight || WeaponMaster->bHasMicroscopicSight)
+			{
+				Hud->SetCrossHairVisibility(false);
+			}
+
+			AimTimeline.Play();
 		}
-		
-		AimTimeline.Play();
 	}
 	
 }
 
 void ASICharacter::EndAim()
 {
-	if (bIsCombatMode)
+	if (SpawnedWeapon)
 	{
-		AWeaponActualMaster* WeaponMaster = GetSpawnedWeaponAsWeaponMaster();
-
-		bIsAiming = false;
-
-		if (WeaponMaster->bHasLaserSight || WeaponMaster->bHasMicroscopicSight)
+		if (bIsCombatMode)
 		{
-			Hud->SetCrossHairVisibility(true);
-		}
-		
-		AimTimeline.Reverse();
+			bIsAiming = false;
 
-		WeaponMaster->StopAim();
-		
+			Hud->SetCrossHairVisibility(true);
+
+			AimTimeline.Reverse();
+
+			GetSpawnedWeaponAsWeaponMaster()->StopAim();
+		}
 	}
 }
 

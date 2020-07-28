@@ -139,6 +139,8 @@ public:
 
 	void AnimatePistolBarrel();
 
+	FORCEINLINE bool CanAim() const { return bHasLaserSight || bHasMicroscopicSight; }
+
 	/*UAudioComponent* ReloadAudioComponent;
 	UAudioComponent* ShootAudioComponent;
 	UAudioComponent* ShootGrenadeAudioComponent;*/
