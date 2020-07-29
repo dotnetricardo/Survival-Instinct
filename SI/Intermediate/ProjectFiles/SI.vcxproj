@@ -273,6 +273,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\SI\AmmoPickup\Public\AmmoPickupMaster.cpp" />
+    <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\EndFireAnimNotify.cpp" />
     <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\EndReloadAnimNotify.cpp" />
     <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\MagAttachAnimNotify.cpp" />
     <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\MagReleaseAnimNotify.cpp" />
@@ -288,6 +289,7 @@
     <ClCompile Include="..\..\Source\SI\Widget\Public\HUDBase.cpp" />
     <ClCompile Include="..\..\Source\SI\Widget\Public\UserWidgetMaster.cpp" />
     <ClInclude Include="..\..\Source\SI\AmmoPickup\Public\AmmoPickupMaster.h" />
+    <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\EndFireAnimNotify.h" />
     <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\EndReloadAnimNotify.h" />
     <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\MagAttachAnimNotify.h" />
     <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\MagReleaseAnimNotify.h" />

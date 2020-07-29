@@ -2,11 +2,11 @@
   Building SIEditor...
   Using Visual Studio 2019 14.26.28806 toolchain (C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.26.28801) and Windows 10.0.18362.0 SDK (C:\Program Files (x86)\Windows Kits\10).
   Building 4 actions with 16 processes...
-    [1/4] WeaponActualMaster.cpp
-    [2/4] UE4Editor-SI-0071.lib
-       Creating library C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\UE4Editor-SI-0071.lib and object C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\UE4Editor-SI-0071.exp
-    [3/4] UE4Editor-SI-0071.dll
-       Creating library C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\UE4Editor-SI-0071.suppressed.lib and object C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\UE4Editor-SI-0071.suppressed.exp
+    [1/4] MyPlayerCameraManager.cpp
+    [2/4] UE4Editor-SI-0022.lib
+       Creating library C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\UE4Editor-SI-0022.lib and object C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\UE4Editor-SI-0022.exp
+    [3/4] UE4Editor-SI-0022.dll
+       Creating library C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\UE4Editor-SI-0022.suppressed.lib and object C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Development\SI\UE4Editor-SI-0022.suppressed.exp
     [4/4] SIEditor.target
-  Total time in Parallel executor: 4.29 seconds
-  Total execution time: 4.85 seconds
+  Total time in Parallel executor: 1.42 seconds
+  Total execution time: 1.96 seconds

@@ -82,16 +82,24 @@ void ASICharacter::SpawnWeapon(TSubclassOf<AWeaponActualMaster> WeaponToSpawn)
 				SpawnedWeapon->SetActorTransform(GetMesh()->GetSocketTransform(TEXT("pistolSocket"), RTS_World));
 				SpawnedWeapon->AttachToComponent(GetMesh(), TransformRules, TEXT("pistolSocket"));
 			}
+			else if (WeaponMaster->bIsKnife) 
+			{
+				SpawnedWeapon->SetActorTransform(GetMesh()->GetSocketTransform(TEXT("knifeSocket"), RTS_World));
+				SpawnedWeapon->AttachToComponent(GetMesh(), TransformRules, TEXT("knifeSocket"));
+				EndCrouch();
+			}
 			else
 			{
 				SpawnedWeapon->SetActorTransform(GetMesh()->GetSocketTransform(TEXT("rifleSocket"), RTS_World));
 				SpawnedWeapon->AttachToComponent(GetMesh(), TransformRules, TEXT("rifleSocket"));
 			}
 
-			if (!WeaponMaster->CanAim() && bIsAiming)
+			if (WeaponMaster->bIsKnife)
 			{
 				EndAim();
 			}
+
+			LaserSightOff();
 			
 			
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), GetSpawnedWeaponAsWeaponMaster()->ReloadSoundFx, GetActorLocation());
@@ -266,24 +274,14 @@ void ASICharacter::BeginAim()
 	{
 		AWeaponActualMaster* WeaponMaster = GetSpawnedWeaponAsWeaponMaster();
 
-		if (WeaponMaster->CanAim())
+		if (!bIsCombatMode)
 		{
-			if (!bIsCombatMode)
-			{
-				CombatMode();
-			}
-
-			bIsAiming = true;
-
-
-
-			if (WeaponMaster->bHasLaserSight || WeaponMaster->bHasMicroscopicSight)
-			{
-				Hud->SetCrossHairVisibility(false);
-			}
-
-			AimTimeline.Play();
+			CombatMode();
 		}
+
+		bIsAiming = true;
+
+		AimTimeline.Play();
 	}
 	
 }
@@ -301,6 +299,7 @@ void ASICharacter::EndAim()
 			AimTimeline.Reverse();
 
 			GetSpawnedWeaponAsWeaponMaster()->StopAim();
+			LaserSightOff();
 		}
 	}
 }
@@ -323,10 +322,6 @@ void ASICharacter::BeginFireWeapon()
 		AWeaponActualMaster* WeaponMaster = GetSpawnedWeaponAsWeaponMaster();
 		if (GetSpawnedWeaponAsWeaponMaster()->CanFire())
 		{
-			bIsFiring = true;
-
-			if (ShootOnceAnimMontage && ShootGrenadeAnimMontage)
-			{
 				if (!WeaponMaster->bIsGrenadeMode)
 				{
 					if (!WeaponMaster->bIsAutomatic)
@@ -335,12 +330,28 @@ void ASICharacter::BeginFireWeapon()
 
 						if (WeaponMaster->ShootSoundFx)
 						{
-							UGameplayStatics::PlaySoundAtLocation(GetWorld(), WeaponMaster->ShootSoundFx, SpawnedWeapon->GetActorLocation());
+							if (WeaponMaster->bIsKnife && !bIsFiring || !WeaponMaster->bIsKnife)
+							{
+								UGameplayStatics::PlaySoundAtLocation(GetWorld(), WeaponMaster->ShootSoundFx, SpawnedWeapon->GetActorLocation());
+							}
+							
 						}
 						
-						if (ShootOnceAnimMontage && ShootOnceHandgunAnimMontage)
+						if (ShootOnceAnimMontage && ShootOnceHandgunAnimMontage && KnifeAttackAnimMontage)
 						{
-							GetMesh()->GetAnimInstance()->Montage_Play(!WeaponMaster->bIsPistol ? ShootOnceAnimMontage : ShootOnceHandgunAnimMontage);
+							if (WeaponMaster->bIsKnife)
+							{
+								if (!bIsFiring)
+								{
+									GetMesh()->GetAnimInstance()->Montage_Play(KnifeAttackAnimMontage);
+								}
+								
+							}
+							else
+							{
+								GetMesh()->GetAnimInstance()->Montage_Play(!WeaponMaster->bIsPistol ? ShootOnceAnimMontage : ShootOnceHandgunAnimMontage);
+							}
+							
 						}
 						
 					}
@@ -358,7 +369,7 @@ void ASICharacter::BeginFireWeapon()
 						GetMesh()->GetAnimInstance()->Montage_Play(ShootGrenadeAnimMontage);
 					}
 				}
-			}
+			bIsFiring = true;
 			GetSpawnedWeaponAsWeaponMaster()->Fire();
 		
 			
@@ -371,7 +382,12 @@ void ASICharacter::BeginFireWeapon()
 void ASICharacter::EndFireWeapon()
 {
 	/*GetMesh()->GetAnimInstance()->Montage_Stop(PlayingMontage);*/
-	bIsFiring = false;
+	
+	if (SpawnedWeapon && !GetSpawnedWeaponAsWeaponMaster()->bIsKnife)
+	{
+		bIsFiring = false;
+	}
+	
 }
 
 void ASICharacter::SetWeaponGrenadeMode()
@@ -387,6 +403,11 @@ void ASICharacter::Reload()
 	if (bIsCombatMode && SpawnedWeapon)
 	{
 		AWeaponActualMaster* WeaponMaster = GetSpawnedWeaponAsWeaponMaster();
+
+		if (WeaponMaster->bIsKnife)
+		{
+			return;
+		}
 		
 		bIsReloading = true;
 	
@@ -426,6 +447,36 @@ void ASICharacter::ToggleWalkMode()
 	bIsWalkMode = !bIsWalkMode;
 
 	SetWalkSpeed(bIsWalkMode ? DefaultWalkSpeed : DefaultRunSpeed);
+}
+
+void ASICharacter::ToggleLaserSight()
+{
+	if (bIsCombatMode && SpawnedWeapon)
+	{
+		AWeaponActualMaster* WeaponMaster = GetSpawnedWeaponAsWeaponMaster();
+
+		if (WeaponMaster->bHasLaserSight)
+		{
+			if (!WeaponMaster->bLaserSightOn)
+			{
+				Hud->SetCrossHairVisibility(false);
+				WeaponMaster->bLaserSightOn = true;
+				return;
+			}
+		}
+
+		LaserSightOff();
+	}
+}
+
+void ASICharacter::LaserSightOff()
+{
+	if (SpawnedWeapon && bIsCombatMode)
+	{
+		Hud->SetCrossHairVisibility(true);
+		GetSpawnedWeaponAsWeaponMaster()->bLaserSightOn = false;
+	}
+	
 }
 
 void ASICharacter::AddMags(int WeaponMags, int GrenadeMags)
@@ -639,6 +690,8 @@ void ASICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAction("Reload", IE_Pressed, this, &ASICharacter::Reload);
 
 	PlayerInputComponent->BindAction("ToggleWalkMode", IE_Pressed, this, &ASICharacter::ToggleWalkMode);
+
+	PlayerInputComponent->BindAction("ToggleLaserSight", IE_Pressed, this, &ASICharacter::ToggleLaserSight);
 }
 
 #pragma region Private

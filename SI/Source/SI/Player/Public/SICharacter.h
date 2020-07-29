@@ -120,6 +120,10 @@ protected:
 	
 	void ToggleWalkMode();
 
+	void ToggleLaserSight();
+	
+	void LaserSightOff();
+
 	AHUDBase* Hud;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
@@ -139,6 +143,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Timeline")
 	UAnimMontage* ShootGrenadeAnimMontage;
+
+	UPROPERTY(EditAnywhere, Category = "Timeline")
+	UAnimMontage* KnifeAttackAnimMontage;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Components")
 	int WeaponMagsCount;

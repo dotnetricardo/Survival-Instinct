@@ -56,6 +56,9 @@ public:
 	bool bIsPistol;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	bool bIsKnife;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	bool bIsAutomatic;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
@@ -133,13 +136,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
 	USoundCue* ShootGrenadeSoundFx;
 
+	bool bLaserSightOn;
+
 	void SetMagazineVisible(bool bVisible);
 
 	FTransform GetMagazineTransform();
 
 	void AnimatePistolBarrel();
 
-	FORCEINLINE bool CanAim() const { return bHasLaserSight || bHasMicroscopicSight; }
+	/*FORCEINLINE bool CanAim() const { return bHasLaserSight || bHasMicroscopicSight; }*/
 
 	/*UAudioComponent* ReloadAudioComponent;
 	UAudioComponent* ShootAudioComponent;

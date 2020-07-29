@@ -164,6 +164,7 @@ void AWeaponActualMaster::SetMagazineVisible(bool bVisible)
 	!bVisible ? WeaponActualSkeletalMesh->HideBoneByName(TEXT("Magazine"), PBO_None) : WeaponActualSkeletalMesh->UnHideBoneByName(TEXT("Magazine"));
 }
 
+
 FTransform AWeaponActualMaster::GetMagazineTransform()
 {
 	int MagazineBoneIndex = WeaponActualSkeletalMesh->GetBoneIndex(TEXT("Magazine"));
@@ -174,17 +175,24 @@ void AWeaponActualMaster::AnimatePistolBarrel()
 {
 	if (bIsPistol && BarrelOpenAnimation && BarrelCloseAnimation)
 	{
+		//BarrelOpenAnimation->SequenceLength = MAX_FLT;
+
 		if (bIsPistolBarrelOpen)
 		{
+			bIsPistolBarrelOpen = false;
+			/*WeaponActualSkeletalMesh->SetPlayRate(-1.0f);*/
 			WeaponActualSkeletalMesh->PlayAnimation(BarrelCloseAnimation, false);
 		}
 		else
 		{
+			
+			//UE_LOG(LogTemp, Warning, TEXT("playing BarrelOpenAnimation")); 
+			bIsPistolBarrelOpen = true;
+			//WeaponActualSkeletalMesh->SetPlayRate(1.0f);
+			
 			WeaponActualSkeletalMesh->PlayAnimation(BarrelOpenAnimation, false);
 		}
 	}
-
-	bIsPistolBarrelOpen = !bIsPistolBarrelOpen;
 }
 
 void AWeaponActualMaster::Aim()
@@ -193,27 +201,34 @@ void AWeaponActualMaster::Aim()
 	{
 		std::pair<FHitResult, bool> result = GetHit(false);
 
-		if (result.second)
+		if (result.second && bHasLaserSight)
 		{
-			FVector MuzzleLocation = WeaponActualSkeletalMesh->GetSocketLocation(TEXT("Muzzle_1"));
-
-			FRotator LaserRotation = UKismetMathLibrary::FindLookAtRotation(MuzzleLocation, result.first.ImpactPoint);
-
-			float Distance = (MuzzleLocation - result.first.ImpactPoint).Size();
-
-			FVector VectorScale = UKismetMathLibrary::MakeVector(Distance, 0, 0);
-
-			LaserSightMesh->SetHiddenInGame(false, true);
-			LaserSightMesh->SetWorldScale3D(VectorScale);
-			LaserSightMesh->SetWorldRotation(LaserRotation);
-			PointLight->SetWorldLocation(result.first.ImpactPoint - PointLight->GetForwardVector());
-
-			if (Distance < 400)
+			if (bLaserSightOn)
 			{
-				PointLight->SetAttenuationRadius(2.0f);
+				FVector MuzzleLocation = WeaponActualSkeletalMesh->GetSocketLocation(TEXT("Muzzle_1"));
+
+				FRotator LaserRotation = UKismetMathLibrary::FindLookAtRotation(MuzzleLocation, result.first.ImpactPoint);
+
+				float Distance = (MuzzleLocation - result.first.ImpactPoint).Size();
+
+				FVector VectorScale = UKismetMathLibrary::MakeVector(Distance, 0, 0);
+
+				LaserSightMesh->SetHiddenInGame(false, true);
+				LaserSightMesh->SetWorldScale3D(VectorScale);
+				LaserSightMesh->SetWorldRotation(LaserRotation);
+				PointLight->SetWorldLocation(result.first.ImpactPoint - PointLight->GetForwardVector());
+
+				if (Distance < 400)
+				{
+					PointLight->SetAttenuationRadius(2.0f);
+				}
+				else {
+					PointLight->SetAttenuationRadius(4.0f);
+				}
 			}
-			else {
-				PointLight->SetAttenuationRadius(4.0f);
+			else
+			{
+				StopAim();
 			}
 		}
 	}
@@ -221,7 +236,10 @@ void AWeaponActualMaster::Aim()
 
 void AWeaponActualMaster::StopAim()
 {
-	LaserSightMesh->SetHiddenInGame(true, true);
+	if (LaserSightMesh->IsVisible())
+	{
+		LaserSightMesh->SetHiddenInGame(true, true);
+	}
 }
 
 // Called when the game starts or when spawned
