@@ -144,6 +144,9 @@
     <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\EndFireAnimNotify.h">
       <Filter>Source\SI\AnimNotifies\Public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\EquipWeaponAnimNotify.h">
+      <Filter>Source\SI\AnimNotifies\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\SI\Player\Public\SICharacter.cpp">
@@ -195,6 +198,9 @@
       <Filter>Source\SI\AnimNotifies\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\EndFireAnimNotify.cpp">
+      <Filter>Source\SI\AnimNotifies\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\EquipWeaponAnimNotify.cpp">
       <Filter>Source\SI\AnimNotifies\Public</Filter>
     </ClCompile>
   </ItemGroup>

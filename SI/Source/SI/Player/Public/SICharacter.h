@@ -56,16 +56,23 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Components")
 	int WeaponInventoryIndex;
 
-	UPROPERTY(BlueprintReadWrite, Category = "Default")
+	UPROPERTY(BlueprintReadOnly, Category = "Default")
 	TArray<TSubclassOf<AWeaponActualMaster>> WeaponInventory;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Defaults")
+	bool bIsWeaponEquiped;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "Default")
+	TArray<AActor*> SpawnedWeapons;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UCameraComponent* CameraComp;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Default")
-	AActor* SpawnedWeapon;
-
 	void SpawnWeapon(TSubclassOf<AWeaponActualMaster> WeaponToSpawn);
+	
+	void EquipWeapon();
+
+	void UnequipWeapon(bool bForceLast);
 
 	bool CanAddMags();
 
@@ -79,11 +86,14 @@ public:
 
 	//virtual FVector GetPawnViewLocation() const override;
 
-	FORCEINLINE AWeaponActualMaster* GetSpawnedWeaponAsWeaponMaster() const { return Cast<AWeaponActualMaster>(SpawnedWeapon); }
+	FORCEINLINE AWeaponActualMaster* GetSpawnedWeaponAsWeaponMaster() const { return Cast<AWeaponActualMaster>(SpawnedWeapons[WeaponInventoryIndex]); }
 
 	AActor* SpawnedMagazine;
 
 	bool bIsReloading;
+
+
+	
 
 
 protected:
@@ -100,7 +110,7 @@ protected:
 
 	void EndCrouch();
 
-	void CombatMode();
+	void ToggleCombatMode();
 
 	void IncrementInventory();
 
@@ -123,6 +133,8 @@ protected:
 	void ToggleLaserSight();
 	
 	void LaserSightOff();
+
+	void HolsterEquipedWeapon();
 
 	AHUDBase* Hud;
 
@@ -147,6 +159,15 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Timeline")
 	UAnimMontage* KnifeAttackAnimMontage;
 
+	UPROPERTY(EditAnywhere, Category = "Timeline")
+	UAnimMontage* EquipRifleAnimMontage;
+
+	UPROPERTY(EditAnywhere, Category = "Timeline")
+	UAnimMontage* EquipPistolAnimMontage;
+
+	UPROPERTY(EditAnywhere, Category = "Timeline")
+	UAnimMontage* EquipKnifeAnimMontage;
+
 	UPROPERTY(BlueprintReadOnly, Category = "Components")
 	int WeaponMagsCount;
 
@@ -166,9 +187,9 @@ protected:
 	
 	FRotator DefaultModeCharacterRotation = FRotator(0, -90.0f, 0);
 
-	FVector CombatModeSpringArmVector = FVector(0, 33.f, 58.5f); // x, y, z
+	FVector CombatModeSpringArmVector = FVector(0, 33.0f, 76.0f); // x, y, z
 
-	FVector DefaultModeSpringArmVector = FVector(0, 0, 58.5f);
+	FVector DefaultModeSpringArmVector = FVector(0, 28.0f, 76.0f);
 
 	FRotator CombatModeCamRotation = FRotator(0, 3.6f, 0);
 
@@ -181,8 +202,12 @@ protected:
 	FTimeline CrouchTransitionTimeline;
 
 	bool bIsAiming;
+
 	
 private:
+	
+	bool bRifleHolsterSocketIsTaken;
+	
 	UFUNCTION()
 	void AnimateCameraLocation(float Value);
 
@@ -197,6 +222,9 @@ private:
 	/*float PlayingMontage;*/
 
 	void SetWalkSpeed(float Speed);
+
+	void PlayEquipWeaponMontage();
+	
 
 public:	
 	// Called every frame

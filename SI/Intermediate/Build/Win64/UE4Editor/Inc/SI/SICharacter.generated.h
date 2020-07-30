@@ -78,6 +78,9 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASICharacter); \
 	FORCEINLINE static uint32 __PPO__ShootOnceHandgunAnimMontage() { return STRUCT_OFFSET(ASICharacter, ShootOnceHandgunAnimMontage); } \
 	FORCEINLINE static uint32 __PPO__ShootGrenadeAnimMontage() { return STRUCT_OFFSET(ASICharacter, ShootGrenadeAnimMontage); } \
 	FORCEINLINE static uint32 __PPO__KnifeAttackAnimMontage() { return STRUCT_OFFSET(ASICharacter, KnifeAttackAnimMontage); } \
+	FORCEINLINE static uint32 __PPO__EquipRifleAnimMontage() { return STRUCT_OFFSET(ASICharacter, EquipRifleAnimMontage); } \
+	FORCEINLINE static uint32 __PPO__EquipPistolAnimMontage() { return STRUCT_OFFSET(ASICharacter, EquipPistolAnimMontage); } \
+	FORCEINLINE static uint32 __PPO__EquipKnifeAnimMontage() { return STRUCT_OFFSET(ASICharacter, EquipKnifeAnimMontage); } \
 	FORCEINLINE static uint32 __PPO__WeaponMagsCount() { return STRUCT_OFFSET(ASICharacter, WeaponMagsCount); } \
 	FORCEINLINE static uint32 __PPO__GrenadeMagsCount() { return STRUCT_OFFSET(ASICharacter, GrenadeMagsCount); } \
 	FORCEINLINE static uint32 __PPO__MaxWeaponMagsCarry() { return STRUCT_OFFSET(ASICharacter, MaxWeaponMagsCarry); } \
