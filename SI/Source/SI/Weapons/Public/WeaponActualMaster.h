@@ -104,6 +104,11 @@ public:
 	float FireRateDelay;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	float FireRate;
+
+	float TimeBetweenShots;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	int InflictingDamage;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
@@ -124,18 +129,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	TSubclassOf<ADynamicMagazineMaster> DynamicMagazine;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
-	USoundCue* ReloadSoundFx;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
-	USoundCue* ReloadGrenadeSoundFx;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
-	USoundCue* ShootSoundFx;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
-	USoundCue* ShootGrenadeSoundFx;
-
 	bool bLaserSightOn;
 
 	void SetMagazineVisible(bool bVisible);
@@ -143,7 +136,7 @@ public:
 	FTransform GetMagazineTransform();
 
 	void AnimatePistolBarrel();
-
+	
 	/*FORCEINLINE bool CanAim() const { return bHasLaserSight || bHasMicroscopicSight; }*/
 
 	/*UAudioComponent* ReloadAudioComponent;
@@ -169,6 +162,15 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UPROPERTY(EditAnywhere, Category = "Animation")
+	UAnimMontage* ShootAnimMontage;
+
+	UPROPERTY(EditAnywhere, Category = "Animation")
+	UAnimMontage* ShootGrenadeAnimMontage;
+
+	UPROPERTY(EditAnywhere, Category = "Animation")
+	UAnimMontage* EquipAnimMontage;
 
 private:
 	std::pair<FHitResult, bool> GetHit(bool bDebug);

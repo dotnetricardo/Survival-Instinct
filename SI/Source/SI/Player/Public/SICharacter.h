@@ -10,6 +10,7 @@
 #include "Components/TimelineComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Animation/AnimInstance.h"
+#include "TimerManager.h"
 #include "SICharacter.generated.h"
 
 
@@ -59,8 +60,9 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Default")
 	TArray<TSubclassOf<AWeaponActualMaster>> WeaponInventory;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Defaults")
 	bool bIsWeaponEquiped;
+
+	bool bIsEquipingWeapon;
 	
 	UPROPERTY(BlueprintReadOnly, Category = "Default")
 	TArray<AActor*> SpawnedWeapons;
@@ -91,8 +93,6 @@ public:
 	AActor* SpawnedMagazine;
 
 	bool bIsReloading;
-
-
 	
 
 
@@ -120,9 +120,15 @@ protected:
 
 	void EndAim();
 
+	void Fire();
+
 	void BeginFireWeapon();
 
 	void EndFireWeapon();
+
+	void StartAutoFire();
+
+	void StopAutoFire();
 
 	void SetWeaponGrenadeMode();
 
@@ -136,6 +142,8 @@ protected:
 
 	void HolsterEquipedWeapon();
 
+	FTimerHandle TimeBetweenShotsTimerHandle;
+
 	AHUDBase* Hud;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
@@ -146,27 +154,6 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Timeline")
 	UCurveFloat* AimCurveFloat;
-
-	UPROPERTY(EditAnywhere, Category = "Timeline")
-	UAnimMontage* ShootOnceAnimMontage;
-
-	UPROPERTY(EditAnywhere, Category = "Timeline")
-	UAnimMontage* ShootOnceHandgunAnimMontage;
-
-	UPROPERTY(EditAnywhere, Category = "Timeline")
-	UAnimMontage* ShootGrenadeAnimMontage;
-
-	UPROPERTY(EditAnywhere, Category = "Timeline")
-	UAnimMontage* KnifeAttackAnimMontage;
-
-	UPROPERTY(EditAnywhere, Category = "Timeline")
-	UAnimMontage* EquipRifleAnimMontage;
-
-	UPROPERTY(EditAnywhere, Category = "Timeline")
-	UAnimMontage* EquipPistolAnimMontage;
-
-	UPROPERTY(EditAnywhere, Category = "Timeline")
-	UAnimMontage* EquipKnifeAnimMontage;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Components")
 	int WeaponMagsCount;
@@ -181,7 +168,7 @@ protected:
 	int MaxGrenameMagsCarry;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
-	int MaxWeaponsCarry = 3;
+	int MaxWeaponsCarry = 4;
 
 	FRotator CombatModeCharacterRotation = FRotator(0, -81.0f, 0); //y (pitch), z (yaw), x (roll)
 	
@@ -202,12 +189,13 @@ protected:
 	FTimeline CrouchTransitionTimeline;
 
 	bool bIsAiming;
-
 	
 private:
 	
 	bool bRifleHolsterSocketIsTaken;
-	
+
+	float LastFireTime;
+
 	UFUNCTION()
 	void AnimateCameraLocation(float Value);
 

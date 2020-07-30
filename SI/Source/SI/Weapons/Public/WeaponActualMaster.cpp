@@ -262,6 +262,8 @@ void AWeaponActualMaster::BeginPlay()
 
 	Super::BeginPlay();
 
+	TimeBetweenShots = 60 / FireRate;
+
 }
 
 // Called every frame
