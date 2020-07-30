@@ -613,12 +613,16 @@ void ASICharacter::LaserSightOff()
 
 void ASICharacter::HolsterEquipedWeapon()
 {
-	if (bIsCombatMode)
+	if (bIsWeaponEquiped)
 	{
-		ToggleCombatMode();
-	}
+		if (bIsCombatMode)
+		{
+			ToggleCombatMode();
+		}
 
-	UnequipWeapon(false);
+		UnequipWeapon(false);
+	}
+	
 }
 
 void ASICharacter::AddMags(int WeaponMags, int GrenadeMags)
