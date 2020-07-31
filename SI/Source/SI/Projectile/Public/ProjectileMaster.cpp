@@ -4,7 +4,10 @@
 #include "Kismet/GameplayStatics.h"
 #include "ProjectileMaster.h"
 #include "Kismet/GameplayStatics.h"
+#include "PhysicalMaterials/PhysicalMaterial.h"
+#include "SI/SI.h"
 
+class UPhysicalMaterial;
 
 // Sets default values
 AProjectileMaster::AProjectileMaster()
@@ -31,7 +34,10 @@ AProjectileMaster::AProjectileMaster()
 void AProjectileMaster::OnCompHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
 	UGameplayStatics::PlaySoundAtLocation(GetWorld(), ImpactSoundFx, Hit.Location);
-	BlastAndDestroyAfter(Hit.ImpactPoint, Hit.ImpactNormal.Rotation(), 0.2f);
+	
+	EPhysicalSurface SurfaceType = UPhysicalMaterial::DetermineSurfaceType(Hit.PhysMaterial.Get());
+	
+	BlastAndDestroyAfter(Hit.ImpactPoint, Hit.ImpactNormal.Rotation(), SurfaceType, 0.2f);
 }
 
 void AProjectileMaster::ExplodeWhenNotCollided()
@@ -54,9 +60,27 @@ void AProjectileMaster::BeginPlay()
 	
 }
 
-void AProjectileMaster::BlastAndDestroyAfter(FVector EmiterSpawnLocation, FRotator EmiterSpawnRotation, float time)
+void AProjectileMaster::BlastAndDestroyAfter(FVector EmiterSpawnLocation, FRotator EmiterSpawnRotation, EPhysicalSurface SurfaceType, float time)
 {
-	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactParticle, EmiterSpawnLocation, EmiterSpawnRotation);
+	UParticleSystem* ParticleSystem = nullptr;
+	
+	switch (SurfaceType)
+	{
+	case SURFACE_FLESHDEFAULT:
+		ParticleSystem = FleshImpactParticle;
+		break;
+	case SURFACE_FLESHVULNERABLE:
+		ParticleSystem = VulnerableFleshImpactParticle;
+		break;
+	default:
+		ParticleSystem = ImpactParticle;
+		break;
+	}
+	
+	if (ParticleSystem)
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ParticleSystem, EmiterSpawnLocation, EmiterSpawnRotation);
+	}
 
 	FTimerHandle UnusedHandle;
 	GetWorldTimerManager().SetTimer(

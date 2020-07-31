@@ -37,7 +37,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	void BlastAndDestroyAfter(FVector EmiterSpawnLocation , FRotator EmiterSpawnRotation, float time);
+	void BlastAndDestroyAfter(FVector EmiterSpawnLocation , FRotator EmiterSpawnRotation, EPhysicalSurface SurfaceType, float time);
 
 	void SelfDestruct();
 
@@ -48,6 +48,15 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
 	UParticleSystem* ImpactParticle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
+	UParticleSystem* FleshImpactParticle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
+	UParticleSystem* VulnerableFleshImpactParticle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FX")
+	UParticleSystem* WaterImpactParticle;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UParticleSystemComponent* ParticleSystemComponent;
