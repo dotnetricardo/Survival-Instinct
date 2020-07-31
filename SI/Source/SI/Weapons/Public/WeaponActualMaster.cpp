@@ -62,7 +62,8 @@ void AWeaponActualMaster::Fire()
 	ASICharacter* Character = Cast<ASICharacter>(MyOwner);
 
 	FVector TraceStart = Character->CameraComp->GetComponentLocation();
-	FVector TraceEnd = TraceStart + (Character->CameraComp->GetForwardVector() * 10000);
+	FVector ShootDirection = Character->CameraComp->GetForwardVector();
+	FVector TraceEnd = TraceStart + (ShootDirection * 10000);
 
 	std::pair<FHitResult, bool> result = GetHit(false);
 
@@ -92,6 +93,13 @@ void AWeaponActualMaster::Fire()
 			}
 		}
 
+		// Check if hit an actor and apply damage
+		AActor* HitActor = result.first.GetActor();
+		
+		if (HitActor)
+		{
+			UGameplayStatics::ApplyPointDamage(HitActor, !bIsGrenadeMode ? InflictingDamage : GrenadeInflictingDamage, ShootDirection, result.first, MyOwner->GetInstigatorController(), this, DamageType);
+		}
 	}
 	else
 	{
@@ -141,6 +149,8 @@ void AWeaponActualMaster::Fire()
 	}
 
 	CreateMuzzleFlash();
+
+	ShakeCamera();
 
 	// NOTE: Projectile Components will auto destroy as AProjectileMaster implements on component hit.
 
@@ -338,6 +348,21 @@ void AWeaponActualMaster::CreateMuzzleFlash()
 		}
 	}
 	
+}
+
+void AWeaponActualMaster::ShakeCamera()
+{
+	APawn* MyOwner = Cast<APawn>(GetOwner());
+
+	if (MyOwner)
+	{
+		APlayerController* PC = Cast<APlayerController>(MyOwner->GetController());
+
+		if (PC && FireCamShake)
+		{
+			PC->ClientPlayCameraShake(FireCamShake);
+		}
+	}
 }
 
 #pragma endregion

@@ -23,6 +23,8 @@ class UAnimMontage;
 class UAnimSequence;
 class USoundCue;
 class UAudioComponent;
+class UDamageType;
+class UCameraShake;
 
 
 
@@ -112,6 +114,9 @@ public:
 	int InflictingDamage;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	int GrenadeInflictingDamage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	int TotalMuzzles;
 
 	UPROPERTY(EditAnywhere, Category = "Animation")
@@ -159,6 +164,12 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
 	USceneComponent* DefaultSceneRoot;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Default")
+	TSubclassOf<UDamageType> DamageType;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Default")
+	TSubclassOf<UCameraShake> FireCamShake;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -176,6 +187,8 @@ private:
 	std::pair<FHitResult, bool> GetHit(bool bDebug);
 
 	void CreateMuzzleFlash();
+
+	void ShakeCamera();
 
 	bool bIsPistolBarrelOpen;
 
