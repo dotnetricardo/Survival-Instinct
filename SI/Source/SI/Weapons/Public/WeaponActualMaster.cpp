@@ -10,6 +10,8 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"
+#include "PhysicalMaterials/PhysicalMaterial.h"
+#include "SI/SI.h"
 
 // Sets default values
 AWeaponActualMaster::AWeaponActualMaster()
@@ -96,10 +98,16 @@ void AWeaponActualMaster::Fire()
 		// Check if hit an actor and apply damage
 		AActor* HitActor = result.first.GetActor();
 		
-		if (HitActor)
+		EPhysicalSurface SurfaceType = UPhysicalMaterial::DetermineSurfaceType(result.first.PhysMaterial.Get());
+
+		float ActualDamage = !bIsGrenadeMode ? InflictingDamage : GrenadeInflictingDamage;
+
+		if (SurfaceType == SURFACE_FLESHVULNERABLE)
 		{
-			UGameplayStatics::ApplyPointDamage(HitActor, !bIsGrenadeMode ? InflictingDamage : GrenadeInflictingDamage, ShootDirection, result.first, MyOwner->GetInstigatorController(), this, DamageType);
+			ActualDamage = 100;
 		}
+
+		UGameplayStatics::ApplyPointDamage(HitActor, ActualDamage, ShootDirection, result.first, MyOwner->GetInstigatorController(), this, DamageType);
 	}
 	else
 	{
@@ -307,6 +315,7 @@ std::pair<FHitResult, bool> AWeaponActualMaster::GetHit(bool bDebug)
 		QueryParams.AddIgnoredActor(MyOwner);
 		QueryParams.AddIgnoredActor(this);
 		QueryParams.bTraceComplex = true;
+		QueryParams.bReturnPhysicalMaterial = true;
 
 		if (bDebug)
 		{
