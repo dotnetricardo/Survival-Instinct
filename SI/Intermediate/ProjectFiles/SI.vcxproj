@@ -283,6 +283,7 @@
     <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\PistolBarrellAnimNotify.cpp" />
     <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\SpawnMagazineAnimNotify.cpp" />
     <ClCompile Include="..\..\Source\SI\CameraManager\Public\MyPlayerCameraManager.cpp" />
+    <ClCompile Include="..\..\Source\SI\Health\Public\SI_HealthComponent.cpp" />
     <ClCompile Include="..\..\Source\SI\PlayerController\Public\SIPlayerController.cpp" />
     <ClCompile Include="..\..\Source\SI\Projectile\Public\ProjectileMaster.cpp" />
     <ClCompile Include="..\..\Source\SI\Weapons\Public\DynamicMagazineMaster.cpp" />
@@ -301,6 +302,7 @@
     <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\PistolBarrellAnimNotify.h" />
     <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\SpawnMagazineAnimNotify.h" />
     <ClInclude Include="..\..\Source\SI\CameraManager\Public\MyPlayerCameraManager.h" />
+    <ClInclude Include="..\..\Source\SI\Health\Public\SI_HealthComponent.h" />
     <ClInclude Include="..\..\Source\SI\PlayerController\Public\SIPlayerController.h" />
     <ClInclude Include="..\..\Source\SI\Projectile\Public\ProjectileMaster.h" />
     <ClInclude Include="..\..\Source\SI\Weapons\Public\DynamicMagazineMaster.h" />

@@ -91,6 +91,12 @@
     <Filter Include="Source\SI\PlayerController\Public">
       <UniqueIdentifier>{784fd1f3-3e7c-49bb-9b2e-aa8aac48bacd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\SI\Health">
+      <UniqueIdentifier>{429e35e5-cab0-4723-9ca5-a3964bc7a2b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\SI\Health\Public">
+      <UniqueIdentifier>{6998cdf8-274f-4b08-bb80-92261a53c24b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\SI\Player\Public\SICharacter.h">
@@ -150,6 +156,9 @@
     <ClInclude Include="..\..\Source\SI\AnimNotifies\Public\EndEquipAnimNotify.h">
       <Filter>Source\SI\AnimNotifies\Public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\SI\Health\Public\SI_HealthComponent.h">
+      <Filter>Source\SI\Health\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\SI\Player\Public\SICharacter.cpp">
@@ -208,6 +217,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\SI\AnimNotifies\Public\EndEquipAnimNotify.cpp">
       <Filter>Source\SI\AnimNotifies\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SI\Health\Public\SI_HealthComponent.cpp">
+      <Filter>Source\SI\Health\Public</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

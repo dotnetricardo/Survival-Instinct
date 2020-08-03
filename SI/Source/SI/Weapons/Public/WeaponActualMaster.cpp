@@ -107,6 +107,8 @@ void AWeaponActualMaster::Fire()
 			ActualDamage = 100;
 		}
 
+		/*UE_LOG(LogTemp, Log, TEXT("Applying Point Damage %f"), ActualDamage);*/
+
 		UGameplayStatics::ApplyPointDamage(HitActor, ActualDamage, ShootDirection, result.first, MyOwner->GetInstigatorController(), this, DamageType);
 	}
 	else

@@ -6,12 +6,14 @@
 #include "SI/Weapons/Public/WeaponActualMaster.h"
 #include "SI/Widget/Public/HUDBase.h"
 #include "SI/Weapons/Public/DynamicMagazineMaster.h"
+#include "SI/Health/Public/SI_HealthComponent.h"
 #include "GameFramework/Character.h"
 #include "Components/TimelineComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Animation/AnimInstance.h"
 #include "TimerManager.h"
 #include "SICharacter.generated.h"
+
 
 
 class UCameraComponent;
@@ -22,6 +24,7 @@ class AWeaponActualMaster;
 class UCapsuleComponent;
 class UAnimMontage;
 class ADynamicMagazineMaster;
+class USI_HealthComponent;
 
 
 UCLASS()
@@ -88,7 +91,7 @@ public:
 
 	//virtual FVector GetPawnViewLocation() const override;
 
-	FORCEINLINE AWeaponActualMaster* GetSpawnedWeaponAsWeaponMaster() const { return Cast<AWeaponActualMaster>(SpawnedWeapons[WeaponInventoryIndex]); }
+	FORCEINLINE AWeaponActualMaster* GetSpawnedWeaponAsWeaponMaster() const { return SpawnedWeapons.Num() > 0 ? Cast<AWeaponActualMaster>(SpawnedWeapons[WeaponInventoryIndex]) : nullptr; }
 
 	AActor* SpawnedMagazine;
 
@@ -142,6 +145,8 @@ protected:
 
 	void HolsterEquipedWeapon();
 
+	USI_HealthComponent* HealthComponent;
+
 	FTimerHandle TimeBetweenShotsTimerHandle;
 
 	AHUDBase* Hud;
@@ -170,6 +175,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
 	int MaxWeaponsCarry = 4;
 
+	UPROPERTY(BlueprintReadOnly, Category = "Default")
+	bool bDied;
+	
 	FRotator CombatModeCharacterRotation = FRotator(0, -81.0f, 0); //y (pitch), z (yaw), x (roll)
 	
 	FRotator DefaultModeCharacterRotation = FRotator(0, -90.0f, 0);
@@ -189,9 +197,12 @@ protected:
 	FTimeline CrouchTransitionTimeline;
 
 	bool bIsAiming;
+
+	UFUNCTION()
+	void OnHealthChanged(USI_HealthComponent* HealthComp, float Health, float HealthDelta, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 	
 private:
-	
+
 	bool bRifleHolsterSocketIsTaken;
 
 	float LastFireTime;
@@ -212,7 +223,8 @@ private:
 	void SetWalkSpeed(float Speed);
 
 	void PlayEquipWeaponMontage();
-	
+
+	void Die();	
 
 public:	
 	// Called every frame

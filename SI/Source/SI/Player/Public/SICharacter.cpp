@@ -42,6 +42,9 @@ ASICharacter::ASICharacter()
 	GetCapsuleComponent()->SetCollisionProfileName(TEXT("SI_CapsuleCollision"));
 	GetMesh()->SetCollisionProfileName(TEXT("SI_CharacterMeshCollision"));
 
+	// Add health component
+	HealthComponent = CreateDefaultSubobject<USI_HealthComponent>(TEXT("HealthComp"));
+
 }
 
 void ASICharacter::EquipWeapon()
@@ -241,6 +244,8 @@ void ASICharacter::BeginPlay()
 	// Crouch Transition Timeline Curve
 	BindTimelineToCurve(CrouchTransitionTimeline, FName("AnimateSpringArmHeight"), SwichModesCurveFloat);
 
+	// Listen for health changed events
+	HealthComponent->OnHealthChanged.AddDynamic(this, &ASICharacter::OnHealthChanged);
 }
 
 void ASICharacter::MoveFoward(float Value)
@@ -628,6 +633,16 @@ void ASICharacter::HolsterEquipedWeapon()
 
 }
 
+void ASICharacter::OnHealthChanged(USI_HealthComponent* HealthComp, float Health, float HealthDelta, const class UDamageType* DamageType, 
+	class AController* InstigatedBy, AActor* DamageCauser)
+{
+	if (Health <= 0.0f && !bDied)
+	{
+		// Die
+		Die();
+	}
+}
+
 void ASICharacter::AddMags(int WeaponMags, int GrenadeMags)
 {
 	if (MaxWeaponMagsCarry < WeaponMagsCount)
@@ -873,6 +888,19 @@ void ASICharacter::PlayEquipWeaponMontage()
 
 		GetMesh()->GetAnimInstance()->Montage_Play(WeaponMaster->EquipAnimMontage);
 	}
+
+}
+
+void ASICharacter::Die()
+{
+	bDied = true;
+	
+	GetMovementComponent()->StopMovementImmediately();
+	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+	DetachFromControllerPendingDestroy();
+
+	SetLifeSpan(10.0f);
 
 }
 

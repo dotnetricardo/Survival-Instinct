@@ -5,9 +5,14 @@
 #include "ProjectileMaster.h"
 #include "Kismet/GameplayStatics.h"
 #include "PhysicalMaterials/PhysicalMaterial.h"
+#include "SI/Player/Public/SICharacter.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Camera/CameraComponent.h"
 #include "SI/SI.h"
 
 class UPhysicalMaterial;
+//class UCharacterMovementComponent;
+
 
 // Sets default values
 AProjectileMaster::AProjectileMaster()
@@ -34,7 +39,19 @@ AProjectileMaster::AProjectileMaster()
 void AProjectileMaster::OnCompHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
 	UGameplayStatics::PlaySoundAtLocation(GetWorld(), ImpactSoundFx, Hit.Location);
-	
+
+	//ASICharacter* OtherCharacter = Cast<ASICharacter>(OtherActor);
+	//
+
+	//if (OtherCharacter)
+	//{
+	//	float InflictingDamage = 10.0f;
+	//	OtherCharacter->GetCharacterMovement()->AddImpulse(OtherActor->GetActorForwardVector() * InflictingDamage, true);
+	//	/*OtherCharacter->GetMesh()->AddImpulse(Hit.ImpactNormal, Hit.BoneName);*/
+	//}
+	//
+	/*.GetMovementComponent()->AddImpulse(NormalImpulse, Hit.BoneName);*/
+
 	EPhysicalSurface SurfaceType = UPhysicalMaterial::DetermineSurfaceType(Hit.PhysMaterial.Get());
 	
 	BlastAndDestroyAfter(Hit.ImpactPoint, Hit.ImpactNormal.Rotation(), SurfaceType, 0.2f);
