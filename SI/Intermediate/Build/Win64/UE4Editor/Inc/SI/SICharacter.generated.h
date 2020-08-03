@@ -20,6 +20,9 @@ class AActor;
 #define SI_Source_SI_Player_Public_SICharacter_h_33_SPARSE_DATA
 #define SI_Source_SI_Player_Public_SICharacter_h_33_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execResetHitReaction); \
+	DECLARE_FUNCTION(execApplyForceToHitBone); \
+	DECLARE_FUNCTION(execAnimateHitBlendWeight); \
 	DECLARE_FUNCTION(execAnimateSpringArmHeight); \
 	DECLARE_FUNCTION(execAnimateSpringArmLength); \
 	DECLARE_FUNCTION(execAnimateCameraLocation); \
@@ -28,6 +31,9 @@ class AActor;
 
 #define SI_Source_SI_Player_Public_SICharacter_h_33_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execResetHitReaction); \
+	DECLARE_FUNCTION(execApplyForceToHitBone); \
+	DECLARE_FUNCTION(execAnimateHitBlendWeight); \
 	DECLARE_FUNCTION(execAnimateSpringArmHeight); \
 	DECLARE_FUNCTION(execAnimateSpringArmLength); \
 	DECLARE_FUNCTION(execAnimateCameraLocation); \
@@ -80,6 +86,7 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASICharacter); \
 	FORCEINLINE static uint32 __PPO__SpringArmComp() { return STRUCT_OFFSET(ASICharacter, SpringArmComp); } \
 	FORCEINLINE static uint32 __PPO__SwichModesCurveFloat() { return STRUCT_OFFSET(ASICharacter, SwichModesCurveFloat); } \
 	FORCEINLINE static uint32 __PPO__AimCurveFloat() { return STRUCT_OFFSET(ASICharacter, AimCurveFloat); } \
+	FORCEINLINE static uint32 __PPO__HitReactionCurveFloat() { return STRUCT_OFFSET(ASICharacter, HitReactionCurveFloat); } \
 	FORCEINLINE static uint32 __PPO__WeaponMagsCount() { return STRUCT_OFFSET(ASICharacter, WeaponMagsCount); } \
 	FORCEINLINE static uint32 __PPO__GrenadeMagsCount() { return STRUCT_OFFSET(ASICharacter, GrenadeMagsCount); } \
 	FORCEINLINE static uint32 __PPO__MaxWeaponMagsCarry() { return STRUCT_OFFSET(ASICharacter, MaxWeaponMagsCarry); } \

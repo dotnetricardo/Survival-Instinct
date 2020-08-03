@@ -3,6 +3,7 @@
 
 #include "SICharacter.h"
 #include "SI/Weapons/Public/WeaponPickupMaster.h"
+#include "SI/CameraManager/Public/MyPlayerCameraManager.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Camera/CameraComponent.h"
@@ -243,6 +244,10 @@ void ASICharacter::BeginPlay()
 
 	// Crouch Transition Timeline Curve
 	BindTimelineToCurve(CrouchTransitionTimeline, FName("AnimateSpringArmHeight"), SwichModesCurveFloat);
+
+	// Hit Reaction Transition Timeline Curve
+	BindTimelineToCurve(HitReactionTimeline, FName("AnimateHitBlendWeight"), HitReactionCurveFloat);
+	BindTimelineFinished(HitReactionTimeline, FName("ResetHitReaction"));
 
 	// Listen for health changed events
 	HealthComponent->OnHealthChanged.AddDynamic(this, &ASICharacter::OnHealthChanged);
@@ -749,6 +754,18 @@ void ASICharacter::AttachMagazine()
 
 }
 
+void ASICharacter::Hit(FName HitBone, float HitMagnitude)
+{
+	if (!bIsHit && HitBone != "pelvis")
+	{
+		bIsHit = true;
+		HitBoneName = HitBone;
+		HitReactionTimeline.PlayFromStart();
+		
+	}
+	
+}
+
 bool ASICharacter::CanAddMags()
 {
 	return WeaponMagsCount < MaxWeaponMagsCarry || GrenadeMagsCount < MaxGrenameMagsCarry;
@@ -791,6 +808,47 @@ void ASICharacter::AnimateSpringArmHeight(float Value)
 }
 
 
+void ASICharacter::AnimateHitBlendWeight(float Value)
+{
+	HitBlendWeight = Value;
+}
+
+void ASICharacter::ResetHitReaction()
+{
+	/*HitBlendWeight = 0.0f;*/
+	/*GetWorldTimerManager().SetTimer(
+		HitReactionTimerHandle, this, &ASICharacter::ApplyForceToHitBone, 0.048f, true);*/
+	/*UE_LOG(LogTemp, Warning, TEXT("ResetHitReaction"));*/
+	HitBlendWeight = 0.0f;
+	GetMesh()->SetAllBodiesPhysicsBlendWeight(HitBlendWeight);
+	GetMesh()->SetAllBodiesSimulatePhysics(false);
+	bIsHit = false;
+	bAppliedForceToBone = false;
+	/*GetWorld()->GetTimerManager().ClearTimer(HitReactionTimerHandle);*/
+	
+}
+
+void ASICharacter::ApplyForceToHitBone()
+{
+	/*FVector ForceVector = GetActorForwardVector(CameraComp->GetComponentRotation()) * 1200.0f;*/
+	bAppliedForceToBone = true;
+
+	AMyPlayerCameraManager* CameraManager = Cast<AMyPlayerCameraManager>(UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0));
+	if (CameraManager)
+	{
+		/*UE_LOG(LogTemp, Warning, TEXT("ApplyForceToHibBone"));*/
+		FVector FowardVector = UKismetMathLibrary::GetForwardVector(CameraManager->K2_GetActorRotation());
+		FVector ForceVector = FowardVector * 1600.0f;
+
+		GetMesh()->AddImpulse(ForceVector, HitBoneName, true);
+
+		/*GetWorldTimerManager().SetTimer(
+		HitReactionTimerHandle, this, &ASICharacter::ResetHitReaction, 0.048f, true);*/
+	}
+
+}
+
+
 // Called every frame
 void ASICharacter::Tick(float DeltaTime)
 {
@@ -801,6 +859,8 @@ void ASICharacter::Tick(float DeltaTime)
 	AimTimeline.TickTimeline(DeltaTime);
 
 	CrouchTransitionTimeline.TickTimeline(DeltaTime);
+
+	HitReactionTimeline.TickTimeline(DeltaTime);
 
 	if (bIsCombatMode && Hud)
 	{
@@ -819,6 +879,13 @@ void ASICharacter::Tick(float DeltaTime)
 		GetSpawnedWeaponAsWeaponMaster()->Aim();
 	}
 
+	if (HitBlendWeight > 0.0f && !bAppliedForceToBone)
+	{
+		GetMesh()->SetAllBodiesBelowSimulatePhysics(HitBoneName, true);
+		GetMesh()->SetAllBodiesBelowPhysicsBlendWeight(HitBoneName, HitBlendWeight);
+		ApplyForceToHitBone();
+		
+	}
 }
 
 
@@ -871,6 +938,14 @@ void ASICharacter::BindTimelineToCurve(FTimeline& Timeline, FName FunctionName, 
 		Timeline.AddInterpFloat(Curve, TimelineFunction);
 		Timeline.SetLooping(false);
 	}
+}
+
+void ASICharacter::BindTimelineFinished(FTimeline& Timeline, FName FunctionName)
+{
+	FOnTimelineEventStatic TimelineFinishedFunction;
+
+	TimelineFinishedFunction.BindUFunction(this, FunctionName);
+	Timeline.SetTimelineFinishedFunc(TimelineFinishedFunction);
 }
 
 void ASICharacter::SetWalkSpeed(float Speed)

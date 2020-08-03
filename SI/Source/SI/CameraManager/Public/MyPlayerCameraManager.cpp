@@ -6,5 +6,5 @@
 AMyPlayerCameraManager::AMyPlayerCameraManager()
 {
 	ViewPitchMax = 20.0f;
-	ViewPitchMin = -5.0f;
+	ViewPitchMin = -20.0f;
 }

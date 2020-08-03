@@ -89,6 +89,8 @@ public:
 
 	void AttachMagazine();
 
+	void Hit(FName HitBone, float HitMagnitude);
+	
 	//virtual FVector GetPawnViewLocation() const override;
 
 	FORCEINLINE AWeaponActualMaster* GetSpawnedWeaponAsWeaponMaster() const { return SpawnedWeapons.Num() > 0 ? Cast<AWeaponActualMaster>(SpawnedWeapons[WeaponInventoryIndex]) : nullptr; }
@@ -149,6 +151,8 @@ protected:
 
 	FTimerHandle TimeBetweenShotsTimerHandle;
 
+	/*FTimerHandle HitReactionTimerHandle;*/
+
 	AHUDBase* Hud;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
@@ -159,6 +163,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Timeline")
 	UCurveFloat* AimCurveFloat;
+
+	UPROPERTY(EditAnywhere, Category = "Timeline")
+	UCurveFloat* HitReactionCurveFloat;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Components")
 	int WeaponMagsCount;
@@ -196,6 +203,8 @@ protected:
 
 	FTimeline CrouchTransitionTimeline;
 
+	FTimeline HitReactionTimeline;
+
 	bool bIsAiming;
 
 	UFUNCTION()
@@ -205,7 +214,15 @@ private:
 
 	bool bRifleHolsterSocketIsTaken;
 
+	bool bIsHit;
+
+	bool bAppliedForceToBone;
+
 	float LastFireTime;
+
+	float HitBlendWeight;
+
+	FName HitBoneName;
 
 	UFUNCTION()
 	void AnimateCameraLocation(float Value);
@@ -216,7 +233,18 @@ private:
 	UFUNCTION()
 	void AnimateSpringArmHeight(float Value);
 
+	UFUNCTION()
+	void AnimateHitBlendWeight(float Value);
+
+	UFUNCTION()
+	void ApplyForceToHitBone();
+
+	UFUNCTION()
+	void ResetHitReaction();
+
 	void BindTimelineToCurve(FTimeline &Timeline, FName FunctionName, UCurveFloat* Curve);
+
+	void BindTimelineFinished(FTimeline& Timeline, FName FunctionName);
 
 	/*float PlayingMontage;*/
 

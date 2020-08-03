@@ -6,8 +6,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "PhysicalMaterials/PhysicalMaterial.h"
 #include "SI/Player/Public/SICharacter.h"
-#include "GameFramework/CharacterMovementComponent.h"
-#include "Camera/CameraComponent.h"
+//#include "GameFramework/CharacterMovementComponent.h"
+//#include "Camera/CameraComponent.h"
 #include "SI/SI.h"
 
 class UPhysicalMaterial;
@@ -40,17 +40,24 @@ void AProjectileMaster::OnCompHit(UPrimitiveComponent* HitComp, AActor* OtherAct
 {
 	UGameplayStatics::PlaySoundAtLocation(GetWorld(), ImpactSoundFx, Hit.Location);
 
-	//ASICharacter* OtherCharacter = Cast<ASICharacter>(OtherActor);
-	//
+	ASICharacter* OtherCharacter = Cast<ASICharacter>(OtherActor);
 
-	//if (OtherCharacter)
-	//{
-	//	float InflictingDamage = 10.0f;
-	//	OtherCharacter->GetCharacterMovement()->AddImpulse(OtherActor->GetActorForwardVector() * InflictingDamage, true);
-	//	/*OtherCharacter->GetMesh()->AddImpulse(Hit.ImpactNormal, Hit.BoneName);*/
-	//}
-	//
-	/*.GetMovementComponent()->AddImpulse(NormalImpulse, Hit.BoneName);*/
+
+
+	if (OtherCharacter)
+	{
+		OtherCharacter->Hit(Hit.BoneName, 1200.0f);
+		//float InflictingDamage = 10.0f;
+		//OtherCharacter->GetCharacterMovement()->AddImpulse(OtherActor->GetActorForwardVector() * InflictingDamage, true);
+		/*OtherCharacter->GetMesh()->AddImpulse(Hit.ImpactNormal, Hit.BoneName);*/
+
+		/*USkeletalMeshComponent* CharacterMesh = OtherCharacter->GetMesh();
+
+		CharacterMesh->GetBodyInstance(Hit.BoneName)->SetInstanceSimulatePhysics(true);
+		CharacterMesh->AddImpulse(FVector(100.0f), Hit.BoneName);*/
+	}
+	
+	
 
 	EPhysicalSurface SurfaceType = UPhysicalMaterial::DetermineSurfaceType(Hit.PhysMaterial.Get());
 	
