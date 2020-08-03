@@ -18,6 +18,7 @@
 
 class UCameraComponent;
 class USpringArmComponent;
+class UAudioComponent;
 class UCurveFloat;
 class AHUDBase;
 class AWeaponActualMaster;
@@ -166,6 +167,12 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Timeline")
 	UCurveFloat* HitReactionCurveFloat;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AudioFx")
+	USoundCue* HitAudioFx;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AudioFx")
+	USoundCue* DieAudioFx;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Components")
 	int WeaponMagsCount;

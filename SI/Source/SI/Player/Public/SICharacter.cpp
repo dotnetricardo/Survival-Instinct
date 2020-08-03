@@ -756,11 +756,19 @@ void ASICharacter::AttachMagazine()
 
 void ASICharacter::Hit(FName HitBone, float HitMagnitude)
 {
-	if (!bIsHit && HitBone != "pelvis")
+	if (!bIsHit)
 	{
-		bIsHit = true;
-		HitBoneName = HitBone;
-		HitReactionTimeline.PlayFromStart();
+		if (!bDied)
+		{
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), HitAudioFx, GetActorLocation());
+		}
+		
+		if (HitBone != "pelvis")
+		{
+			bIsHit = true;
+			HitBoneName = HitBone;
+			HitReactionTimeline.PlayFromStart();
+		}
 		
 	}
 	
@@ -838,7 +846,7 @@ void ASICharacter::ApplyForceToHitBone()
 	{
 		/*UE_LOG(LogTemp, Warning, TEXT("ApplyForceToHibBone"));*/
 		FVector FowardVector = UKismetMathLibrary::GetForwardVector(CameraManager->K2_GetActorRotation());
-		FVector ForceVector = FowardVector * 1600.0f;
+		FVector ForceVector = FowardVector * 1150.0f;
 
 		GetMesh()->AddImpulse(ForceVector, HitBoneName, true);
 
@@ -968,6 +976,8 @@ void ASICharacter::PlayEquipWeaponMontage()
 
 void ASICharacter::Die()
 {
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), DieAudioFx, GetActorLocation());
+
 	bDied = true;
 	
 	GetMovementComponent()->StopMovementImmediately();
