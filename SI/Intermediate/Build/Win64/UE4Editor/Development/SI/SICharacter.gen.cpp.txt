@@ -165,6 +165,8 @@ C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\In
 C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\ContentWidget.generated.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\Border.generated.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\UserWidgetMaster.generated.h
+C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/Widget/Public/HealthBarUserWidgetMaster.h
+C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\HealthBarUserWidgetMaster.generated.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\UMG\Public\Components/CanvasPanel.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Slate\Public\Widgets/Layout/SConstraintCanvas.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\CanvasPanel.generated.h

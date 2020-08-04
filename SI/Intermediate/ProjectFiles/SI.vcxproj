@@ -289,6 +289,7 @@
     <ClCompile Include="..\..\Source\SI\Weapons\Public\DynamicMagazineMaster.cpp" />
     <ClCompile Include="..\..\Source\SI\Weapons\Public\WeaponActualMaster.cpp" />
     <ClCompile Include="..\..\Source\SI\Weapons\Public\WeaponPickupMaster.cpp" />
+    <ClCompile Include="..\..\Source\SI\Widget\Public\HealthBarUserWidgetMaster.cpp" />
     <ClCompile Include="..\..\Source\SI\Widget\Public\HUDBase.cpp" />
     <ClCompile Include="..\..\Source\SI\Widget\Public\UserWidgetMaster.cpp" />
     <ClInclude Include="..\..\Source\SI\AmmoPickup\Public\AmmoPickupMaster.h" />
@@ -308,6 +309,7 @@
     <ClInclude Include="..\..\Source\SI\Weapons\Public\DynamicMagazineMaster.h" />
     <ClInclude Include="..\..\Source\SI\Weapons\Public\WeaponActualMaster.h" />
     <ClInclude Include="..\..\Source\SI\Weapons\Public\WeaponPickupMaster.h" />
+    <ClInclude Include="..\..\Source\SI\Widget\Public\HealthBarUserWidgetMaster.h" />
     <ClInclude Include="..\..\Source\SI\Widget\Public\HUDBase.h" />
     <ClInclude Include="..\..\Source\SI\Widget\Public\UserWidgetMaster.h" />
     <None Include="..\..\SI.uproject" />

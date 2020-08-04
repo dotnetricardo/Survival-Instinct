@@ -11,10 +11,13 @@ AHUDBase::AHUDBase()
 	// Create CrossHair
 	static ConstructorHelpers::FClassFinder<UUserWidgetMaster> CrossHairUIBPClass(TEXT("/Game/UI/SI_Crosshair_Default.SI_Crosshair_Default_C"));
 
-	if (CrossHairUIBPClass.Class != nullptr && CrossHairUIBPClass.Succeeded())
+	// Create HealthBar
+	static ConstructorHelpers::FClassFinder<UHealthBarUserWidgetMaster> HealthBarUIBPClass(TEXT("/Game/UI/SI_Healthbar.SI_Healthbar_C"));
+	
+	if (CrossHairUIBPClass.Class != nullptr && CrossHairUIBPClass.Succeeded() && HealthBarUIBPClass.Class != nullptr && HealthBarUIBPClass.Succeeded())
 	{
 		CrossHairWidgetUIClass = CrossHairUIBPClass.Class;
-
+		HealthBarWidgetUIClass = HealthBarUIBPClass.Class;
 	}
 }
 
@@ -24,6 +27,10 @@ void AHUDBase::BeginPlay()
 
 	CrossHairWidget = CreateWidget<UUserWidgetMaster>(GetWorld(), CrossHairWidgetUIClass);
 	CrossHairWidget->AddToPlayerScreen();
+
+	HealthBarWidget = CreateWidget<UHealthBarUserWidgetMaster>(GetWorld(), HealthBarWidgetUIClass);
+	HealthBarWidget->AddToPlayerScreen();
+
 	SetCrossHairVisibility(false);
 }
 

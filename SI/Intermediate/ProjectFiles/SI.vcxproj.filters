@@ -159,6 +159,9 @@
     <ClInclude Include="..\..\Source\SI\Health\Public\SI_HealthComponent.h">
       <Filter>Source\SI\Health\Public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\SI\Widget\Public\HealthBarUserWidgetMaster.h">
+      <Filter>Source\SI\Widget\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\SI\Player\Public\SICharacter.cpp">
@@ -220,6 +223,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\SI\Health\Public\SI_HealthComponent.cpp">
       <Filter>Source\SI\Health\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SI\Widget\Public\HealthBarUserWidgetMaster.cpp">
+      <Filter>Source\SI\Widget\Public</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -5,11 +5,13 @@
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
 #include "SI/Widget/Public/UserWidgetMaster.h"
+#include "SI/Widget/Public/HealthBarUserWidgetMaster.h"
 #include "Components/Border.h"
 #include "Components/CanvasPanel.h"
 #include "HUDBase.generated.h"
 
-
+class UUserWidgetMaster;
+class UHealthBarUserWidgetMaster;
 
 UCLASS()
 class SI_API AHUDBase : public AHUD
@@ -23,9 +25,14 @@ public:
 	// Dynamic reference to the blueprint class
 	TSubclassOf<class UUserWidget> CrossHairWidgetUIClass;
 
+	TSubclassOf<class UUserWidget> HealthBarWidgetUIClass;
+
 	// Internal reference to the blueprint for gameplay logic
 	UPROPERTY(BlueprintReadOnly, Category = "UI")
 	UUserWidgetMaster* CrossHairWidget;
+
+	UPROPERTY(BlueprintReadOnly, Category = "UI")
+	UHealthBarUserWidgetMaster* HealthBarWidget;
 
 	void SetCrossHairVisibility(bool bIsVisible);
 	void UpdateCrossHairSize(float Speed);

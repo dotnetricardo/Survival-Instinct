@@ -17,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeHUDBase() {}
 	SI_API UClass* Z_Construct_UClass_AHUDBase();
 	ENGINE_API UClass* Z_Construct_UClass_AHUD();
 	UPackage* Z_Construct_UPackage__Script_SI();
+	SI_API UClass* Z_Construct_UClass_UHealthBarUserWidgetMaster_NoRegister();
 	SI_API UClass* Z_Construct_UClass_UUserWidgetMaster_NoRegister();
 // End Cross Module References
 	void AHUDBase::StaticRegisterNativesAHUDBase()
@@ -32,6 +33,10 @@ void EmptyLinkFunctionForGeneratedCodeHUDBase() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HealthBarWidget_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_HealthBarWidget;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CrossHairWidget_MetaData[];
 #endif
@@ -53,6 +58,14 @@ void EmptyLinkFunctionForGeneratedCodeHUDBase() {}
 	};
 #endif
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHUDBase_Statics::NewProp_HealthBarWidget_MetaData[] = {
+		{ "Category", "UI" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Widget/Public/HUDBase.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AHUDBase_Statics::NewProp_HealthBarWidget = { "HealthBarWidget", nullptr, (EPropertyFlags)0x001000000008001c, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHUDBase, HealthBarWidget), Z_Construct_UClass_UHealthBarUserWidgetMaster_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AHUDBase_Statics::NewProp_HealthBarWidget_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AHUDBase_Statics::NewProp_HealthBarWidget_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHUDBase_Statics::NewProp_CrossHairWidget_MetaData[] = {
 		{ "Category", "UI" },
 		{ "Comment", "// Internal reference to the blueprint for gameplay logic\n" },
@@ -63,6 +76,7 @@ void EmptyLinkFunctionForGeneratedCodeHUDBase() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AHUDBase_Statics::NewProp_CrossHairWidget = { "CrossHairWidget", nullptr, (EPropertyFlags)0x001000000008001c, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHUDBase, CrossHairWidget), Z_Construct_UClass_UUserWidgetMaster_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AHUDBase_Statics::NewProp_CrossHairWidget_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AHUDBase_Statics::NewProp_CrossHairWidget_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AHUDBase_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHUDBase_Statics::NewProp_HealthBarWidget,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHUDBase_Statics::NewProp_CrossHairWidget,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AHUDBase_Statics::StaticCppClassTypeInfo = {
@@ -92,7 +106,7 @@ void EmptyLinkFunctionForGeneratedCodeHUDBase() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHUDBase, 4224522810);
+	IMPLEMENT_CLASS(AHUDBase, 1082188165);
 	template<> SI_API UClass* StaticClass<AHUDBase>()
 	{
 		return AHUDBase::StaticClass();
