@@ -6,12 +6,17 @@
 #include "GameFramework/HUD.h"
 #include "SI/Widget/Public/UserWidgetMaster.h"
 #include "SI/Widget/Public/HealthBarUserWidgetMaster.h"
+#include "SI/CameraManager/Public/MyPlayerCameraManager.h"
 #include "Components/Border.h"
 #include "Components/CanvasPanel.h"
+#include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "HUDBase.generated.h"
 
 class UUserWidgetMaster;
 class UHealthBarUserWidgetMaster;
+class AMyPlayerCameraManager;
+class UGameplayStatics;
 
 UCLASS()
 class SI_API AHUDBase : public AHUD
@@ -21,6 +26,8 @@ class SI_API AHUDBase : public AHUD
 public:
 	AHUDBase();
 	virtual void BeginPlay() override;
+
+	virtual void Tick(float DeltaTime) override;
 
 	// Dynamic reference to the blueprint class
 	TSubclassOf<class UUserWidget> CrossHairWidgetUIClass;
@@ -36,5 +43,8 @@ public:
 
 	void SetCrossHairVisibility(bool bIsVisible);
 	void UpdateCrossHairSize(float Speed);
+
+private:
+	AMyPlayerCameraManager* CameraManager;
 
 };

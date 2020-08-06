@@ -167,9 +167,25 @@ C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\In
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\UserWidgetMaster.generated.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/Widget/Public/HealthBarUserWidgetMaster.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\HealthBarUserWidgetMaster.generated.h
+C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/CameraManager/Public/MyPlayerCameraManager.h
+C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\MyPlayerCameraManager.generated.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\UMG\Public\Components/CanvasPanel.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Slate\Public\Widgets/Layout/SConstraintCanvas.h
 C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\CanvasPanel.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Kismet/GameplayStatics.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Kismet/KismetSystemLibrary.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/PropertyAccessUtil.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Engine/CollisionProfile.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CollisionProfile.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\KismetSystemLibrary.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Sound/DialogueTypes.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\DialogueTypes.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Kismet\GameplayStaticsTypes.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStaticsTypes.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStatics.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Kismet/KismetMathLibrary.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\KismetMathLibrary.generated.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\Engine\Classes\Kismet\KismetMathLibrary.inl
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\HUDBase.generated.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Source\SI/Health/Public/SI_HealthComponent.h
 C:\My\UnrealProjects\SI\Survival-Instinct\SI\Intermediate\Build\Win64\UE4Editor\Inc\SI\SI_HealthComponent.generated.h
