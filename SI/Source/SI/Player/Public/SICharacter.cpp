@@ -46,6 +46,16 @@ ASICharacter::ASICharacter()
 	// Add health component
 	HealthComponent = CreateDefaultSubobject<USI_HealthComponent>(TEXT("HealthComp"));
 
+	// Add healthWidget component
+	static ConstructorHelpers::FClassFinder<UHealthBarUserWidgetMaster> HealthBarUIBPClass(TEXT("/Game/UI/SI_Healthbar.SI_Healthbar_C"));
+
+	if (HealthBarUIBPClass.Class != nullptr && HealthBarUIBPClass.Succeeded())
+	{
+		HealthWidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthWidgetComp"));
+		HealthWidgetComponent->SetupAttachment(RootComponent);
+		HealthWidgetComponent->SetWidgetClass(HealthBarUIBPClass.Class);
+	}
+
 }
 
 void ASICharacter::EquipWeapon()
@@ -251,6 +261,12 @@ void ASICharacter::BeginPlay()
 
 	// Listen for health changed events
 	HealthComponent->OnHealthChanged.AddDynamic(this, &ASICharacter::OnHealthChanged);
+
+	if (HealthWidgetComponent)
+	{
+		HealthWidgetComponent->GetUserWidgetObject()->AddToPlayerScreen();
+	}
+
 }
 
 void ASICharacter::MoveFoward(float Value)
@@ -638,7 +654,7 @@ void ASICharacter::HolsterEquipedWeapon()
 
 }
 
-void ASICharacter::OnHealthChanged(USI_HealthComponent* HealthComp, float Health, float HealthDelta, const class UDamageType* DamageType, 
+void ASICharacter::OnHealthChanged(USI_HealthComponent* HealthComp, float Health, float HealthDelta, const class UDamageType* DamageType,
 	class AController* InstigatedBy, AActor* DamageCauser)
 {
 	if (Health <= 0.0f && !bDied)
@@ -762,16 +778,16 @@ void ASICharacter::Hit(FName HitBone, float HitMagnitude)
 		{
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), HitAudioFx, GetActorLocation());
 		}
-		
+
 		if (HitBone != "pelvis")
 		{
 			bIsHit = true;
 			HitBoneName = HitBone;
 			HitReactionTimeline.PlayFromStart();
 		}
-		
+
 	}
-	
+
 }
 
 bool ASICharacter::CanAddMags()
@@ -826,14 +842,14 @@ void ASICharacter::ResetHitReaction()
 	/*HitBlendWeight = 0.0f;*/
 	/*GetWorldTimerManager().SetTimer(
 		HitReactionTimerHandle, this, &ASICharacter::ApplyForceToHitBone, 0.048f, true);*/
-	/*UE_LOG(LogTemp, Warning, TEXT("ResetHitReaction"));*/
+		/*UE_LOG(LogTemp, Warning, TEXT("ResetHitReaction"));*/
 	HitBlendWeight = 0.0f;
 	GetMesh()->SetAllBodiesPhysicsBlendWeight(HitBlendWeight);
 	GetMesh()->SetAllBodiesSimulatePhysics(false);
 	bIsHit = false;
 	bAppliedForceToBone = false;
 	/*GetWorld()->GetTimerManager().ClearTimer(HitReactionTimerHandle);*/
-	
+
 }
 
 void ASICharacter::ApplyForceToHitBone()
@@ -892,7 +908,12 @@ void ASICharacter::Tick(float DeltaTime)
 		GetMesh()->SetAllBodiesBelowSimulatePhysics(HitBoneName, true);
 		GetMesh()->SetAllBodiesBelowPhysicsBlendWeight(HitBoneName, HitBlendWeight);
 		ApplyForceToHitBone();
-		
+
+	}
+
+	if (HealthWidgetComponent)
+	{
+		PositionHealthBar();
 	}
 }
 
@@ -979,7 +1000,7 @@ void ASICharacter::Die()
 	UGameplayStatics::PlaySoundAtLocation(GetWorld(), DieAudioFx, GetActorLocation());
 
 	bDied = true;
-	
+
 	GetMovementComponent()->StopMovementImmediately();
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
@@ -987,6 +1008,27 @@ void ASICharacter::Die()
 
 	SetLifeSpan(10.0f);
 
+}
+
+void ASICharacter::PositionHealthBar()
+{
+	FVector Location = GetActorLocation();
+	FVector FwdVector = GetActorForwardVector() * 350.0f;
+	UUserWidget* UserWidget = HealthWidgetComponent->GetUserWidgetObject();
+	//if (FwdVector.X >= 0)
+	//{
+	//	UserWidget->SetRenderShear(FVector2D(0.0f, 15.0f));
+	//	//UserWidget->SetRenderTransformAngle(45.0f);
+	//}
+	//else if (FwdVector.X < 0)
+
+	//{
+	//	UserWidget->SetRenderShear(FVector2D(-6.0f, -15.0f));
+	//	UserWidget->SetRenderTransformAngle(-7.0f);
+	//}
+	
+	
+	UserWidget->SetRenderTranslation(FVector2D(FwdVector.X, 150.0f));
 }
 
 #pragma endregion

@@ -27,7 +27,7 @@ public:
 	AHUDBase();
 	virtual void BeginPlay() override;
 
-	virtual void Tick(float DeltaTime) override;
+	//virtual void Tick(float DeltaTime) override;
 
 	// Dynamic reference to the blueprint class
 	TSubclassOf<class UUserWidget> CrossHairWidgetUIClass;

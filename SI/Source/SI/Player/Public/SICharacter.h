@@ -12,6 +12,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Animation/AnimInstance.h"
 #include "TimerManager.h"
+#include "Components/WidgetComponent.h"
 #include "SICharacter.generated.h"
 
 
@@ -26,6 +27,8 @@ class UCapsuleComponent;
 class UAnimMontage;
 class ADynamicMagazineMaster;
 class USI_HealthComponent;
+class UWidgetComponent;
+class UUserWidget;
 
 
 UCLASS()
@@ -57,6 +60,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
 	bool bIsWalkMode;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
+	UWidgetComponent* HealthWidgetComponent;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Components")
 	int WeaponInventoryIndex;
@@ -191,7 +197,7 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, Category = "Default")
 	bool bDied;
-	
+
 	FRotator CombatModeCharacterRotation = FRotator(0, -81.0f, 0); //y (pitch), z (yaw), x (roll)
 	
 	FRotator DefaultModeCharacterRotation = FRotator(0, -90.0f, 0);
@@ -213,6 +219,8 @@ protected:
 	FTimeline HitReactionTimeline;
 
 	bool bIsAiming;
+
+	TSubclassOf<class UUserWidget> HealthBarWidgetUIClass;
 
 	UFUNCTION()
 	void OnHealthChanged(USI_HealthComponent* HealthComp, float Health, float HealthDelta, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
@@ -260,6 +268,8 @@ private:
 	void PlayEquipWeaponMontage();
 
 	void Die();	
+
+	void PositionHealthBar();
 
 public:	
 	// Called every frame

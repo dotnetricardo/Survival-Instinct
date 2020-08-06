@@ -27,6 +27,7 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	SI_API UClass* Z_Construct_UClass_AWeaponActualMaster_NoRegister();
+	UMG_API UClass* Z_Construct_UClass_UWidgetComponent_NoRegister();
 // End Cross Module References
 	DEFINE_FUNCTION(ASICharacter::execResetHitReaction)
 	{
@@ -420,6 +421,10 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 #endif
 		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_WeaponInventoryIndex;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HealthWidgetComponent_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_HealthWidgetComponent;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bIsWalkMode_MetaData[];
 #endif
 		static void NewProp_bIsWalkMode_SetBit(void* Obj);
@@ -596,6 +601,14 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 #endif
 	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventoryIndex = { "WeaponInventoryIndex", nullptr, (EPropertyFlags)0x0010000000000014, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASICharacter, WeaponInventoryIndex), METADATA_PARAMS(Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventoryIndex_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventoryIndex_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASICharacter_Statics::NewProp_HealthWidgetComponent_MetaData[] = {
+		{ "Category", "Default" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Player/Public/SICharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASICharacter_Statics::NewProp_HealthWidgetComponent = { "HealthWidgetComponent", nullptr, (EPropertyFlags)0x00100000000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASICharacter, HealthWidgetComponent), Z_Construct_UClass_UWidgetComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ASICharacter_Statics::NewProp_HealthWidgetComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASICharacter_Statics::NewProp_HealthWidgetComponent_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsWalkMode_MetaData[] = {
 		{ "Category", "Default" },
 		{ "ModuleRelativePath", "Player/Public/SICharacter.h" },
@@ -679,6 +692,7 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventory,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventory_Inner,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_WeaponInventoryIndex,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_HealthWidgetComponent,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsWalkMode,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsFiring,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASICharacter_Statics::NewProp_bIsCrouching,
@@ -714,7 +728,7 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASICharacter, 246976812);
+	IMPLEMENT_CLASS(ASICharacter, 3291583036);
 	template<> SI_API UClass* StaticClass<ASICharacter>()
 	{
 		return ASICharacter::StaticClass();
