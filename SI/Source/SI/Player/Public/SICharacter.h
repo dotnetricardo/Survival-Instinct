@@ -271,6 +271,14 @@ private:
 
 	void PositionHealthBar();
 
+	void ToggleHealthWidgetVisibility(bool bVisible);
+
+	void UpdateHealthComponentAmmoData();
+
+	UUserWidget* HealthWidget;
+
+	FORCEINLINE UHealthBarUserWidgetMaster* GetHealthWidgetAsWidgetMaster() const { return HealthWidget ? Cast<UHealthBarUserWidgetMaster>(HealthWidget) : nullptr; }
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

@@ -3,15 +3,15 @@
 
 #include "HealthBarUserWidgetMaster.h"
 
-void UHealthBarUserWidgetMaster::UpdateHealth(float Health)
+void UHealthBarUserWidgetMaster::UpdateHealth(float Value)
 {
-	HealthValue->SetText(FText::AsNumber(Health));
-	HealthBar->SetPercent(Health / 100);
+	HealthValue->SetText(FText::AsNumber(Value));
+	HealthBar->SetPercent(Value / 100);
 }
 
-void UHealthBarUserWidgetMaster::UpdateArmor(int Armor)
+void UHealthBarUserWidgetMaster::UpdateArmor(int Value)
 {
-	switch (Armor)
+	switch (Value)
 	{
 	case 0:
 		ArmorBar1->SetPercent(0);
@@ -41,3 +41,15 @@ void UHealthBarUserWidgetMaster::UpdateArmor(int Armor)
 		break;
 	}
 }
+
+void UHealthBarUserWidgetMaster::UpdateBullets(int Value)
+{
+	BulletsValue->SetText(FText::AsNumber(Value));
+}
+
+void UHealthBarUserWidgetMaster::UpdateMags(int Value)
+{
+	MagsValue->SetText(FText::AsNumber(Value));
+}
+
+

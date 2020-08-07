@@ -28,7 +28,6 @@ class UCameraShake;
 
 
 
-
 UCLASS()
 class SI_API AWeaponActualMaster : public AActor
 {
@@ -45,6 +44,8 @@ public:
 	void Fire();
 
 	bool CanFire();
+
+	bool CanReload();
 
 	void SetGrenadeMode();
 
@@ -105,6 +106,18 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	float FireRate;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	int DefaultMagazineCount;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	int CurrentMagazineCount;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	int DefaultGrenadeMagazineCount;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
+	int CurrentGrenadeMagazineCount;
+
 	float TimeBetweenShots;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
@@ -138,6 +151,8 @@ public:
 	FTransform GetMagazineTransform();
 
 	void AnimatePistolBarrel();
+
+	void Reload();
 	
 	/*FORCEINLINE bool CanAim() const { return bHasLaserSight || bHasMicroscopicSight; }*/
 

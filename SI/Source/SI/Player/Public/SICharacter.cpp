@@ -67,6 +67,8 @@ void ASICharacter::EquipWeapon()
 	{
 		bIsWeaponEquiped = true;
 
+		ToggleHealthWidgetVisibility(bIsWeaponEquiped);
+
 		if (!bIsCombatMode)
 		{
 			ToggleCombatMode();
@@ -100,7 +102,7 @@ void ASICharacter::EquipWeapon()
 
 		LaserSightOff();
 
-
+		UpdateHealthComponentAmmoData();
 
 		//UGameplayStatics::PlaySoundAtLocation(GetWorld(), GetSpawnedWeaponAsWeaponMaster()->ReloadSoundFx, GetActorLocation());
 
@@ -150,6 +152,8 @@ void ASICharacter::UnequipWeapon(bool bForceLast)
 		}
 
 		bIsWeaponEquiped = false;
+
+		ToggleHealthWidgetVisibility(bIsWeaponEquiped);
 	}
 
 }
@@ -264,7 +268,9 @@ void ASICharacter::BeginPlay()
 
 	if (HealthWidgetComponent)
 	{
-		HealthWidgetComponent->GetUserWidgetObject()->AddToPlayerScreen();
+		HealthWidget = HealthWidgetComponent->GetUserWidgetObject();
+
+		HealthWidget->AddToPlayerScreen();
 	}
 
 }
@@ -525,9 +531,15 @@ void ASICharacter::BeginFireWeapon()
 			WeaponMaster->Fire();
 
 			LastFireTime = GetWorld()->TimeSeconds;
+
+			UpdateHealthComponentAmmoData();
+		}
+		else
+		{
+			Reload();
 		}
 
-		//TODO: else play sound effect of no ammo
+		
 	}
 }
 
@@ -569,6 +581,7 @@ void ASICharacter::SetWeaponGrenadeMode()
 	if (bIsWeaponEquiped)
 	{
 		GetSpawnedWeaponAsWeaponMaster()->SetGrenadeMode();
+		UpdateHealthComponentAmmoData();
 	}
 }
 
@@ -578,28 +591,31 @@ void ASICharacter::Reload()
 	{
 		AWeaponActualMaster* WeaponMaster = GetSpawnedWeaponAsWeaponMaster();
 
-		if (WeaponMaster->bIsKnife)
+		if (WeaponMaster->CanReload())
 		{
-			return;
-		}
+			bIsReloading = true;
 
-		bIsReloading = true;
-
-
-		if (!WeaponMaster->bIsGrenadeMode)
-		{
-			/*if (WeaponMaster->ReloadSoundFx)
+			if (!WeaponMaster->bIsGrenadeMode)
 			{
-				UGameplayStatics::PlaySoundAtLocation(GetWorld(), WeaponMaster->ReloadSoundFx, SpawnedWeapons[WeaponInventoryIndex]->GetActorLocation());
-			}*/
+				/*if (WeaponMaster->ReloadSoundFx)
+				{
+					UGameplayStatics::PlaySoundAtLocation(GetWorld(), WeaponMaster->ReloadSoundFx, SpawnedWeapons[WeaponInventoryIndex]->GetActorLocation());
+				}*/
 
-			GetMesh()->GetAnimInstance()->Montage_Play(WeaponMaster->ReloadMontage);
+				GetMesh()->GetAnimInstance()->Montage_Play(WeaponMaster->ReloadMontage);
+			}
+			else
+			{
+				GetMesh()->GetAnimInstance()->Montage_Play(GetSpawnedWeaponAsWeaponMaster()->ReloadGrenadeMontage);
+			}
+
+			WeaponMaster->Reload();
+			UpdateHealthComponentAmmoData();
 		}
 		else
 		{
-			GetMesh()->GetAnimInstance()->Montage_Play(GetSpawnedWeaponAsWeaponMaster()->ReloadGrenadeMontage);
+			//TODO: else play sound effect of no ammo if not knife
 		}
-
 	}
 }
 
@@ -658,12 +674,11 @@ void ASICharacter::HolsterEquipedWeapon()
 void ASICharacter::OnHealthChanged(USI_HealthComponent* HealthComp, float Health, float HealthDelta, int Armor, const class UDamageType* DamageType,
 	class AController* InstigatedBy, AActor* DamageCauser)
 {
-	if (HealthWidgetComponent)
+	if (HealthWidget)
 	{
-		UUserWidget* UserWidget = HealthWidgetComponent->GetUserWidgetObject();
-		UHealthBarUserWidgetMaster* HealthBarWidgetMaster = Cast<UHealthBarUserWidgetMaster>(UserWidget);
+		UHealthBarUserWidgetMaster* HealthBarWidgetMaster = GetHealthWidgetAsWidgetMaster();
 
-		if (HealthBarWidgetMaster)
+		if (HealthBarWidgetMaster != nullptr)
 		{
 			/*UE_LOG(LogTemp, Log, TEXT("Armor Changed %s"), *FString::SanitizeFloat(Armor));*/
 			
@@ -935,7 +950,7 @@ void ASICharacter::Tick(float DeltaTime)
 
 	}
 
-	if (HealthWidgetComponent)
+	if (HealthWidget)
 	{
 		PositionHealthBar();
 	}
@@ -1038,21 +1053,31 @@ void ASICharacter::PositionHealthBar()
 {
 	FVector Location = GetActorLocation();
 	FVector FwdVector = GetActorForwardVector() * 350.0f;
-	UUserWidget* UserWidget = HealthWidgetComponent->GetUserWidgetObject();
-	//if (FwdVector.X >= 0)
-	//{
-	//	UserWidget->SetRenderShear(FVector2D(0.0f, 15.0f));
-	//	//UserWidget->SetRenderTransformAngle(45.0f);
-	//}
-	//else if (FwdVector.X < 0)
+	
+	HealthWidget->SetRenderTranslation(FVector2D(FwdVector.X, 150.0f));
+}
 
-	//{
-	//	UserWidget->SetRenderShear(FVector2D(-6.0f, -15.0f));
-	//	UserWidget->SetRenderTransformAngle(-7.0f);
-	//}
-	
-	
-	UserWidget->SetRenderTranslation(FVector2D(FwdVector.X, 150.0f));
+void ASICharacter::ToggleHealthWidgetVisibility(bool bVisible)
+{
+	UHealthBarUserWidgetMaster* HealthBarWidgetMaster = GetHealthWidgetAsWidgetMaster();
+
+	if (HealthBarWidgetMaster != nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("%s"), bVisible ? "true" : "false");
+		HealthBarWidgetMaster->SetVisibility(bVisible ? ESlateVisibility::Visible : ESlateVisibility::Hidden);
+	}
+}
+
+void ASICharacter::UpdateHealthComponentAmmoData()
+{
+	UHealthBarUserWidgetMaster* HealthBarWidgetMaster = GetHealthWidgetAsWidgetMaster();
+
+	if (HealthBarWidgetMaster != nullptr)
+	{
+		AWeaponActualMaster* WeaponMaster = GetSpawnedWeaponAsWeaponMaster();
+		HealthBarWidgetMaster->UpdateBullets(WeaponMaster->bIsGrenadeMode ? WeaponMaster->CurrentGrenadeAmmo : WeaponMaster->CurrentAmmo);
+		HealthBarWidgetMaster->UpdateMags(WeaponMaster->bIsGrenadeMode ? WeaponMaster->CurrentGrenadeMagazineCount : WeaponMaster->CurrentMagazineCount);
+	}
 }
 
 #pragma endregion

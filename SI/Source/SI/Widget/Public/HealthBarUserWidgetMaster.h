@@ -21,6 +21,12 @@ class SI_API UHealthBarUserWidgetMaster : public UUserWidget
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	UTextBlock* HealthValue;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* BulletsValue;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* MagsValue;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	UProgressBar* HealthBar;
@@ -49,8 +55,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	UProgressBar* ArmorBar8;
 
-	void UpdateHealth(float Health);
+	void UpdateHealth(float Value);
 
-	void UpdateArmor(int Armor);
+	void UpdateArmor(int Value);
+
+	void UpdateBullets(int Value);
+
+	void UpdateMags(int Value);
 	
 };

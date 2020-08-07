@@ -47,6 +47,11 @@ AWeaponActualMaster::AWeaponActualMaster()
 
 	SetRootComponent(DefaultSceneRoot);
 
+	DefaultMagazineCount = 3;
+	CurrentMagazineCount = DefaultMagazineCount;
+
+	DefaultGrenadeMagazineCount = 2;
+	CurrentGrenadeMagazineCount = DefaultGrenadeMagazineCount;
 }
 
 void AWeaponActualMaster::Fire()
@@ -146,15 +151,18 @@ void AWeaponActualMaster::Fire()
 	{
 		SpawnedProjectile1 = GetWorld()->SpawnActor<AProjectileMaster>(GrenadeProjectileToSpawn, Shoot1To, SpawnParams);
 		SpawnedProjectile1->ExplodeWhenNotCollided();
+		CurrentGrenadeAmmo -= 1;
 	}
 	else
 	{
 		// Single Shot
 		SpawnedProjectile1 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot1To, SpawnParams);
+		CurrentAmmo -= 1;
 
 		if (TotalMuzzles == 2)
 		{
 			SpawnedProjectile2 = GetWorld()->SpawnActor<AProjectileMaster>(ProjectileToSpawn, Shoot2To, SpawnParams);
+			CurrentAmmo -= 1;
 		}
 	}
 
@@ -169,6 +177,11 @@ void AWeaponActualMaster::Fire()
 bool AWeaponActualMaster::CanFire()
 {
 	return bIsGrenadeMode ? CurrentGrenadeAmmo > 0 : CurrentAmmo > 0;
+}
+
+bool AWeaponActualMaster::CanReload()
+{
+	return bIsGrenadeMode ? !bIsKnife && CurrentGrenadeMagazineCount > 0 : !bIsKnife && CurrentMagazineCount > 0;
 }
 
 void AWeaponActualMaster::SetGrenadeMode()
@@ -212,6 +225,20 @@ void AWeaponActualMaster::AnimatePistolBarrel()
 			
 			WeaponActualSkeletalMesh->PlayAnimation(BarrelOpenAnimation, false);
 		}
+	}
+}
+
+void AWeaponActualMaster::Reload()
+{
+	if (bIsGrenadeMode)
+	{
+		CurrentGrenadeMagazineCount -= 1;
+		CurrentGrenadeAmmo = MaxGrenadeAmmo;
+	}
+	else
+	{
+		CurrentMagazineCount -= 1;
+		CurrentAmmo = MaxAmmo;
 	}
 }
 
