@@ -513,6 +513,7 @@ void ASICharacter::BeginFireWeapon()
 		{
 			if (!WeaponMaster->bIsGrenadeMode)
 			{
+				/*GetMesh()->GetAnimInstance()->Montage_Stop(0, WeaponMaster->ShootAnimMontage);*/
 				GetMesh()->GetAnimInstance()->Montage_Play(WeaponMaster->ShootAnimMontage);
 			}
 			else
@@ -654,9 +655,31 @@ void ASICharacter::HolsterEquipedWeapon()
 
 }
 
-void ASICharacter::OnHealthChanged(USI_HealthComponent* HealthComp, float Health, float HealthDelta, const class UDamageType* DamageType,
+void ASICharacter::OnHealthChanged(USI_HealthComponent* HealthComp, float Health, float HealthDelta, int Armor, const class UDamageType* DamageType,
 	class AController* InstigatedBy, AActor* DamageCauser)
 {
+	if (HealthWidgetComponent)
+	{
+		UUserWidget* UserWidget = HealthWidgetComponent->GetUserWidgetObject();
+		UHealthBarUserWidgetMaster* HealthBarWidgetMaster = Cast<UHealthBarUserWidgetMaster>(UserWidget);
+
+		if (HealthBarWidgetMaster)
+		{
+			/*UE_LOG(LogTemp, Log, TEXT("Armor Changed %s"), *FString::SanitizeFloat(Armor));*/
+			
+			if (Armor == 0 && Health < 100)
+			{
+				HealthBarWidgetMaster->UpdateHealth(Health);
+			}
+			else
+			{
+				HealthBarWidgetMaster->UpdateArmor(Armor);
+			}
+
+		}
+		
+
+	}
 	if (Health <= 0.0f && !bDied)
 	{
 		// Die
@@ -779,12 +802,13 @@ void ASICharacter::Hit(FName HitBone, float HitMagnitude)
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), HitAudioFx, GetActorLocation());
 		}
 
-		if (HitBone != "pelvis")
-		{
-			bIsHit = true;
-			HitBoneName = HitBone;
-			HitReactionTimeline.PlayFromStart();
-		}
+		bIsHit = true;
+		
+	/*	UE_LOG(LogTemp, Warning, TEXT("%s"), *HitBone.ToString());*/
+
+		// change bone name if hit in pelvis or else character will do strange poses
+		HitBoneName = HitBone != "pelvis" && HitBone != "None" ? HitBone : "spine_01";
+		HitReactionTimeline.PlayFromStart();
 
 	}
 

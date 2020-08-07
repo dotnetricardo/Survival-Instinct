@@ -117,10 +117,6 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_FireRate;
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_FireRateDelay_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_FireRateDelay;
-#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CurrentGrenadeAmmo_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_CurrentGrenadeAmmo;
@@ -344,13 +340,6 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_FireRate = { "FireRate", nullptr, (EPropertyFlags)0x0010000000000015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, FireRate), METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_FireRate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_FireRate_MetaData)) };
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_FireRateDelay_MetaData[] = {
-		{ "Category", "Default" },
-		{ "ModuleRelativePath", "Weapons/Public/WeaponActualMaster.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_FireRateDelay = { "FireRateDelay", nullptr, (EPropertyFlags)0x0010000000000015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWeaponActualMaster, FireRateDelay), METADATA_PARAMS(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_FireRateDelay_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_FireRateDelay_MetaData)) };
-#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_CurrentGrenadeAmmo_MetaData[] = {
 		{ "Category", "Default" },
 		{ "ModuleRelativePath", "Weapons/Public/WeaponActualMaster.h" },
@@ -523,7 +512,6 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_GrenadeInflictingDamage,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_InflictingDamage,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_FireRate,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_FireRateDelay,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_CurrentGrenadeAmmo,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_MaxGrenadeAmmo,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWeaponActualMaster_Statics::NewProp_CurrentAmmo,
@@ -570,7 +558,7 @@ void EmptyLinkFunctionForGeneratedCodeWeaponActualMaster() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AWeaponActualMaster, 693067459);
+	IMPLEMENT_CLASS(AWeaponActualMaster, 3552856077);
 	template<> SI_API UClass* StaticClass<AWeaponActualMaster>()
 	{
 		return AWeaponActualMaster::StaticClass();

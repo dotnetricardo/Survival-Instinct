@@ -7,6 +7,7 @@
 USI_HealthComponent::USI_HealthComponent()
 {
 	DefaultHealth = 100;
+	Armor = 8;
 }
 
 // Called when the game starts or when spawned
@@ -33,11 +34,21 @@ void USI_HealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage
 	{
 		return;
 	}
+	
 
-	// Update health clamped
-	Health = FMath::Clamp(Health - Damage, 0.0f, DefaultHealth);
 
-	OnHealthChanged.Broadcast(this, Health, Damage, DamageType, InstigatedBy, DamageCauser);
+	// Update health clamped only if armor is 0
+	if (Armor == 0)
+	{
+		Health = FMath::Clamp(Health - Damage, 0.0f, DefaultHealth);
+	}
+	else
+	{
+		Armor -= 1;
+	}
+	
+
+	OnHealthChanged.Broadcast(this, Health, Damage, Armor, DamageType, InstigatedBy, DamageCauser);
 
 	//UE_LOG(LogTemp, Log, TEXT("Health Changed %s"), *FString::SanitizeFloat(Health));
 }

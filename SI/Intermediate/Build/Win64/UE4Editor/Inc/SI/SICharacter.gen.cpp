@@ -80,12 +80,13 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 		P_GET_OBJECT(USI_HealthComponent,Z_Param_HealthComp);
 		P_GET_PROPERTY(FFloatProperty,Z_Param_Health);
 		P_GET_PROPERTY(FFloatProperty,Z_Param_HealthDelta);
+		P_GET_PROPERTY(FIntProperty,Z_Param_Armor);
 		P_GET_OBJECT(UDamageType,Z_Param_DamageType);
 		P_GET_OBJECT(AController,Z_Param_InstigatedBy);
 		P_GET_OBJECT(AActor,Z_Param_DamageCauser);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->OnHealthChanged(Z_Param_HealthComp,Z_Param_Health,Z_Param_HealthDelta,Z_Param_DamageType,Z_Param_InstigatedBy,Z_Param_DamageCauser);
+		P_THIS->OnHealthChanged(Z_Param_HealthComp,Z_Param_Health,Z_Param_HealthDelta,Z_Param_Armor,Z_Param_DamageType,Z_Param_InstigatedBy,Z_Param_DamageCauser);
 		P_NATIVE_END;
 	}
 	void ASICharacter::StaticRegisterNativesASICharacter()
@@ -259,6 +260,7 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 			USI_HealthComponent* HealthComp;
 			float Health;
 			float HealthDelta;
+			int32 Armor;
 			const UDamageType* DamageType;
 			AController* InstigatedBy;
 			AActor* DamageCauser;
@@ -269,6 +271,7 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_DamageType_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_DamageType;
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_Armor;
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_HealthDelta;
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_Health;
 #if WITH_METADATA
@@ -289,6 +292,7 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 	};
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASICharacter_OnHealthChanged_Statics::NewProp_DamageType = { "DamageType", nullptr, (EPropertyFlags)0x0010000000000082, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(SICharacter_eventOnHealthChanged_Parms, DamageType), Z_Construct_UClass_UDamageType_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_ASICharacter_OnHealthChanged_Statics::NewProp_DamageType_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_ASICharacter_OnHealthChanged_Statics::NewProp_DamageType_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UFunction_ASICharacter_OnHealthChanged_Statics::NewProp_Armor = { "Armor", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(SICharacter_eventOnHealthChanged_Parms, Armor), METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ASICharacter_OnHealthChanged_Statics::NewProp_HealthDelta = { "HealthDelta", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(SICharacter_eventOnHealthChanged_Parms, HealthDelta), METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ASICharacter_OnHealthChanged_Statics::NewProp_Health = { "Health", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(SICharacter_eventOnHealthChanged_Parms, Health), METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
@@ -301,6 +305,7 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASICharacter_OnHealthChanged_Statics::NewProp_DamageCauser,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASICharacter_OnHealthChanged_Statics::NewProp_InstigatedBy,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASICharacter_OnHealthChanged_Statics::NewProp_DamageType,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASICharacter_OnHealthChanged_Statics::NewProp_Armor,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASICharacter_OnHealthChanged_Statics::NewProp_HealthDelta,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASICharacter_OnHealthChanged_Statics::NewProp_Health,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASICharacter_OnHealthChanged_Statics::NewProp_HealthComp,
@@ -470,7 +475,7 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 		{ &Z_Construct_UFunction_ASICharacter_AnimateSpringArmHeight, "AnimateSpringArmHeight" }, // 604125465
 		{ &Z_Construct_UFunction_ASICharacter_AnimateSpringArmLength, "AnimateSpringArmLength" }, // 327589450
 		{ &Z_Construct_UFunction_ASICharacter_ApplyForceToHitBone, "ApplyForceToHitBone" }, // 647108356
-		{ &Z_Construct_UFunction_ASICharacter_OnHealthChanged, "OnHealthChanged" }, // 1984344972
+		{ &Z_Construct_UFunction_ASICharacter_OnHealthChanged, "OnHealthChanged" }, // 2489310364
 		{ &Z_Construct_UFunction_ASICharacter_ResetHitReaction, "ResetHitReaction" }, // 1655510260
 	};
 #if WITH_METADATA
@@ -728,7 +733,7 @@ void EmptyLinkFunctionForGeneratedCodeSICharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASICharacter, 3291583036);
+	IMPLEMENT_CLASS(ASICharacter, 358056490);
 	template<> SI_API UClass* StaticClass<ASICharacter>()
 	{
 		return ASICharacter::StaticClass();

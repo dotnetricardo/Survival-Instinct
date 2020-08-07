@@ -103,9 +103,6 @@ public:
 	int CurrentGrenadeAmmo;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
-	float FireRateDelay;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Default")
 	float FireRate;
 
 	float TimeBetweenShots;

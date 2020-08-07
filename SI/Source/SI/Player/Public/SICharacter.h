@@ -223,7 +223,7 @@ protected:
 	TSubclassOf<class UUserWidget> HealthBarWidgetUIClass;
 
 	UFUNCTION()
-	void OnHealthChanged(USI_HealthComponent* HealthComp, float Health, float HealthDelta, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+	void OnHealthChanged(USI_HealthComponent* HealthComp, float Health, float HealthDelta, int Armor, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 	
 private:
 

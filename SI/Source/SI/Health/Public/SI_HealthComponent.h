@@ -7,7 +7,7 @@
 #include "SI_HealthComponent.generated.h"
 
 // OnHealthChangedEvent
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_SixParams(FOnHealthChangeSignature, USI_HealthComponent*, HealthComp, float, Health, float, HealthDelta, const class UDamageType*, DamageType, class AController*, InstigatedBy, AActor*, DamageCauser);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_SevenParams(FOnHealthChangeSignature, USI_HealthComponent*, HealthComp, float, Health, float, HealthDelta, int, Armor, const class UDamageType*, DamageType, class AController*, InstigatedBy, AActor*, DamageCauser);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class SI_API USI_HealthComponent : public UActorComponent
@@ -24,6 +24,9 @@ protected:
 	
 	UPROPERTY(BlueprintReadOnly, Category="HealthComponent")
 	float Health;
+
+	UPROPERTY(BlueprintReadOnly, Category = "HealthComponent")
+	int Armor;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HealthComponent")
 	float DefaultHealth;
