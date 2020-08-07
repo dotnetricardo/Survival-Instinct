@@ -69,6 +69,8 @@ void ASICharacter::EquipWeapon()
 
 		ToggleHealthWidgetVisibility(bIsWeaponEquiped);
 
+		ToggleHealthWidgetGrenadeIconsVisibility();
+
 		if (!bIsCombatMode)
 		{
 			ToggleCombatMode();
@@ -102,7 +104,7 @@ void ASICharacter::EquipWeapon()
 
 		LaserSightOff();
 
-		UpdateHealthComponentAmmoData();
+		UpdateHealthWidgetAmmoData();
 
 		//UGameplayStatics::PlaySoundAtLocation(GetWorld(), GetSpawnedWeaponAsWeaponMaster()->ReloadSoundFx, GetActorLocation());
 
@@ -532,7 +534,7 @@ void ASICharacter::BeginFireWeapon()
 
 			LastFireTime = GetWorld()->TimeSeconds;
 
-			UpdateHealthComponentAmmoData();
+			UpdateHealthWidgetAmmoData();
 		}
 		else
 		{
@@ -581,7 +583,20 @@ void ASICharacter::SetWeaponGrenadeMode()
 	if (bIsWeaponEquiped)
 	{
 		GetSpawnedWeaponAsWeaponMaster()->SetGrenadeMode();
-		UpdateHealthComponentAmmoData();
+		
+		ToggleHealthWidgetGrenadeIconsVisibility();
+		
+		UpdateHealthWidgetAmmoData();
+	}
+}
+
+void ASICharacter::ToggleHealthWidgetGrenadeIconsVisibility()
+{
+	UHealthBarUserWidgetMaster* HealthBarWidgetMaster = GetHealthWidgetAsWidgetMaster();
+
+	if (HealthBarWidgetMaster != nullptr)
+	{
+		HealthBarWidgetMaster->ToggleGrenadeModeIconsVisible(GetSpawnedWeaponAsWeaponMaster()->bIsGrenadeMode);
 	}
 }
 
@@ -610,7 +625,7 @@ void ASICharacter::Reload()
 			}
 
 			WeaponMaster->Reload();
-			UpdateHealthComponentAmmoData();
+			UpdateHealthWidgetAmmoData();
 		}
 		else
 		{
@@ -1068,7 +1083,7 @@ void ASICharacter::ToggleHealthWidgetVisibility(bool bVisible)
 	}
 }
 
-void ASICharacter::UpdateHealthComponentAmmoData()
+void ASICharacter::UpdateHealthWidgetAmmoData()
 {
 	UHealthBarUserWidgetMaster* HealthBarWidgetMaster = GetHealthWidgetAsWidgetMaster();
 

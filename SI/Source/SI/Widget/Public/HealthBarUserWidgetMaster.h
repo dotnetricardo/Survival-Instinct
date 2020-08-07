@@ -6,9 +6,12 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
 #include "Components/ProgressBar.h"
+#include "Components/Image.h"
 #include "HealthBarUserWidgetMaster.generated.h"
 
 class UTextBlock;
+class UImage;
+class UProgressBar;
 
 /**
  * 
@@ -55,6 +58,18 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	UProgressBar* ArmorBar8;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UImage* BulletsIcon1;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UImage* BulletsIcon2;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UImage* RocketIcon1;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UImage* RocketIcon2;
+
 	void UpdateHealth(float Value);
 
 	void UpdateArmor(int Value);
@@ -62,5 +77,7 @@ public:
 	void UpdateBullets(int Value);
 
 	void UpdateMags(int Value);
+
+	void ToggleGrenadeModeIconsVisible(bool bVisible);
 	
 };

@@ -273,7 +273,9 @@ private:
 
 	void ToggleHealthWidgetVisibility(bool bVisible);
 
-	void UpdateHealthComponentAmmoData();
+	void UpdateHealthWidgetAmmoData();
+
+	void ToggleHealthWidgetGrenadeIconsVisibility();
 
 	UUserWidget* HealthWidget;
 

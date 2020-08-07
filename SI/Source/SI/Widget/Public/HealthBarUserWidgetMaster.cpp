@@ -52,4 +52,24 @@ void UHealthBarUserWidgetMaster::UpdateMags(int Value)
 	MagsValue->SetText(FText::AsNumber(Value));
 }
 
+void UHealthBarUserWidgetMaster::ToggleGrenadeModeIconsVisible(bool bVisible)
+{
+	if (bVisible)
+	{
+		RocketIcon1->SetVisibility(ESlateVisibility::Visible);
+		RocketIcon2->SetVisibility(ESlateVisibility::Visible);
+
+		BulletsIcon1->SetVisibility(ESlateVisibility::Hidden);
+		BulletsIcon2->SetVisibility(ESlateVisibility::Hidden);
+
+	}
+	else
+	{
+		RocketIcon1->SetVisibility(ESlateVisibility::Hidden);
+		RocketIcon2->SetVisibility(ESlateVisibility::Hidden);
+
+		BulletsIcon1->SetVisibility(ESlateVisibility::Visible);
+		BulletsIcon2->SetVisibility(ESlateVisibility::Visible);
+	}
+}
 
