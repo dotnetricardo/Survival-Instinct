@@ -26,6 +26,9 @@ ASICharacter::ASICharacter()
 	SpringArmComp = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComp"));
 	SpringArmComp->SetupAttachment(RootComponent);
 	SpringArmComp->bUsePawnControlRotation = true;
+	SpringArmComp->bEnableCameraLag = true;
+	SpringArmComp->bEnableCameraRotationLag = true;
+	
 
 	// Allow player to crouch
 	GetCharacterMovement()->GetNavAgentPropertiesRef().bCanCrouch = true;
@@ -273,6 +276,8 @@ void ASICharacter::BeginPlay()
 		HealthWidget = HealthWidgetComponent->GetUserWidgetObject();
 
 		HealthWidget->AddToPlayerScreen();
+
+		ToggleHealthWidgetVisibility(false);
 	}
 
 }
